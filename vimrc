@@ -25,6 +25,11 @@ set hlsearch
 set incsearch
 nmap <silent> <leader><leader> :nohlsearch<CR>
 
+" pasting
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
+
 set foldmethod=syntax
 set foldlevelstart=99   " all folds open at start
 
