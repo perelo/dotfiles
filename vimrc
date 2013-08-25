@@ -15,6 +15,7 @@ set visualbell t_vb=    " remove bip and flash
 set laststatus=2        " always display statusline
 
 map <F8> :source $MYVIMRC<CR>
+map <F7> :tabedit $MYVIMRC<CR>
 
 let mapleader = ","
 
@@ -51,6 +52,15 @@ inoremap <A-down> <Esc>:m+<CR>==gi
 inoremap <A-up> <Esc>:m-2<CR>==gi
 vnoremap <A-down> :m'>+<CR>gv=gv
 vnoremap <A-up> :m-2<CR>gv=gv
+
+" moving around windows
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" make Y behave like C and D
+nmap Y y$
 
 " move on lines as displayed
 nmap j gj
