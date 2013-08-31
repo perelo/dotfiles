@@ -80,6 +80,9 @@ let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 
+set splitbelow
+set splitright
+
 " set commentstring for Python files (vim-commentary plugin)
 autocmd FileType python set commentstring=#\ %s
 
