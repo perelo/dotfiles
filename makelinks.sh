@@ -9,8 +9,9 @@
 dir=~/dotfiles # dotfiles directory
 olddir=~/dotfiles_old # old dotfiles backup directory
 
-# list of files/folders to symlink in homedir
-files="vimrc vim gitconfig gitignore solarized tmux.conf dir_colors"
+# list of files/folders to symlink in homedir (all except README.md and this script)
+n=`basename $0`
+files=`ls $dir | sed -e '/README.md\|$n/d'`
 
 ##########
 
