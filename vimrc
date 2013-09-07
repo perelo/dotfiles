@@ -45,6 +45,9 @@ endif
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
+" toggle numbers / relative numbers
+nmap <silent> <C-n> :exec 'set number!' &number ? 'relativenumber!' : ''<CR>
+
 " moving lines
 nnoremap <A-down> :m+<CR>==
 nnoremap <A-up> :m-2<CR>==
