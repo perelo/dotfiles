@@ -17,6 +17,8 @@ set laststatus=2        " always display statusline
 map <F8> :source $MYVIMRC<CR>
 map <F7> :tabedit $MYVIMRC<CR>
 
+map <F4> :make<CR>
+
 let mapleader = ","
 
 " searching
