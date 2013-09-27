@@ -101,6 +101,11 @@ autocmd BufNewFile *.{c,cpp,cxx,h,hpp,hxx} exe "% s/\\([fF]ile\\)/\\1 " .expand(
 autocmd BufNewFile *.{c,cpp,cxx,h,hpp,hxx} exe "% s/\\([aA]uthor\\)/\\1 " .$USER
 autocmd BufNewFile *.{c,cpp,cxx,h,hpp,hxx} exe "% s/\\([dD]ate\\)/\\1 " .strftime("%d-%m-%Y")
 autocmd BufNewFile *.{c,cpp,cxx,h,hpp,hxx} exe "normal! G"
+autocmd BufNewFile *.hs so $HOME/.vim/hs_header.txt
+autocmd BufNewFile *.hs exe "% s/\\([fF]ile\\)/\\1 " .expand("%")
+autocmd BufNewFile *.hs exe "% s/\\([aA]uthor\\)/\\1 " .$USER
+autocmd BufNewFile *.hs exe "% s/\\([dD]ate\\)/\\1 " .strftime("%d-%m-%Y")
+autocmd BufNewFile *.hs exe "normal! G"
 
 function! s:insert_macro_gate()
     let macro_name = "__" . substitute(toupper(expand("%:t")), "\\.", "_", "g") . "__"
