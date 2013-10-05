@@ -11,7 +11,7 @@ olddir=~/dotfiles_old # old dotfiles backup directory
 
 # list of files/folders to symlink in homedir (all except README.md and this script)
 n=`basename $0`
-files=`ls $dir | sed -e '/README.md\|$n/d'`
+files=`ls $dir | sed -e "/README.md\|$n/d"`
 
 ##########
 
