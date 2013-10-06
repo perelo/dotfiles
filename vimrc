@@ -13,6 +13,7 @@ set expandtab
 set number
 set visualbell t_vb=    " remove bip and flash
 set laststatus=2        " always display statusline
+set hidden
 
 map <F8> :source $MYVIMRC<CR>
 map <F7> :tabedit $MYVIMRC<CR>
