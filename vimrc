@@ -88,6 +88,21 @@ colorscheme solarized
 set splitbelow
 set splitright
 
+" change all [ ] mappings to ( ) thanks to tpope
+for s:c in map(range(32,33) + range(65,90) + range(97,122),'nr2char(v:val)')
+  exec 'nmap ('.s:c.' ['.s:c
+  exec 'xmap ('.s:c.' ['.s:c
+  exec 'nmap )'.s:c.' ]'.s:c
+  exec 'xmap )'.s:c.' ]'.s:c
+endfor
+" nmap (<Space> [<Space>
+" xmap (<Space> [<Space>
+" nmap )<Space> ]<Space>
+" xmap )<Space> ]<Space>
+
+xmap (e [egv
+xmap )e ]egv
+
 " set commentstring for Python files (vim-commentary plugin)
 autocmd FileType python set commentstring=#\ %s
 
