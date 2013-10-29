@@ -1,74 +1,58 @@
-execute pathogen#infect()
-execute pathogen#helptags()
+" =============================================================================
+" Initialization
+" =============================================================================
+
+" Clear autocmds
+autocmd!
+
+" Use Vim settings, rather than Vi
 set nocompatible
 
+" Load plugins with pathogen
+execute pathogen#infect()
+execute pathogen#helptags()
+
+" Enable file type detection and load plugin indent files
 filetype plugin on
-syntax on
-set encoding=utf-8
-set autoindent
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
-set expandtab
-set number
-set visualbell t_vb=    " remove bip and flash
-set laststatus=2        " always display statusline
-set hidden
 
-map <F8> :source $MYVIMRC<CR>
-map <F7> :tabedit $MYVIMRC<CR>
-
-map <F4> :make<CR>
-
+" Set comma as <leader> instead of default backslash
 let mapleader = ","
 
-" searching
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
-nmap <silent> <leader><leader> :nohlsearch<CR>
+" Use UTF-8 encoding
+set encoding=utf-8
 
-" pasting
-nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
-set showmode
 
-set foldmethod=syntax
-set foldlevelstart=99   " all folds open at start
+" =============================================================================
+" Editing
+" =============================================================================
 
-" highlight overlength columns
-if exists('+colorcolumn')
-    set colorcolumn=81
-    highlight OverLength ctermbg=red ctermfg=white
-    exec 'match OverLength /\%'.&cc.'v.\+/'
-endif
+""
+"" Whitespace
+""
 
-" show trailing whitespaces and tabs
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+
+" Backspace on everything in insert mode
+set backspace=indent,eol,start
+
+" Show invisible characters
 set list
+
+" Invisible characters
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
-" toggle numbers / relative numbers
-nmap <silent> <C-n> :exec 'set number!' &number ? 'relativenumber!' : ''<CR>
 
-" moving lines
-nnoremap <A-down> :m+<CR>==
-nnoremap <A-up> :m-2<CR>==
-inoremap <A-down> <Esc>:m+<CR>==gi
-inoremap <A-up> <Esc>:m-2<CR>==gi
-vnoremap <A-down> :m'>+<CR>gv=gv
-vnoremap <A-up> :m-2<CR>gv=gv
+""
+"" Wrapping
+""
 
-" moving around windows
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+set wrap " Enable wrapping
 
-" make Y behave like C and D
-nmap Y y$
-
-" move on lines as displayed
+" Move on lines as displayed
 nmap j gj
 nmap k gk
 nmap 0 g0
@@ -80,43 +64,131 @@ vmap 0 g0
 vmap $ g$
 vmap ^ g^
 
-" coloring
+
+""
+"" Folding
+""
+
+set foldmethod=syntax
+set foldlevelstart=99   " All folds open at start
+
+
+""
+"" Pasting
+""
+
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+
+set showmode
+
+
+" =============================================================================
+" Appearance
+" =============================================================================
+
+syntax on
+set number
+set scrolloff=5         " Keep more buffer context when scrolling
+set visualbell t_vb=    " Remove bip and flash
 set t_Co=256
-let g:solarized_termtrans = 1
 set background=dark
 colorscheme solarized
+let g:solarized_termtrans = 1
 
-set splitbelow
-set splitright
+" Toggle numbers / relative numbers
+nmap <silent> <C-n> :exec 'set number!' &number ? 'relativenumber!' : ''<CR>
 
-" change all [ ] mappings to ( ) thanks to tpope
-for s:c in map(range(32,33) + range(65,90) + range(97,122),'nr2char(v:val)')
-  exec 'nmap ('.s:c.' ['.s:c
-  exec 'xmap ('.s:c.' ['.s:c
-  exec 'nmap )'.s:c.' ]'.s:c
-  exec 'xmap )'.s:c.' ]'.s:c
-endfor
-" nmap (<Space> [<Space>
-" xmap (<Space> [<Space>
-" nmap )<Space> ]<Space>
-" xmap )<Space> ]<Space>
+" Highlight overlength columns
+if exists('+colorcolumn')
+    set colorcolumn=80
+    highlight OverLength ctermbg=red ctermfg=white
+    exec 'match OverLength /\%'.&cc.'v.\+/'
+endif
 
-xmap (e [egv
-xmap )e ]egv
+set laststatus=2        " Always display statusline
 
-" set commentstring for Python files (vim-commentary plugin)
+
+" =============================================================================
+" Command Line
+" =============================================================================
+
+" Remember more commands and search history (default: 20)
+set history=100
+
+" Expand %% to current directory (http://vimcasts.org/e/14)
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
+
+""
+"" Search
+""
+
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+nmap <silent> <leader><leader> :nohlsearch<CR>
+
+
+" =============================================================================
+" Buffers
+" =============================================================================
+
+" Allow unsaved background buffers and remember marks/undo for them
+set hidden
+
+" Toggle current and alternative buffers
+nnoremap <leader>a <C-^>
+
+
+" =============================================================================
+" Windows
+" =============================================================================
+
+" Split windows below and right instead of above and left
+set splitbelow splitright
+
+" Move around splits with <c-hjkl>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+
+" =============================================================================
+" Registers
+" =============================================================================
+
+" Paste and fix indentation
+nmap <leader>p p=']
+
+
+" =============================================================================
+" Filetypes and Custom Autocmds
+" =============================================================================
+
+" Make sure all markdown files have the correct filetype
+autocmd BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} set filetype=markdown
+
+" Set commentstring for Python files (vim-commentary plugin)
 autocmd FileType python set commentstring=#\ %s
 
-" insert header comments on C/C++ and Python files
+""
+"" Headers
+""
+
 autocmd BufNewFile *.py so $HOME/.vim/py_header.txt
 autocmd BufNewFile *.py exe "% s/\\(.*author.*\\)/\\1 '" .$USER ."'"
 autocmd BufNewFile *.py exe "% s/\\(.*date.*\\)/\\1 '" .strftime("%d-%m-%Y") ."'"
 autocmd BufNewFile *.py exe "normal! G"
+
 autocmd BufNewFile *.{c,cpp,cxx,h,hpp,hxx} so $HOME/.vim/c_header.txt
 autocmd BufNewFile *.{c,cpp,cxx,h,hpp,hxx} exe "% s/\\([fF]ile\\)/\\1 " .expand("%")
 autocmd BufNewFile *.{c,cpp,cxx,h,hpp,hxx} exe "% s/\\([aA]uthor\\)/\\1 " .$USER
 autocmd BufNewFile *.{c,cpp,cxx,h,hpp,hxx} exe "% s/\\([dD]ate\\)/\\1 " .strftime("%d-%m-%Y")
 autocmd BufNewFile *.{c,cpp,cxx,h,hpp,hxx} exe "normal! G"
+
 autocmd BufNewFile *.hs so $HOME/.vim/hs_header.txt
 autocmd BufNewFile *.hs exe "% s/\\([fF]ile\\)/\\1 " .expand("%")
 autocmd BufNewFile *.hs exe "% s/\\([aA]uthor\\)/\\1 " .$USER
@@ -133,6 +205,30 @@ function! s:insert_macro_gate()
     execute "normal! Go#endif /* " . macro_name . " */"
     normal! kk
 endfunction
-" insert macro gate
+" Insert macro gate
 autocmd BufNewFile *.{h,hpp,hxx} call <SID>insert_macro_gate()
 autocmd BufNewFile *.{c,cpp,cxx} exe "normal! o"
+
+
+" =============================================================================
+" Plugin Settings and Mappings
+" =============================================================================
+
+" Change all [ ] mappings to ( ) for unimpaired plugin (thanks to tpope)
+for s:c in map(range(32,33) + range(65,90) + range(97,122),'nr2char(v:val)')
+  exec 'nmap ('.s:c.' ['.s:c
+  exec 'xmap ('.s:c.' ['.s:c
+  exec 'nmap )'.s:c.' ]'.s:c
+  exec 'xmap )'.s:c.' ]'.s:c
+endfor
+xmap (e [egv
+xmap )e ]egv
+
+" Open vimrc in new tab and reload it
+map <F7> :tabedit $MYVIMRC<CR>
+map <F8> :source $MYVIMRC<CR>
+
+map <F4> :make<CR>
+
+" Make Y behave like C and D
+nmap Y y$
