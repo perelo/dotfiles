@@ -224,11 +224,10 @@ endfor
 xmap (e [egv
 xmap )e ]egv
 
-" Open vimrc in new tab and reload it
-map <F7> :tabedit $MYVIMRC<CR>
-map <F8> :source $MYVIMRC<CR>
-
-map <F4> :make<CR>
-
 " Make Y behave like C and D
 nmap Y y$
+
+map <leader>rw :%s/\s\+$//<CR>:w<CR>
+map <leader>vi :tabedit $MYVIMRC<CR>
+map <leader>svi :source $MYVIMRC<CR>
+map <leader>m :make<CR>
