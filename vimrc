@@ -87,7 +87,7 @@ set showmode
 "" Spelling
 ""
 
-nmap <silent> <leader>s :set spell!<CR>
+nmap <silent> <leader>spl :set spell!<CR>
 set spelllang=fr
 
 
@@ -254,7 +254,13 @@ vnoremap <leader>A :EasyAlign
 " Make Y behave like C and D
 nmap Y y$
 
+" Drag lines much easier than (e and )e w/ unimpaired
+vnoremap <C-k> xkP`[V`]
+vnoremap <C-j> xp`[V`]
+vnoremap <C-h> <gv
+vnoremap <C-l> >gv
+
 map <leader>rw :%s/\s\+$//<CR>:w<CR>
 map <leader>vi :tabedit $MYVIMRC<CR>
-map <leader>svi :source $MYVIMRC<CR>
+map <leader>rvi :source $MYVIMRC<CR>
 map <leader>m :make<CR>
