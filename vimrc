@@ -110,8 +110,8 @@ nmap <silent> <C-n> :exec 'set number!' &number ? 'relativenumber!' : ''<CR>
 " Highlight overlength columns
 if exists('+colorcolumn')
     set colorcolumn=80
-    highlight OverLength ctermbg=red ctermfg=white
-    exec 'match OverLength /\%'.&cc.'v.\+/'
+    " highlight OverLength ctermbg=red ctermfg=white
+    " exec 'match OverLength /\%'.&cc.'v.\+/'
 endif
 
 set laststatus=2        " Always display statusline
@@ -264,3 +264,7 @@ map <leader>rw :%s/\s\+$//<CR>:w<CR>
 map <leader>vi :tabedit $MYVIMRC<CR>
 map <leader>rvi :source $MYVIMRC<CR>
 map <leader>m :make<CR>
+
+" exchange . and ; commands
+nnoremap . ;
+nnoremap ; .
