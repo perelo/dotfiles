@@ -265,6 +265,9 @@ map <leader>vi :tabedit $MYVIMRC<CR>
 map <leader>rvi :source $MYVIMRC<CR>
 map <leader>m :make<CR>
 
+" switch current word w/ the one right after
+map <leader>inv yiwWvep#vep
+
 " exchange . and ; commands
 nnoremap . ;
 nnoremap ; .
