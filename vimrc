@@ -110,8 +110,8 @@ nmap <silent> <C-n> :exec 'set number!' &number ? 'relativenumber!' : ''<CR>
 " Highlight overlength columns
 if exists('+colorcolumn')
     set colorcolumn=80
-    highlight OverLength ctermbg=red ctermfg=white
-    exec 'match OverLength /\%'.&cc.'v.\+/'
+    " highlight OverLength ctermbg=red ctermfg=white
+    " exec 'match OverLength /\%'.&cc.'v.\+/'
 endif
 
 set laststatus=2        " Always display statusline
