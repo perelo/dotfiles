@@ -6,9 +6,6 @@
   editor = vim
   excludesfile = ~/.gitignore
 
-[push]
-  default = simple
-
 [color]
   ui = true
 
