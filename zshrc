@@ -13,8 +13,9 @@ plugins=(git vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
-# force tmux 256 colors
-alias tmux="tmux -2"
+alias tmux="tmux -2" # force tmux 256 colors
+alias rm="rm -i"     # ask confirmation
+alias gds="git diff --staged"
 
 # Use 256 color terminal if it exists
 if [ -e /lib/terminfo/x/xterm-256color ]; then
