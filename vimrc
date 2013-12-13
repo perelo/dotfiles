@@ -264,6 +264,7 @@ map <leader>rw :%s/\s\+$//<CR>:w<CR>
 map <leader>vi :tabedit $MYVIMRC<CR>
 map <leader>rvi :source $MYVIMRC<CR>
 map <leader>m :make<CR>
+map <leader>h :tab help 
 
 " exchange . and ; commands
 nnoremap . ;

@@ -37,3 +37,6 @@
 [submodule "vim/bundle/easy-align"]
 	path = vim/bundle/easy-align
 	url = https://github.com/junegunn/vim-easy-align.git
+[submodule "vim/bundle/tmux-navigator"]
+	path = vim/bundle/tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator.git
