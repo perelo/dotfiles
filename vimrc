@@ -8,9 +8,36 @@ autocmd!
 " Use Vim settings, rather than Vi
 set nocompatible
 
-" Load plugins with pathogen
-execute pathogen#infect()
-execute pathogen#helptags()
+""
+"" Vundle
+""
+
+filetype off                  " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+
+""
+"" My bundles here:
+""
+
+" original repos on GitHub
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'itchyny/lightline.vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'junegunn/vim-easy-align'
+Bundle 'christoomey/vim-tmux-navigator'
+
+""
+"" Miscellaneous
+""
 
 " Enable file type detection and load plugin indent files
 filetype plugin on
@@ -264,6 +291,7 @@ map <leader>rw :%s/\s\+$//<CR>:w<CR>
 map <leader>vi :tabedit $MYVIMRC<CR>
 map <leader>rvi :source $MYVIMRC<CR>
 map <leader>m :make<CR>
+map <leader>h :tab help 
 
 " switch current word w/ the one right after
 map <leader>inv yiwWvep#vep

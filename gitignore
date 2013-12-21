@@ -1,2 +1,4 @@
 Session.vim
 .*.sw*
+vim/bundle/**
+~vim/bundle/vundle
