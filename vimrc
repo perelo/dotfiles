@@ -31,6 +31,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'itchyny/lightline.vim'
+Bundle 'osyo-manga/vim-over'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'junegunn/vim-easy-align'
 Bundle 'christoomey/vim-tmux-navigator'
@@ -272,6 +273,14 @@ xmap )e ]egv
 vnoremap <leader>a :EasyAlign<CR>
 " Align in command-line
 vnoremap <leader>A :EasyAlign
+
+
+""
+"" Over (search & replace with preview)
+""
+
+" use it as default substitute command
+cabbrev s OverCommandLine<CR>s
 
 
 ""
