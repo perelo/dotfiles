@@ -282,6 +282,8 @@ vnoremap <leader>A :EasyAlign
 
 " use it as default substitute command
 cabbrev s OverCommandLine<CR>s
+cabbrev %s OverCommandLine<CR>%s
+cabbrev '<,'>s OverCommandLine<CR>'<,'>s
 
 
 ""
