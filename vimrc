@@ -36,6 +36,7 @@ Bundle 'osyo-manga/vim-over'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'junegunn/vim-easy-align'
 Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'Lokaltog/vim-easymotion'
 
 ""
 "" Miscellaneous
@@ -165,7 +166,7 @@ set ignorecase
 set smartcase
 set hlsearch
 set incsearch
-nmap <silent> <leader><leader> :nohlsearch<CR>
+nmap <silent> <leader>l :nohlsearch<CR>
 
 
 " =============================================================================
