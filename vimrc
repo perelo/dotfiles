@@ -313,6 +313,8 @@ map <leader>inv yiwWvep#vep
 nnoremap . ;
 nnoremap ; .
 
+nnoremap Q @q
+
 " When you’re pressing Escape to leave insert mode in the terminal, it will by
 " default take a second or another keystroke to leave insert mode completely
 " and update the statusline. This fixes that. I got this from:
