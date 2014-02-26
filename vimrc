@@ -31,8 +31,8 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-vinegar'
+Bundle 'tpope/vim-eunuch'
 Bundle 'itchyny/lightline.vim'
-Bundle 'osyo-manga/vim-over'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'junegunn/vim-easy-align'
 Bundle 'christoomey/vim-tmux-navigator'
@@ -166,7 +166,7 @@ set ignorecase
 set smartcase
 set hlsearch
 set incsearch
-nmap <silent> <leader>l :nohlsearch<CR>
+nmap <silent> <leader>n :nohlsearch<CR>
 
 
 " =============================================================================
@@ -278,16 +278,6 @@ vnoremap <leader>A :EasyAlign
 
 
 ""
-"" Over (search & replace with preview)
-""
-
-" use it as default substitute command
-cabbrev s OverCommandLine<CR>s
-cabbrev %s OverCommandLine<CR>%s
-cabbrev '<,'>s OverCommandLine<CR>'<,'>s
-
-
-""
 "" General mapping
 ""
 
@@ -309,9 +299,7 @@ map <leader>h :tab help
 " switch current word w/ the one right after
 map <leader>inv yiwWvep#vep
 
-" exchange . and ; commands
-nnoremap . ;
-nnoremap ; .
+nnoremap <space> .
 
 nnoremap Q @q
 
