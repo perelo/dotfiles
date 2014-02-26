@@ -209,6 +209,9 @@ nmap <leader>p p=']
 " Make sure all markdown files have the correct filetype
 autocmd BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} set filetype=markdown
 
+" Tex files must be 'tex' filetype not 'plaintex'
+autocmd BufRead,BufNewFile *.{tex} set filetype=tex
+
 " Set commentstring for Python files (vim-commentary plugin)
 autocmd FileType python set commentstring=#\ %s
 
