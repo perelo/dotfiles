@@ -37,6 +37,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'junegunn/vim-easy-align'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'fholgado/minibufexpl.vim'
 
 ""
 "" Miscellaneous
@@ -281,6 +282,14 @@ vnoremap <leader>A :EasyAlign
 
 
 ""
+"" MinBufExplorer
+""
+
+map <silent> <leader>b :MBEToggle<CR>
+let g:miniBufExplBRSplit = 0
+
+
+""
 "" General mapping
 ""
 
@@ -294,7 +303,7 @@ vnoremap <C-h> <gv
 vnoremap <C-l> >gv
 
 map <leader>rw :%s/\s\+$//<CR>:w<CR>
-map <leader>vi :tabedit $MYVIMRC<CR>
+map <leader>vi :edit $MYVIMRC<CR>
 map <leader>rvi :source $MYVIMRC<CR>
 map <leader>m :make<CR>
 map <leader>h :tab help 
