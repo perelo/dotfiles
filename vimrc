@@ -293,6 +293,9 @@ let g:miniBufExplBRSplit = 0
 "" General mapping
 ""
 
+nnoremap <CR> G
+nnoremap <BS> gg
+
 " Make Y behave like C and D
 nmap Y y$
 
