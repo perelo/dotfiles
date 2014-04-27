@@ -40,3 +40,7 @@ ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
 
 LESS=-RX # -X: don't clear screen before and after less
+
+if [ -d "$HOME/local/bin" ] ; then
+    PATH=$HOME/local/bin:$PATH
+fi
