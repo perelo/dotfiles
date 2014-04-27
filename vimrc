@@ -165,7 +165,7 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 set ignorecase
 set smartcase
-set hlsearch
+set nohlsearch
 set incsearch
 nmap <silent> <leader>n :nohlsearch<CR>
 
