@@ -306,9 +306,13 @@ map <leader>vi :edit $MYVIMRC<CR>
 map <leader>rvi :source $MYVIMRC<CR>
 map <leader>m :Make<CR>
 map <leader>h :tab help 
+map <leader>q gqap
 
 command SaveAndMake execute ":w | Make"
 map <F1> :SaveAndMake<CR>
+
+map (oq :copen<CR>
+map )oq :cclose<CR>
 
 " switch current word w/ the one right after
 map <leader>inv yiwWvep#vep
