@@ -38,6 +38,8 @@ Bundle 'junegunn/vim-easy-align'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'fholgado/minibufexpl.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-dispatch'
 
 ""
 "" Miscellaneous
@@ -302,8 +304,11 @@ vnoremap <C-l> >gv
 map <leader>rw :%s/\s\+$//<CR>:w<CR>
 map <leader>vi :edit $MYVIMRC<CR>
 map <leader>rvi :source $MYVIMRC<CR>
-map <leader>m :make<CR>
+map <leader>m :Make<CR>
 map <leader>h :tab help 
+
+command SaveAndMake execute ":w | Make"
+map <F1> :SaveAndMake<CR>
 
 " switch current word w/ the one right after
 map <leader>inv yiwWvep#vep
@@ -327,3 +332,5 @@ if !has('gui_running')
         au InsertLeave * set timeoutlen=1000
     augroup END
 endif
+
+imap <F1> <F1>
