@@ -308,7 +308,7 @@ map <leader>m :Make<CR>
 map <leader>h :tab help 
 map <leader>q gqap
 
-command SaveAndMake execute ":w | Make"
+command! SaveAndMake execute ":w | Make"
 map <F1> :SaveAndMake<CR>
 
 map (oq :copen<CR>
