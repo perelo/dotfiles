@@ -169,7 +169,6 @@ set ignorecase
 set smartcase
 set nohlsearch
 set incsearch
-nmap <silent> <leader>n :nohlsearch<CR>
 
 
 " =============================================================================
@@ -182,6 +181,11 @@ set hidden
 " Toggle current and alternative buffers
 nnoremap <leader>a <C-^>
 
+" Exclude quickfix buffer from `:bnext` `:bprevious`
+augroup qf
+    autocmd!
+    autocmd FileType qf set nobuflisted
+augroup END
 
 " =============================================================================
 " Windows
@@ -305,8 +309,12 @@ map <leader>rw :%s/\s\+$//<CR>:w<CR>
 map <leader>vi :edit $MYVIMRC<CR>
 map <leader>rvi :source $MYVIMRC<CR>
 map <leader>m :Make<CR>
-map <leader>h :tab help 
+map <leader>h :tab help
 map <leader>q gqap
+
+nnoremap <leader>cl :set cursorline!<CR>
+nnoremap <leader>cc :set cursorcolumn!<CR>
+nnoremap <leader>cx :set cursorline cursorcolumn<CR>
 
 command! SaveAndMake execute ":w | Make"
 map <F1> :SaveAndMake<CR>
