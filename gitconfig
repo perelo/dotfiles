@@ -27,4 +27,5 @@
   co = checkout
   br = branch
   sl = shortlog
-  hist = log --pretty='%C(yellow)%h %C(green)%ad %Creset%s %C(cyan)[%an]' --graph --date=short
+  pl = log --oneline --date=short --decorate --graph
+  hist = log --pretty='%C(yellow)%h %C(green)%ad%C(auto)%d %C(reset)%s %C(cyan)[%an]' --graph --date=short --all
