@@ -44,3 +44,7 @@ LESS=-RX # -X: don't clear screen before and after less
 if [ -d "$HOME/local/bin" ] ; then
     PATH=$HOME/local/bin:$PATH
 fi
+
+if [ -d "/usr/local/texlive/2015/bin/x86_64-linux" ] ; then
+    PATH=/usr/local/texlive/2015/bin/x86_64-linux/:$PATH
+fi

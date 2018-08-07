@@ -38,3 +38,7 @@ Installation
 
 
 * The size of everything (with submodules) is 9.6Mo.
+
+* vim's `UltiSnips` plugin requires Python's `unidecode` :
+
+    `pip install unidecode`

@@ -40,6 +40,9 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'fholgado/minibufexpl.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-dispatch'
+Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
+Bundle 'tmhedberg/matchit'
 
 ""
 "" Miscellaneous
@@ -220,6 +223,9 @@ autocmd FileType python set commentstring=#\ %s
 "" Headers
 ""
 
+autocmd BufNewFile *.tex 0r $HOME/.vim/tex_header.txt
+autocmd BufNewFile *.tex exe "/title"
+
 autocmd BufNewFile *.py so $HOME/.vim/py_header.txt
 autocmd BufNewFile *.py exe "% s/\\(.*author.*\\)/\\1 '" .$USER ."'"
 autocmd BufNewFile *.py exe "% s/\\(.*date.*\\)/\\1 '" .strftime("%d-%m-%Y") ."'"
@@ -287,6 +293,17 @@ vnoremap <leader>A :EasyAlign
 
 map <silent> <leader>b :MBEToggle<CR>
 let g:miniBufExplBRSplit = 0
+
+
+""
+"" UltiSnips
+""
+
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 
 ""
