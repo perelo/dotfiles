@@ -22,9 +22,15 @@ Installation
 
     ./makelinks.sh
 
-### Set solarized dark colors for `gnome-terminal`
+## Set solarized dark colors
+
+## for `gnome-terminal`
 
     ./solarized/gnome-terminal-colors-solarized/set_dark.sh
+
+## for `lxterminal`
+
+    cp ~/dotfiles/config ~/.config
 
 ### Permanently change your shell to `zsh`
 

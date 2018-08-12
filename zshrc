@@ -29,6 +29,12 @@ if [ -e ~/.solarized/dircolors-solarized/dircolors.256dark ]; then
     eval `dircolors ~/.solarized/dircolors-solarized/dircolors.256dark`
 fi
 
+# solaried with escape characters in Lxterminal
+container=$(ps -h -o comm -p $pid $(ps -h -o ppid -p $$))
+if [ "$container" = "lxterminal" ] && [ -f ~/.solarized/escchar_solarized.sh ]; then
+    ./.solarized/escchar_solarized.sh
+fi
+
 # bira ZSH Theme - Preview: http://gyazo.com/8becc8a7ed5ab54a0262a470555c3eed.png
 # copy from ~/.oh-my-zsh/themes/bira.zsh-themes w/o ruby stuff and RPS1 (used by vi-mode)
 local user_host='%{$terminfo[bold]$fg[green]%}%n@%m%{$reset_color%}'
