@@ -32,7 +32,7 @@ fi
 # solaried with escape characters in Lxterminal
 container=$(ps -h -o comm -p $pid $(ps -h -o ppid -p $$))
 if [ "$container" = "lxterminal" ] && [ -f ~/.solarized/escchar_solarized.sh ]; then
-    ./.solarized/escchar_solarized.sh
+    ~/.solarized/escchar_solarized.sh
 fi
 
 # bira ZSH Theme - Preview: http://gyazo.com/8becc8a7ed5ab54a0262a470555c3eed.png
