@@ -123,9 +123,9 @@ set showmode
 "" Spelling
 ""
 
-nmap <silent> <leader>spl :set spell!<CR>
 set spelllang=fr
-
+hi clear SpellBad
+hi SpellBad cterm=underline
 
 " =============================================================================
 " Appearance
