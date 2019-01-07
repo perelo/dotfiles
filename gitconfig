@@ -25,7 +25,15 @@
 [alias]
   st = status
   co = checkout
+  ci = commit
+  cim = commit -m
+  ciam = commit -am
   br = branch
+  ap = add -p
   sl = shortlog
-  pl = log --oneline --date=short --decorate --graph
-  hist = log --pretty='%C(yellow)%h %C(green)%ad%C(auto)%d %C(reset)%s %C(cyan)[%an]' --graph --date=short --all
+  pl = log --oneline --graph --decorate --date=short --date-order
+  hist = log --pretty='%C(yellow)%h %C(green)%ad%C(auto)%d %C(reset)%s %C(cyan)[%an]' --graph --date=short
+  hista = log --pretty='%C(yellow)%h %C(green)%ad%C(auto)%d %C(reset)%s %C(cyan)[%an]' --graph --date=short --all --date-order
+  di = diff
+  ds = diff --staged
+  dw = diff --color-words
