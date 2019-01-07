@@ -345,6 +345,7 @@ map <leader>inv yiwWvep#vep
 nnoremap <space> .
 
 nnoremap Q @q
+vmap Q :norm Q<CR>
 
 " Wordwise yank from line above
 inoremap <expr> <C-y> matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(\k\+\\|.\)')
