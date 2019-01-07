@@ -132,7 +132,7 @@ hi SpellBad cterm=underline
 " =============================================================================
 
 syntax on
-set number
+set number relativenumber
 set scrolloff=2         " Keep more buffer context when scrolling
 set visualbell t_vb=    " Remove bip and flash
 set t_Co=256
