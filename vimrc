@@ -163,6 +163,8 @@ set history=100
 " Expand %% to current directory (http://vimcasts.org/e/14)
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
+" Treat numeral numbers as decimal instead of octals (for <C-a> / <C-x>)
+set nrformats=
 
 ""
 "" Search
