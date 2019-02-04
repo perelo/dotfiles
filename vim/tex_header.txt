@@ -1,0 +1,20 @@
+\documentclass[a4paper]{article}
+
+\usepackage[francais,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{geometry}
+
+% \title{}
+% \author{}
+% \date{}
+
+\begin{document}
+
+\maketitle
+
+
+
+\end{document}
