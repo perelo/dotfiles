@@ -119,14 +119,6 @@ set pastetoggle=<F2>
 set showmode
 
 
-""
-"" Spelling
-""
-
-set spelllang=fr
-hi clear SpellBad
-hi SpellBad cterm=underline
-
 " =============================================================================
 " Appearance
 " =============================================================================
@@ -151,6 +143,13 @@ if exists('+colorcolumn')
 endif
 
 set laststatus=2        " Always display statusline
+
+""
+"" Spelling
+""
+
+hi clear SpellBad
+hi SpellBad cterm=underline
 
 
 " =============================================================================
