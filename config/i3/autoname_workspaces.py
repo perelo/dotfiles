@@ -98,6 +98,7 @@ WINDOW_ICONS = {
     'thunar': fa.icons['copy'],
     'thunderbird': fa.icons['envelope'],
     'totem': fa.icons['play'],
+    'transmission-gtk': fa.icons['download'],
     'urxvt': fa.icons['terminal'],
     'vlc': fa.icons['play-circle'],
     'vym': fa.icons['sitemap'],
