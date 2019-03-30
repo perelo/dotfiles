@@ -4,6 +4,10 @@
 # Path to my oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
+EDITOR=vim
+VISUAL=$EDITOR
+export EDITOR VISUAL
+
 # themes can be found in ~/.oh-my-zsh/themes/
 #ZSH_THEME="bira"
 
@@ -16,6 +20,12 @@ source $ZSH/oh-my-zsh.sh
 alias tmux="tmux -2" # force tmux 256 colors
 alias rm="rm -i"     # ask confirmation
 alias gds="git diff --staged"
+alias tma="tmux attach-session -t"
+alias r="ranger"
+
+function acro {
+    curl dict://dict.org/d:$1:vera
+}
 
 alias doci="docker image"
 alias docc="docker container"
@@ -57,3 +67,5 @@ fi
 if [ -d "/usr/local/texlive/2015/bin/x86_64-linux" ] ; then
     PATH=/usr/local/texlive/2015/bin/x86_64-linux/:$PATH
 fi
+
+unset GREP_OPTIONS
