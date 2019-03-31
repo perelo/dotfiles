@@ -1,8 +1,7 @@
 setlocal tabstop=2
 setlocal softtabstop=2
 setlocal shiftwidth=2
+setlocal textwidth=79
 
-setlocal errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
-if !filereadable('Makefile') && !filereadable('makefile')
-    setlocal makeprg=javac\ %
-endif
+setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m
+exec "setlocal makeprg=javac\\ " . expand("%")
