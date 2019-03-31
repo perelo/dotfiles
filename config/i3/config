@@ -151,8 +151,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit session with gnome
-bindsym $mod+Shift+q exec gnome-session-quit --logout
-bindsym $mod+Shoft+o exec gnome-session-quit --poweroff
+bindsym $mod+Shift+e exec gnome-session-quit --power-off
+bindsym $mod+Shift+o exec gnome-session-quit --logout
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -194,10 +194,6 @@ for_window [window_type="menu"] floating enable
 bar {
     status_command polybar Bar
     tray_output None
-    separator_symbol "//"
-    strip_workspace_numbers yes
-
-    position bottom
     mode invisible
 }
 exec_always --no-startup-id "killall polybar; polybar -r default"

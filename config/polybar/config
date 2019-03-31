@@ -20,8 +20,8 @@
 background = ${xrdb:background}
 ; background = #222
 background-alt = #444
-foreground = ${xrdb:foreground}
-; foreground = #dfdfdf
+; foreground = ${xrdb:foreground}
+foreground = #dfdfdf
 foreground-alt = #555
 primary = ${xrdb:color3}
 ; primary = #ffb52a
@@ -32,10 +32,10 @@ alert = #bd2c40
 [bar/default]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 27
+height = 30
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 6.0
+radius = 0.0
 fixed-center = true
 
 background = ${colors.background}
@@ -44,14 +44,12 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 4
-border-color = #00000000
+border-size = 0
 
 padding-left = 0
 padding-right = 2
 
-module-margin-left = 1
-module-margin-right = 2
+module-margin = 2
 
 ; font-0 = DejaVu Sans:size=10;0
 ; font-1 = FontAwesome:size=10;0
@@ -64,12 +62,16 @@ font-4 = unifont:size=10;3
 
 locale = fr_FR.UTF-8
 
-modules-left = i3 info-tmux-sessions xwindow
+modules-left = i3 info-tmux-sessions
+;xwindow
 modules-center = date
-modules-right = cpu wlan battery menu0
+modules-right = updates cpu wlan battery menu0
 
 tray-position = right
-tray-padding = 2
+tray-detached = true
+tray-padding = 20
+tray-offset-y = 27
+tray-scale = 0.8
 ; tray-background = #0063ff
 
 ;wm-restack = bspwm
@@ -89,6 +91,7 @@ cursor-scroll = ns-resize
 [module/xwindow]
 type = internal/xwindow
 label = %title%
+label-font = 4
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -361,10 +364,10 @@ full-at = 98
 format-charging = <label-charging>
 format-charging-underline = #ffb52a
 format-charging-prefix = 
-format-charging-spacing = 5
+format-charging-padding = 2
 
 ; format-discharging = <animation-discharging> <label-discharging>
-format-discharging = <label-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
 format-full = 
@@ -386,9 +389,11 @@ animation-charging-4 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
 
@@ -429,7 +434,7 @@ menu-0-0-exec = gnome-session-quit --power-off
 menu-0-1 = " restart "
 menu-0-1-exec = gnome-session-quit --reboot
 menu-0-2 = "  logout "
-menu-0-2-exec = gnome-control-center
+menu-0-2-exec = gnome-session-quit --logout
 menu-0-3 = " config "
 menu-0-3-exec = gnome-control-center
 menu-0-4 =   cancel
@@ -444,9 +449,10 @@ type = custom/script
 ;label-padding = 0
 ;label-underline = ${colors.modfg}
 
-exec = #checkupdates | wc -l
+; exec = apt list --upgradable | wc -l
+; exec = ~/.config/polybar/check_updates.sh
 ;tail = true
-interval = 60
+interval = 10
 
 label  = " %output%"
 
@@ -505,7 +511,7 @@ screenchange-reload = true
 ;compositing-background = screen
 ;compositing-foreground = source
 ;compositing-border = over
-;pseudo-transparency = false
+pseudo-transparency = true
 
 [global/wm]
 margin-top = 5
