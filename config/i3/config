@@ -1,5 +1,5 @@
 # Mod=Alt -- I use alt so it doesn't conflict with vim or tmux but is easy to reach
-set $mod Mod1
+set $mod Mod4
 
 set_from_resource $darkred     color1  #000000
 set_from_resource $red         color9  #000000
@@ -22,7 +22,7 @@ set $transparent #00000000
 set $height 34
 
 # set french layout
-set "setxkbmap -layout fr"
+# set "setxkbmap -layout fr"
 
 # kill focused window (vim delete, follows vimperator settings more than vim)
 bindsym $mod+q kill
@@ -201,7 +201,7 @@ bar {
     mode invisible
 }
 exec_always --no-startup-id "killall polybar; polybar -r default"
-exec_always --no-startup-id ~/.config/i3/autoname_workspaces.py &
+exec_always --no-startup-id ~/.config/i3/autoname_workspaces.py --norenumber_workspaces &
 
 # start a terminal with tmux & without menubar
 bindsym $mod+Return exec gnome-terminal --hide-menubar -e "tmux"
