@@ -100,6 +100,7 @@ WINDOW_ICONS = {
     'totem': fa.icons['play'],
     'urxvt': fa.icons['terminal'],
     'vlc': fa.icons['play-circle'],
+    'vym': fa.icons['sitemap'],
     'xfce4-terminal': fa.icons['terminal'],
     'xournal': fa.icons['file-alt'],
     'yelp': fa.icons['code'],
