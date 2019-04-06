@@ -50,6 +50,7 @@ Bundle 'tmhedberg/matchit'
 
 " Enable file type detection and load plugin indent files
 filetype plugin on
+let $VIM='~/.vim/'
 
 " Set comma as <leader> instead of default backslash
 let mapleader = ","
@@ -262,6 +263,13 @@ autocmd BufNewFile *.{c,cpp,cxx} exe "normal! o"
 " =============================================================================
 " Plugin Settings and Mappings
 " =============================================================================
+
+""
+"" CtrlP
+""
+
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
 
 ""
 "" Unimpaired
