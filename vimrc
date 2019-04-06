@@ -336,6 +336,7 @@ nnoremap <leader>cx :set cursorline cursorcolumn<CR>
 
 command! SaveAndMake execute ":w | Make"
 map <F1> :SaveAndMake<CR>
+imap <F1> <F1>
 
 map (oq :copen<CR>
 map )oq :cclose<CR>
@@ -364,4 +365,15 @@ if !has('gui_running')
     augroup END
 endif
 
-imap <F1> <F1>
+
+" https://retorque.re/zotero-better-bibtex/cayw/
+function! ZoteroCite()
+  " pick a format based on the filetype (customize at will)
+  let format = &filetype =~ '.*tex' ? 'cite' : 'pandoc'
+  let api_call = 'http://localhost:23119/better-bibtex/cayw?format='.format.'&brackets=1'
+  let ref = system('curl -s '.shellescape(api_call))
+  return ref
+endfunction
+
+noremap <leader>z "=ZoteroCite()<CR>p
+inoremap <C-z> <C-r>=ZoteroCite()<CR>
