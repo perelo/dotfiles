@@ -17,6 +17,9 @@ plugins=(git vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
+VIMD=vimd
+alias vi="vim"
+alias vim="vim --servername $VIMD"
 alias tmux="tmux -2" # force tmux 256 colors
 alias rm="rm -i"     # ask confirmation
 alias gds="git diff --staged"
@@ -60,8 +63,8 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
 
 LESS=-RX # -X: don't clear screen before and after less
 
-if [ -d "$HOME/local/bin" ] ; then
-    PATH=$HOME/local/bin:$PATH
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH=$HOME/.local/bin:$PATH
 fi
 
 if [ -d "/usr/local/texlive/2015/bin/x86_64-linux" ] ; then

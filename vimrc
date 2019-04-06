@@ -201,14 +201,6 @@ set splitbelow splitright
 
 
 " =============================================================================
-" Registers
-" =============================================================================
-
-" Paste and fix indentation
-nmap <leader>p p=']
-
-
-" =============================================================================
 " Filetypes and Custom Autocmds
 " =============================================================================
 
@@ -385,3 +377,13 @@ endfunction
 
 noremap <leader>z "=ZoteroCite()<CR>p
 inoremap <C-z> <C-r>=ZoteroCite()<CR>
+
+" synctex used with zatura
+" vimura must be in the $PATH, maybe set shellcmdflags to interactive :
+"set shellcmdflag=-ic
+function! Synctex()
+        " remove 'silent' for debugging
+        execute "silent !vimura --synctex-forward " . line('.') . ":" . col('.') . ":" . expand('%:p') . " " . substitute(expand('%:p'),"tex$","pdf", "") . "&"
+        redraw!
+endfunction
+map <leader>p :call Synctex()<CR>
