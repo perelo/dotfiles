@@ -9,5 +9,5 @@ setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m
 if filereadable('Makefile')
   setlocal makeprg=make
 else
-  exec "setlocal makeprg=make\\ -f\\ ~/.local/share/latex.mk\\ " . substitute(bufname("%"),"tex$","pdf", "")
+  exec "setlocal makeprg=make\\ -f\\ ~/.local/share/latex.mk\\ " . substitute(expand("%:p"),"tex$","pdf", "") . "\\ -C\\ " . expand("%:h")
 endif

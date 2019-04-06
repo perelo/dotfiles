@@ -18,3 +18,5 @@
 
 
 \end{document}
+
+% vim: set spelllang=en:
