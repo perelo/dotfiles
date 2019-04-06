@@ -37,7 +37,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'junegunn/vim-easy-align'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'fholgado/minibufexpl.vim'
+Bundle 'ap/vim-buftabline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-dispatch'
 Bundle 'SirVer/ultisnips'
@@ -192,6 +192,10 @@ augroup qf
     autocmd FileType qf set nobuflisted
 augroup END
 
+" Don't keep netrw buffers, wipe them off if they are hidden
+autocmd FileType netrw setlocal bufhidden=delete    " ca marche pas...
+let g:netrw_liststyle=3     " tree-style
+
 " =============================================================================
 " Windows
 " =============================================================================
@@ -255,6 +259,25 @@ autocmd BufNewFile *.{c,cpp,cxx} exe "normal! o"
 " =============================================================================
 " Plugin Settings and Mappings
 " =============================================================================
+
+""
+"" Buftabline
+""
+
+let g:buftabline_indicators=1   " show '*' when buf is modified
+let g:buftabline_numbers=2      " ordered numbers (not as in :ls)
+
+nmap <leader>1 <Plug>BufTabLine.Go(1)
+nmap <leader>2 <Plug>BufTabLine.Go(2)
+nmap <leader>3 <Plug>BufTabLine.Go(3)
+nmap <leader>4 <Plug>BufTabLine.Go(4)
+nmap <leader>5 <Plug>BufTabLine.Go(5)
+nmap <leader>6 <Plug>BufTabLine.Go(6)
+nmap <leader>7 <Plug>BufTabLine.Go(7)
+nmap <leader>8 <Plug>BufTabLine.Go(8)
+nmap <leader>9 <Plug>BufTabLine.Go(9)
+nmap <leader>0 <Plug>BufTabLine.Go(10)
+
 
 ""
 "" CtrlP
