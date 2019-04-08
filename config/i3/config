@@ -151,11 +151,24 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# exit session with gnome
-bindsym $mod+Shift+e exec gnome-session-quit --power-off
-bindsym $mod+Shift+o exec gnome-session-quit --logout
+# exit
+set $mode_power (L)ock (D)éconnecter (V)eille (H)iberner (R)edémarrer (E)teindre
+bindsym $mod+F4 mode "$mode_power"
+bindsym $mod+Shift+e mode "$mode_power"
+mode "$mode_power" {
+    bindsym l mode "default", exec --no-startup-id "~/.config/i3/i3exit lock"
+    bindsym d mode "default", exec --no-startup-id "~/.config/i3/i3exit logout"
+    bindsym v mode "default", exec --no-startup-id "~/.config/i3/i3exit suspend"
+    bindsym h mode "default", exec --no-startup-id "~/.config/i3/i3exit hibernate"
+    bindsym r mode "default", exec --no-startup-id "~/.config/i3/i3exit reboot"
+    bindsym e mode "default", exec --no-startup-id "~/.config/i3/i3exit shutdown"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
 # resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
@@ -178,8 +191,6 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
-bindsym $mod+r mode "resize"
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable

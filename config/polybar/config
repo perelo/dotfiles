@@ -429,15 +429,19 @@ format = <label-toggle> <menu>
 
 ;format-background = ${colors.black}
 
-menu-0-0 = " shutdown "
-menu-0-0-exec = gnome-session-quit --power-off
-menu-0-1 = " restart "
-menu-0-1-exec = gnome-session-quit --reboot
-menu-0-2 = "  logout "
-menu-0-2-exec = gnome-session-quit --logout
-menu-0-3 = " config "
-menu-0-3-exec = gnome-control-center
-menu-0-4 =   cancel
+menu-0-0 = " config "
+menu-0-0-exec = gnome-control-center
+menu-0-1 = "  logout "
+menu-0-1-exec = ~/.config/i3/i3exit logout
+menu-0-2 = " veille "
+menu-0-2-exec = ~/.config/i3/i3exit suspend
+menu-0-3 = " hiberner "
+menu-0-3-exec = ~/.config/i3/i3exit hibernate
+menu-0-4 = " redémarrer "
+menu-0-4-exec = ~/.config/i3/i3exit reboot
+menu-0-5 = " éteindre "
+menu-0-5-exec = ~/.config/i3/i3exit shutdown
+menu-0-6 = "  cancel "
 
 label-open = 
 label-close =
