@@ -3,7 +3,7 @@
 
 lock() {
     [[ -z "$(pgrep i3lock)" ]] || exit
-    i3lock -n
+    i3lock -n -c 000000
 }
 
 case "$1" in
@@ -14,10 +14,10 @@ case "$1" in
         i3-msg exit
         ;;
     suspend)
-        systemctl suspend
+        lock && systemctl suspend
         ;;
     hibernate)
-        systemctl hibernate
+        lock && systemctl hibernate
         ;;
     reboot)
         systemctl reboot
