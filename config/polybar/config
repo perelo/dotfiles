@@ -17,15 +17,15 @@
 ;==========================================================
 
 [colors]
-background = ${xrdb:background}
+background = #002b36
 ; background = #222
 background-alt = #444
-; foreground = ${xrdb:foreground}
-foreground = #dfdfdf
+foreground = #839496
+; foreground = #dfdfdf
 foreground-alt = #555
-primary = ${xrdb:color3}
+primary = #b58900
 ; primary = #ffb52a
-secondary = ${xrdb:color1}
+secondary = #dc322f
 ; secondary = #e60053
 alert = #bd2c40
 
@@ -45,6 +45,7 @@ line-size = 3
 line-color = #f00
 
 border-size = 0
+border-color = #00000000
 
 padding-left = 0
 padding-right = 2
@@ -65,11 +66,11 @@ locale = fr_FR.UTF-8
 modules-left = i3 info-tmux-sessions
 ;xwindow
 modules-center = date
-modules-right = updates cpu wlan battery menu0
+modules-right = cpu menu0
 
 tray-position = right
 tray-detached = true
-tray-padding = 20
+tray-padding = 10
 tray-offset-y = 27
 tray-scale = 0.8
 ; tray-background = #0063ff
