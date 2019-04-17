@@ -129,7 +129,7 @@ set number relativenumber
 set scrolloff=2         " Keep more buffer context when scrolling
 set visualbell t_vb=    " Remove bip and flash
 set t_Co=256
-set background=dark
+set background=light
 colorscheme solarized
 let g:solarized_termtrans = 1
 

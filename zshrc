@@ -40,9 +40,9 @@ else
     export TERM='xterm-color'
 fi
 
-# solarized-dark dircolors (ls colors)
-if [ -e ~/.solarized/dircolors-solarized/dircolors.256dark ]; then
-    eval `dircolors ~/.solarized/dircolors-solarized/dircolors.256dark`
+# solarized-light dircolors (ls colors)
+if [ -e ~/.solarized/dircolors-solarized/dircolors.256light ]; then
+    eval `dircolors ~/.solarized/dircolors-solarized/dircolors.256light`
 fi
 
 # solaried with escape characters in Lxterminal
