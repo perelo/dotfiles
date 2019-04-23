@@ -217,6 +217,11 @@ autocmd BufRead,BufNewFile *.{tex} set filetype=tex
 " Set commentstring for Python files (vim-commentary plugin)
 autocmd FileType python set commentstring=#\ %s
 
+" Check for .vim.custom in the directory where vim where opened
+if filereadable(".vim.custom")
+    source .vim.custom
+endif
+
 ""
 "" Headers
 ""

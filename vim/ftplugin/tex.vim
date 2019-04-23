@@ -3,7 +3,7 @@ setlocal softtabstop=2
 setlocal shiftwidth=2
 setlocal textwidth=79
 setlocal spell
-setlocal spelllang=fr
+set complete+=s " search also in 'thesaurus' file when <C-n>/<C-p>
 
 setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m
 if filereadable('Makefile')
