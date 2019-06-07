@@ -65,7 +65,7 @@ locale = fr_FR.UTF-8
 modules-left = i3 info-tmux-sessions
 ;xwindow
 modules-center = date
-modules-right = updates cpu wlan battery menu0
+modules-right = cpu temperature wlan battery menu0
 
 tray-position = right
 tray-detached = true
