@@ -127,7 +127,7 @@ set showmode
 " =============================================================================
 
 syntax on
-set number relativenumber
+set number
 set scrolloff=2         " Keep more buffer context when scrolling
 set visualbell t_vb=    " Remove bip and flash
 set t_Co=256
@@ -341,8 +341,8 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "" General mapping
 ""
 
-nnoremap <CR> G
-nnoremap <BS> gg
+" nnoremap <CR> G
+" nnoremap <BS> gg
 
 " Make Y behave like C and D
 nmap Y y$
@@ -379,6 +379,9 @@ nnoremap <space> za
 
 nnoremap Q @q
 vmap Q :norm Q<CR>
+
+nmap <leader>x :%!xxd<CR>
+nmap <leader>X :%!xxd -r<CR>
 
 " Wordwise yank from line above
 inoremap <expr> <C-y> matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(\k\+\\|.\)')
