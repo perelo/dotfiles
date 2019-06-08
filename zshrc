@@ -13,7 +13,7 @@ export EDITOR VISUAL
 
 # plugins can be found in ~/.oh-my-zsh/plugins/
 # custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git vi-mode)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -72,3 +72,5 @@ if [ -d "/usr/local/texlive/2015/bin/x86_64-linux" ] ; then
 fi
 
 unset GREP_OPTIONS
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
