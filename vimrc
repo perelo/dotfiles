@@ -43,6 +43,7 @@ Bundle 'tpope/vim-dispatch'
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
 Bundle 'tmhedberg/matchit'
+Bundle 'matze/vim-tex-fold'
 
 ""
 "" Miscellaneous
@@ -108,6 +109,7 @@ vmap ^ g^
 
 set foldmethod=syntax
 set foldlevelstart=99   " All folds open at start
+
 
 
 ""
@@ -372,7 +374,8 @@ map )oq :cclose<CR>
 " switch current word w/ the one right after
 map <leader>inv yiwWvep#vep
 
-nnoremap <space> .
+" nnoremap <space> .
+nnoremap <space> za
 
 nnoremap Q @q
 vmap Q :norm Q<CR>
