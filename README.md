@@ -18,6 +18,11 @@ Installation
     git submodule init
     git submodule update
 
+## Install fzf
+
+    cd fzf
+    ./install
+
 ### Backup old dotfiles and install new ones
 
     ./makelinks.sh
