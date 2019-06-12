@@ -106,6 +106,7 @@ WINDOW_ICONS = {
     'xournal': fa.icons['file-alt'],
     'yelp': fa.icons['code'],
     'zenity': fa.icons['window-maximize'],
+    'zotero': fa.icons['book'],
 }
 
 # This icon is used for any application not in the list above
