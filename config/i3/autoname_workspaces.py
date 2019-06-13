@@ -106,6 +106,7 @@ WINDOW_ICONS = {
     'xournal': fa.icons['file-alt'],
     'yelp': fa.icons['code'],
     'zenity': fa.icons['window-maximize'],
+    'zathura': fa.icons['file-pdf'],
     'zotero': fa.icons['book'],
 }
 
