@@ -15,4 +15,11 @@ else
   exec "setlocal makeprg=make\\ -f\\ ~/.local/share/latex.mk\\ " . substitute(expand("%:p"),"tex$","pdf", "") . "\\ -C\\ " . expand("%:h")
 endif
 
+function MakeClean()
+  exec "setlocal makeprg=make\\ -f\\ ~/.local/share/latex.mk\\ clean\\ -C\\ " . expand("%:h")
+  exec "Make"
+  exec "setlocal makeprg=make\\ -f\\ ~/.local/share/latex.mk\\ " . substitute(expand("%:p"),"tex$","pdf", "") . "\\ -C\\ " . expand("%:h")
+endfunction
+map <F5> :MakeClean()<CR>
+
 nnoremap <leader>s [s1z=<C-o>
