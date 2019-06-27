@@ -33,7 +33,6 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-vinegar'
 Bundle 'tpope/vim-eunuch'
 Bundle 'itchyny/lightline.vim'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'junegunn/vim-easy-align'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'Lokaltog/vim-easymotion'
@@ -44,6 +43,7 @@ Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
 Bundle 'tmhedberg/matchit'
 Bundle 'matze/vim-tex-fold'
+Bundle 'chriskempson/base16-vim'
 
 ""
 "" Miscellaneous
@@ -130,10 +130,11 @@ syntax on
 set number
 set scrolloff=2         " Keep more buffer context when scrolling
 set visualbell t_vb=    " Remove bip and flash
-set t_Co=256
-set background=light
-colorscheme solarized
-let g:solarized_termtrans = 1
+
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 
 " Toggle numbers / relative numbers
 nmap <silent> <C-n> :exec 'set number!' &number ? 'relativenumber!' : ''<CR>

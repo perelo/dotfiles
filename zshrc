@@ -40,16 +40,22 @@ else
     export TERM='xterm-color'
 fi
 
-# solarized-light dircolors (ls colors)
-if [ -e ~/.solarized/dircolors-solarized/dircolors.256light ]; then
-    eval `dircolors ~/.solarized/dircolors-solarized/dircolors.256light`
-fi
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
 
-# solaried with escape characters in Lxterminal
-container=$(ps -h -o comm -p $pid $(ps -h -o ppid -p $$))
-if [ "$container" = "lxterminal" ] && [ -f ~/.solarized/escchar_solarized.sh ]; then
-    ~/.solarized/escchar_solarized.sh
-fi
+# # solarized-dark dircolors (ls colors)
+# if [ -e ~/.solarized/dircolors-solarized/dircolors.256dark ]; then
+#     eval `dircolors ~/.solarized/dircolors-solarized/dircolors.256dark`
+# fi
+
+# # solaried with escape characters in Lxterminal
+# container=$(ps -h -o comm -p $pid $(ps -h -o ppid -p $$))
+# if [ "$container" = "lxterminal" ] && [ -f ~/.solarized/escchar_solarized.sh ]; then
+#     ~/.solarized/escchar_solarized.sh
+# fi
 
 # bira ZSH Theme - Preview: http://gyazo.com/8becc8a7ed5ab54a0262a470555c3eed.png
 # copy from ~/.oh-my-zsh/themes/bira.zsh-themes w/o ruby stuff and RPS1 (used by vi-mode)
