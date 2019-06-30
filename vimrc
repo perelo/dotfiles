@@ -79,8 +79,6 @@ set backspace=indent,eol,start
 
 " Show invisible characters
 set list
-
-" Invisible characters
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 
@@ -134,6 +132,7 @@ set visualbell t_vb=    " Remove bip and flash
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
+  "prefered themes : unikitty-dark, atelier-dune, ocean
 endif
 
 " Toggle numbers / relative numbers
@@ -178,6 +177,10 @@ set smartcase
 set nohlsearch
 set incsearch
 
+" very magic
+nnoremap / /\v
+nnoremap ? ?\v
+cnoremap s/ s/\v
 
 " =============================================================================
 " Buffers
