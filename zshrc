@@ -20,9 +20,8 @@ source $ZSH/oh-my-zsh.sh
 VIMD=vimd
 alias vi="vim"
 alias vim="vim --servername $VIMD"
-alias tmux="tmux -2" # force tmux 256 colors
+alias tmux="env TERM=screen-256color tmux -2" # force tmux 256 colors
 alias rm="rm -i"     # ask confirmation
-alias gds="git diff --staged"
 alias tma="tmux attach-session -t"
 alias r="ranger"
 

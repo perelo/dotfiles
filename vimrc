@@ -340,9 +340,10 @@ vnoremap <C-l> >gv
 map <leader>rw :%s/\s\+$//<CR>:w<CR>
 map <leader>vi :edit $MYVIMRC<CR>
 map <leader>rvi :source $MYVIMRC<CR>
-map <leader>m :Make<CR>
-map <leader>h :tab help
-map <leader>q gqap
+map <leader>h :tab help<space>
+
+" cut line here and insert
+nmap <leader>o i<CR><ESC>kA
 
 nnoremap <leader>cl :set cursorline!<CR>
 nnoremap <leader>cc :set cursorcolumn!<CR>
