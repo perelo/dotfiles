@@ -44,6 +44,7 @@ Bundle 'honza/vim-snippets'
 Bundle 'tmhedberg/matchit'
 Bundle 'matze/vim-tex-fold'
 Bundle 'chriskempson/base16-vim'
+Bundle 'wincent/ferret'
 
 ""
 "" Miscellaneous
@@ -317,10 +318,18 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/bundle/vim-snippets/UltiSnips']
 
 
 ""
-"" General mapping
+"" ferret
 ""
 
-nnoremap <CR> G
+" Instead of <leader>a used for 'alternative file'
+nmap <leader>f <Plug>(FerretAck)
+
+
+" =============================================================================
+" General mapping
+" =============================================================================
+
+" nnoremap <CR> G
 " nnoremap <BS> gg
 
 " Make Y behave like C and D
@@ -339,10 +348,6 @@ map <leader>h :tab help<space>
 
 " cut line here and insert
 nmap <leader>o i<CR><ESC>kA
-
-nnoremap <leader>cl :set cursorline!<CR>
-nnoremap <leader>cc :set cursorcolumn!<CR>
-nnoremap <leader>cx :set cursorline cursorcolumn<CR>
 
 command! SaveAndMake execute ":silent w | Make"
 nnoremap <F1> :SaveAndMake<CR><Esc>
