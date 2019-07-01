@@ -135,9 +135,6 @@ if filereadable(expand("~/.vimrc_background"))
   "prefered themes : unikitty-dark, atelier-dune, ocean
 endif
 
-" Toggle numbers / relative numbers
-nmap <silent> <C-n> :exec 'set number!' &number ? 'relativenumber!' : ''<CR>
-
 " Highlight overlength columns
 if exists('+colorcolumn')
     set colorcolumn=80
@@ -147,12 +144,9 @@ endif
 
 set laststatus=2        " Always display statusline
 
-""
-"" Spelling
-""
-
 hi clear SpellBad
 hi SpellBad cterm=underline
+hi Comment cterm=italic
 
 
 " =============================================================================
@@ -201,6 +195,7 @@ augroup END
 " Don't keep netrw buffers, wipe them off if they are hidden
 autocmd FileType netrw setlocal bufhidden=delete    " ca marche pas...
 let g:netrw_liststyle=3     " tree-style
+
 
 " =============================================================================
 " Windows
@@ -275,8 +270,8 @@ autocmd BufNewFile *.{c,cpp,cxx} exe "normal! o"
 "" Buftabline
 ""
 
-let g:buftabline_indicators=1   " show '*' when buf is modified
-let g:buftabline_numbers=1      " ordered numbers (not as in :ls)
+let g:buftabline_indicators=1   " show '+' when buf is modified
+let g:buftabline_numbers=1      " internal buffers numbers
 
 ""
 "" CtrlP
@@ -318,14 +313,14 @@ vnoremap <leader>A :EasyAlign
 " https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/bundle/vim-snippets/UltiSnips']
 
 
 ""
 "" General mapping
 ""
 
-" nnoremap <CR> G
+nnoremap <CR> G
 " nnoremap <BS> gg
 
 " Make Y behave like C and D
@@ -349,9 +344,9 @@ nnoremap <leader>cl :set cursorline!<CR>
 nnoremap <leader>cc :set cursorcolumn!<CR>
 nnoremap <leader>cx :set cursorline cursorcolumn<CR>
 
-command! SaveAndMake execute ":w | Make"
-map <F1> :SaveAndMake<CR>
-imap <F1> <F1>
+command! SaveAndMake execute ":silent w | Make"
+nnoremap <F1> :SaveAndMake<CR><Esc>
+imap <F1> <Esc><F1>
 
 map (oq :copen<CR>
 map )oq :cclose<CR>
@@ -359,12 +354,13 @@ map )oq :cclose<CR>
 " switch current word w/ the one right after
 map <leader>inv yiwWvep#vep
 
-" nnoremap <space> .
-nnoremap <space> za
+nnoremap <space> .
+" nnoremap <space> za
 
 nnoremap Q @q
 vmap Q :norm Q<CR>
 
+" buffer as in hexadecimal editor
 nmap <leader>x :%!xxd<CR>
 nmap <leader>X :%!xxd -r<CR>
 
