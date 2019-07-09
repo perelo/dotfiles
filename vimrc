@@ -21,7 +21,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 ""
-"" My bundles here:
+"" My bundles here
 ""
 
 " original repos on GitHub
@@ -32,30 +32,39 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-vinegar'
 Bundle 'tpope/vim-eunuch'
-Bundle 'itchyny/lightline.vim'
-Bundle 'junegunn/vim-easy-align'
-Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'ap/vim-buftabline'
-Bundle 'kien/ctrlp.vim'
+Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'tpope/vim-dispatch'
+Bundle 'junegunn/vim-easy-align'
+Bundle 'ap/vim-buftabline'
+Bundle 'itchyny/lightline.vim'
+Bundle 'kien/ctrlp.vim'
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
 Bundle 'tmhedberg/matchit'
-Bundle 'matze/vim-tex-fold'
 Bundle 'chriskempson/base16-vim'
 Bundle 'wincent/ferret'
+Bundle 'matze/vim-tex-fold'
+Bundle 'gibiansky/vim-latex-objects'
+" Bundle 'ciaranm/securemodelines'
 
-""
-"" Miscellaneous
-""
+" =============================================================================
+" Miscellaneous
+" =============================================================================
 
-" Enable file type detection and load plugin indent files
+" Enable filetype detection and load plugin files
 filetype plugin on
 let $VIM='~/.vim/'
 
 " Set comma as <leader> instead of default backslash
 let mapleader = ","
+
+" Remap usefull commands hard to access with azerty
+set langmap=é~,è`,ç^,ù%,µ#
+if ! has('nvim')
+    set nolangremap     " so that noremap don't take langmap into account
+endif
 
 " Use UTF-8 encoding
 set encoding=utf-8
@@ -109,6 +118,7 @@ vmap ^ g^
 set foldmethod=syntax
 set foldlevelstart=99   " All folds open at start
 
+let g:tex_fold_ignored_envs = [ 'document' ]
 
 
 ""
@@ -147,7 +157,8 @@ set laststatus=2        " Always display statusline
 
 hi clear SpellBad
 hi SpellBad cterm=underline
-hi Comment cterm=italic
+hi clear SpellCap
+hi link SpellCap SpellBad
 
 
 " =============================================================================
@@ -157,8 +168,9 @@ hi Comment cterm=italic
 " Remember more commands and search history (default: 20)
 set history=100
 
-" Expand %% to current directory (http://vimcasts.org/e/14)
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
+" Use <Tab> to complete in command line
+set wildmenu
+set wildmode=full
 
 " Treat numeral numbers as decimal instead of octals (for <C-a> / <C-x>)
 set nrformats=
@@ -172,10 +184,17 @@ set smartcase
 set nohlsearch
 set incsearch
 
+if has('nvim')
+    set inccommand=nosplit
+endif
+
 " very magic
 nnoremap / /\v
 nnoremap ? ?\v
 cnoremap s/ s/\v
+
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
 
 " =============================================================================
 " Buffers
@@ -194,8 +213,39 @@ augroup qf
 augroup END
 
 " Don't keep netrw buffers, wipe them off if they are hidden
-autocmd FileType netrw setlocal bufhidden=delete    " ca marche pas...
-let g:netrw_liststyle=3     " tree-style
+augroup netrw
+    autocmd!
+    autocmd FileType netrw setlocal bufhidden=wipe
+    autocmd BufEnter NetrwTreeListing* setlocal filetype=netrw
+augroup END
+
+let g:netrw_fastbrowse = 0
+let g:netrw_liststyle = 3     " tree-style
+let g:netrw_hide = 1
+
+function! DeleteNetrwActiveBrowsers()
+    let bs = filter(range(1,bufnr('$')), 'getbufvar(v:val, "netrw_browser_active")')
+    " for i in range(1, bufnr('$'))
+    let delbufs = []
+    for i in bs
+        let bname = bufname(i)
+        let choice = confirm('Delete buffer '.bname, "&Yes\n&No\n&All\n&Quit", 1)
+        if choice == 1
+            let delbufs += [i]
+        elseif choice == 3
+            let delbufs += bs[index(bs,i):]
+            break
+        elseif choice == 4
+            return
+        endif
+    endfor
+    if !empty(delbufs)
+        exe ":bdelete ".join(delbufs, ' ')
+    else
+        echo "No netrw buffers to delete."
+    endif
+endfunction
+nnoremap <leader>dnw :call DeleteNetrwActiveBrowsers()<CR>
 
 
 " =============================================================================
@@ -279,6 +329,7 @@ let g:buftabline_numbers=1      " internal buffers numbers
 ""
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_cmd = 'CtrlPMRU'
 
 
 ""
@@ -313,9 +364,10 @@ vnoremap <leader>A :EasyAlign
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/bundle/vim-snippets/UltiSnips']
+let g:UltiSnipsEditSplit="context"
 
+let g:UltiSnipsSnippetDir=$HOME.'/.vim/UltiSnips/'
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips/', $HOME.'/.vim/bundle/vim-snippets/UltiSnips']
 
 ""
 "" ferret
@@ -329,62 +381,49 @@ nmap <leader>f <Plug>(FerretAck)
 " General mapping
 " =============================================================================
 
-" nnoremap <CR> G
-" nnoremap <BS> gg
-
 " Make Y behave like C and D
 nmap Y y$
 
-" Drag lines much easier than (e and )e w/ unimpaired
-vnoremap <C-k> xkP`[V`]
-vnoremap <C-j> xp`[V`]
-vnoremap <C-h> <gv
-vnoremap <C-l> >gv
+nnoremap <Space> .
 
-map <leader>rw :%s/\s\+$//<CR>:w<CR>
-map <leader>vi :edit $MYVIMRC<CR>
-map <leader>rvi :source $MYVIMRC<CR>
-map <leader>h :tab help<space>
+inoremap œ <Esc>
 
-" cut line here and insert
-nmap <leader>o i<CR><ESC>kA
-
-command! SaveAndMake execute ":silent w | Make"
-nnoremap <F1> :SaveAndMake<CR><Esc>
-imap <F1> <Esc><F1>
-
-map (oq :copen<CR>
-map )oq :cclose<CR>
-
-" switch current word w/ the one right after
-map <leader>inv yiwWvep#vep
-
-nnoremap <space> .
-" nnoremap <space> za
+nnoremap <Tab> za
 
 nnoremap Q @q
 vmap Q :norm Q<CR>
 
-" buffer as in hexadecimal editor
-nmap <leader>x :%!xxd<CR>
-nmap <leader>X :%!xxd -r<CR>
+" missing from unimpaired
+map (oq :copen<CR>
+map )oq :cclose<CR>
 
 " Wordwise yank from line above
 inoremap <expr> <C-y> matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(\k\+\\|.\)')
 
-" When you’re pressing Escape to leave insert mode in the terminal, it will by
-" default take a second or another keystroke to leave insert mode completely
-" and update the statusline. This fixes that. I got this from:
-" https://powerline.readthedocs.org/en/latest/tipstricks.html#vim
-if !has('gui_running')
-    set ttimeoutlen=10
-    augroup FastEscape
-        autocmd!
-        au InsertEnter * set timeoutlen=0
-        au InsertLeave * set timeoutlen=1000
-    augroup END
-endif
+" Drag lines vertically
+xnoremap <C-k> xkP`[V`]
+xnoremap <C-j> xp`[V`]
+xnoremap <C-l> >gv
+xnoremap <C-h> <gv
 
+noremap <leader>rw :%s/\v\s+$//<CR>:w<CR>
+noremap <leader>vi :edit $MYVIMRC<CR>
+noremap <leader>rvi :source $MYVIMRC<CR>
+noremap <leader>h :tab help<space>
+nnoremap <leader>dx :redraw!<CR>
+
+
+" cut line here and insert
+noremap <leader>o i<CR><ESC>kA
+
+command! SaveAndMake execute ":silent w | Make"
+nnoremap <F1> :SaveAndMake<CR><Esc>
+imap <F1> <Esc><F1>
+map <F5> :Make clean<CR>
+
+" buffer as in hexadecimal editor
+nmap <leader>x :%!xxd<CR>
+nmap <leader>X :%!xxd -r<CR>
 
 " https://retorque.re/zotero-better-bibtex/cayw/
 function! ZoteroCite()
@@ -402,8 +441,49 @@ inoremap <C-z> <C-r>=ZoteroCite()<CR>
 " vimura must be in the $PATH, maybe set shellcmdflags to interactive :
 "set shellcmdflag=-ic
 function! Synctex()
+    let vimura_param = " --synctex-forward " . line('.') . ":" . col('.') . ":" . expand('%:p') . " " . substitute(expand('%:p'),"tex$","pdf", "")
+    if has('nvim')
+        call jobstart("vimura neovim" . vimura_param)
+    else
         " remove 'silent' for debugging
-        execute "silent !vimura --synctex-forward " . line('.') . ":" . col('.') . ":" . expand('%:p') . " " . substitute(expand('%:p'),"tex$","pdf", "") . "&"
-        redraw!
+        exe "silent !vimura vim" . vimura_param . "&"
+    endif
+    redraw!
 endfunction
 map <leader>p :call Synctex()<CR>
+
+
+function! JumpToNextBufferInJumplist(dir) " 1=forward, -1=backward
+    let jl = getjumplist() | let jumplist = jl[0] | let curjump = jl[1]
+    let jumpcmdstr = a:dir > 0 ? '<C-O>' : '<C-I>'
+    let jumpcmdchr = a:dir > 0 ? '	' : ''    " <C-I> or <C-O>
+    let searchrange = a:dir > 0 ? range(curjump+1,len(jumplist))
+                              \ : range(curjump-1,0,-1)
+    for i in searchrange
+        if jumplist[i]["bufnr"] != bufnr('%')
+            let n = (i - curjump) * a:dir
+            echo "Executing ".jumpcmdstr." ".n." times."
+            execute "silent normal! ".n.jumpcmdchr
+            break
+        endif
+    endfor
+endfunction
+nnoremap <leader><C-O> :call JumpToNextBufferInJumplist(-1)<CR>
+nnoremap <leader><C-I> :call JumpToNextBufferInJumplist( 1)<CR>
+
+" =============================================================================
+" Fixes
+" =============================================================================
+
+" When you’re pressing Escape to leave insert mode in the terminal, it will by
+" default take a second or another keystroke to leave insert mode completely
+" and update the statusline. This fixes that. I got this from:
+" https://powerline.readthedocs.org/en/latest/tipstricks.html#vim
+if !has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+endif

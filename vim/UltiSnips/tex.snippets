@@ -1,0 +1,22 @@
+################################################################################
+# my snippets
+# others are at ~/.vim/bundle/vim-snippets/UltiSnips/tex.snippets and
+#               ~/.vim/bundle/vim-snippets/snippets/tex.snippets
+################################################################################
+
+snippet "_\{?" "subscript" ir
+_{${1:${VISUAL}}}$0
+endsnippet
+
+snippet ^ "superscript" i
+^{${1:${VISUAL}}}$0
+endsnippet
+
+snippet ( "paren" i
+(${1})${0}
+endsnippet
+
+snippet crs "chr sigma" i
+\chr^${1:r}\sigma^*_$0
+endsnippet
+# vim:ft=snippets:

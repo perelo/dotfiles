@@ -6,20 +6,17 @@ setlocal spell
 set complete+=s " search also in 'thesaurus' file when <C-n>/<C-p>
 
 setlocal foldenable
-setlocal foldlevel=0 " close all folds
+" setlocal foldlevel=0 " close all folds
 
 setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m
-if filereadable('Makefile')
-  setlocal makeprg=make
+if filereadable(expand('%:h').'/Makefile')
+  exec "setlocal makeprg=make\\ -C\\ ".expand('%:h')
 else
-  exec "setlocal makeprg=make\\ -f\\ ~/.local/share/latex.mk\\ " . substitute(expand("%:p"),"tex$","pdf", "") . "\\ -C\\ " . expand("%:h")
+  exec "setlocal makeprg=make\\ -f\\ ~/.local/share/latex.mk\\ -C\\ " . expand("%:h")
 endif
 
-function MakeClean()
-  exec "setlocal makeprg=make\\ -f\\ ~/.local/share/latex.mk\\ clean\\ -C\\ " . expand("%:h")
-  exec "Make"
-  exec "setlocal makeprg=make\\ -f\\ ~/.local/share/latex.mk\\ " . substitute(expand("%:p"),"tex$","pdf", "") . "\\ -C\\ " . expand("%:h")
-endfunction
-map <F5> :MakeClean()<CR>
+command! SaveAndMakePdf execute ":silent w | Make" . substitute(expand("%:p"),"tex$","pdf", "")
+map <F1> :SaveAndMakePdf<CR>
 
-nnoremap <leader>s [s1z=<C-o>
+
+" nnoremap <leader>s [s1z=<C-o>
