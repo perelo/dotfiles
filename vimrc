@@ -59,6 +59,8 @@ let $VIM='~/.vim/'
 
 " Set comma as <leader> instead of default backslash
 let mapleader = ","
+" reassign ',' motion, /!\ may conflict with " easymotion-prefix
+noremap ,, ,
 
 " Remap usefull commands hard to access with azerty
 set langmap=é~,è`,ç^,ù%,µ#
@@ -343,8 +345,19 @@ for s:c in map(range(32,33) + range(65,90) + range(97,122),'nr2char(v:val)')
   exec 'nmap )'.s:c.' ]'.s:c
   exec 'xmap )'.s:c.' ]'.s:c
 endfor
-xmap (e [egv
-xmap )e ]egv
+xnoremap (e [egv
+xnoremap )e ]egv
+
+" reassign 'sentence' motion broken by above maps
+noremap (s (
+noremap )s )
+
+""
+"" Easymotion
+""
+
+" /!\ œ is mapped to <Esc> in insert mode
+map œ <Plug>(easymotion-prefix)
 
 
 ""
