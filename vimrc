@@ -389,6 +389,18 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips/', $HOME.'/.vim/bundle
 " Instead of <leader>a used for 'alternative file'
 nmap <leader>f <Plug>(FerretAck)
 
+"
+" tags
+"
+
+" search for 'tags' file up the working tree until it finds one
+set tags+=./tags;
+
+" (re)create tag file inside ':pwd'
+if executable('ctags')
+    nnoremap <leader>sct :!ctags -R .<CR>
+endif
+
 
 " =============================================================================
 " General mapping
