@@ -420,11 +420,12 @@ xnoremap <C-l> >gv
 xnoremap <C-h> <gv
 
 noremap <leader>rw :%s/\v\s+$//<CR>:w<CR>
-noremap <leader>vi :edit $MYVIMRC<CR>
-noremap <leader>rvi :source $MYVIMRC<CR>
 noremap <leader>h :tab help<space>
 nnoremap <leader>dx :redraw!<CR>
 
+noremap <leader>vi :edit $MYVIMRC<CR>
+noremap <leader>rvi :source $MYVIMRC<CR>
+noremap <leader>rft :exe ':set filetype='.&filetype<CR>
 
 " cut line here and insert
 noremap <leader>o i<CR><ESC>kA
