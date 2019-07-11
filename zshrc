@@ -1,21 +1,13 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# Path to my oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
-
 EDITOR=vim
 VISUAL=$EDITOR
-export EDITOR VISUAL
+MANPAGER="nvim -c 'set ft=man' -"
+export EDITOR VISUAL MANPAGER
 
-# themes can be found in ~/.oh-my-zsh/themes/
-#ZSH_THEME="bira"
-
-# plugins can be found in ~/.oh-my-zsh/plugins/
-# custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
+# load autocompletion
+autoload -Uz compinit && compinit
 
 VIMD=vimd
 alias ls="ls --color=auto"
@@ -34,21 +26,13 @@ alias tma="tmux attach-session -t"
 alias r="ranger"
 alias rmswp="rm */.*.swp"
 
-export MANPAGER="nvim -c 'set ft=man' -"
+alias doci="docker image"
+alias docc="docker container"
+
 
 function acro {
     curl dict://dict.org/d:$1:vera
 }
-
-alias doci="docker image"
-alias docc="docker container"
-
-# # Use 256 color terminal if it exists
-# if [ -e /lib/terminfo/x/xterm-256color ]; then
-#     export TERM='xterm-256color'
-# else
-#     export TERM='xterm-color'
-# fi
 
 # Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
@@ -57,15 +41,21 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 
-# bira ZSH Theme - Preview: http://gyazo.com/8becc8a7ed5ab54a0262a470555c3eed.png
-# copy from ~/.oh-my-zsh/themes/bira.zsh-themes w/o ruby stuff and RPS1 (used by vi-mode)
-local user_host='%{$terminfo[bold]$fg[green]%}%n@%m%{$reset_color%}'
-local current_dir='%{$terminfo[bold]$fg[blue]%} %~%{$reset_color%}'
-local git_branch='$(git_prompt_info)%{$reset_color%}'
-PROMPT="╭─${user_host} ${current_dir} ${git_branch}
+autoload -U colors && colors
+setopt prompt_subst
+
+# bira theme from
+# https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/bira.zsh-theme
+local user_host='%{$terminfo[bold]$fg[green]%}%n@%m %{$reset_color%}'
+local current_dir='%{$terminfo[bold]$fg[blue]%}%~ %{$reset_color%}'
+PROMPT="╭─${user_host}${current_dir}
 ╰─%B$%b "
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}‹"
-ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
+
+# git-prompt from
+# https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git-prompt
+source $HOME/.zsh/git-prompt/git-prompt.plugin.zsh
+RPROMPT='$(git_super_status)'
+
 
 LESS=-RX # -X: don't clear screen before and after less
 
