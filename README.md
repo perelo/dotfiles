@@ -25,17 +25,7 @@ Installation
 
 ### Backup old dotfiles and install new ones
 
-    ./makelinks.sh
-
-## Set solarized dark colors
-
-## for `gnome-terminal`
-
-    ./solarized/gnome-terminal-colors-solarized/set_dark.sh
-
-## for `lxterminal`
-
-    cp ~/dotfiles/config ~/.config
+    python3 links.py
 
 ### Permanently change your shell to `zsh`
 
@@ -44,6 +34,7 @@ Installation
 ### terminfo compile
 
     tic ~/dotfiles/screen-256color.terminfo
+
 ### Note
 
 * vim's `UltiSnips` plugin requires Python's `unidecode` :
