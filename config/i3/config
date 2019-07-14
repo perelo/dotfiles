@@ -212,7 +212,7 @@ exec_always --no-startup-id "killall polybar; polybar -r default"
 exec_always --no-startup-id ~/.config/i3/autoname_workspaces.py --norenumber_workspaces &
 
 # start a terminal with tmux & without menubar
-bindsym $mod+Return exec gnome-terminal --hide-menubar -e "env TERM=screen-256color tmux -2"
+bindsym $mod+Return exec gnome-terminal --hide-menubar -e "tmux -2"
 bindsym $mod+t exec gnome-terminal --hide-menubar
 # start firefox
 bindsym $mod+Shift+f exec ~/tools/firefox/firefox

@@ -71,6 +71,9 @@ endif
 " Use UTF-8 encoding
 set encoding=utf-8
 
+" show waiting normal commands
+set showcmd
+
 
 " =============================================================================
 " Editing
@@ -161,6 +164,11 @@ hi clear SpellBad
 hi SpellBad cterm=underline
 hi clear SpellCap
 hi link SpellCap SpellBad
+
+function! SynGroup()
+  let l:s = synID(line('.'), col('.'), 1)
+  echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfunction
 
 
 " =============================================================================
