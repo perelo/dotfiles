@@ -3,12 +3,15 @@ setlocal softtabstop=2
 setlocal shiftwidth=2
 setlocal textwidth=79
 setlocal spell
-set complete+=s " search also in 'thesaurus' file when <C-n>/<C-p>
+setlocal complete+=s " search also in 'thesaurus' file when <C-n>/<C-p>
 
 setlocal foldenable
 " setlocal foldlevel=0 " close all folds
 
-setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m
+setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m,
+setlocal errorformat+=%Dmake :\ on\ entre\ dans\ le\ répertoire\ « %f »
+setlocal errorformat+=%Xmake :\ on\ quitte\ le\ répertoire\ « %f »
+
 if filereadable(expand('%:h').'/Makefile')
   exec "setlocal makeprg=make\\ -C\\ ".expand('%:h')
 else
@@ -16,7 +19,7 @@ else
 endif
 
 command! SaveAndMakePdf execute ":silent w | Make" . substitute(expand("%:p"),"tex$","pdf", "")
-map <F1> :SaveAndMakePdf<CR>
+nnoremap <buffer> <F1> :SaveAndMakePdf<CR>
 
 
 " add ':' and '-' as keywords, mostly for \ref{...} matching
@@ -41,3 +44,5 @@ endfunction
 nnoremap <silent> <C-]> :execute 'tag '.TagFromOutside()<CR>
 
 " nnoremap <leader>s [s1z=<C-o>
+inoremap <buffer> <C-d> <c-o>d/[\.\$]<CR>
+inoremap <buffer> <C-f> <esc>l/\$<cr>la
