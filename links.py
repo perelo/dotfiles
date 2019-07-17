@@ -28,6 +28,7 @@ items = [
     "zshrc",
     "zsh/",
     "tmux.conf",
+    "tmuxcolors-base16.conf",
     "gitconfig",
     "gitignore",
     "ctags",
