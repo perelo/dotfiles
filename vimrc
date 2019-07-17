@@ -96,7 +96,6 @@ set backspace=indent,eol,start
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
-
 ""
 "" Wrapping
 ""
@@ -356,16 +355,12 @@ endfor
 xnoremap (e [egv
 xnoremap )e ]egv
 
-" reassign 'sentence' motion broken by above maps
-noremap (s (
-noremap )s )
-
 ""
 "" Easymotion
 ""
 
 " /!\ œ is mapped to <Esc> in insert mode
-map œ <Plug>(easymotion-prefix)
+nnoremap œ <Plug>(easymotion-prefix)
 
 
 ""
@@ -405,9 +400,9 @@ nmap <leader>f <Plug>(FerretAck)
 set tags+=./tags;
 
 " (re)create tag file inside ':pwd'
-if executable('ctags')
-    nnoremap <leader>sct :!ctags -R .<CR>
-endif
+nnoremap <expr> <leader>sct executable('ctags') ?
+                   \ ":!ctags -R .<CR>"         :
+                   \ ":echo 'Cannot execute \"ctags\"'<CR>"
 
 
 " =============================================================================
@@ -420,8 +415,9 @@ nmap Y y$
 nnoremap <Space> .
 
 inoremap œ <Esc>
-
-nnoremap <Tab> za
+" vnoremap œ <Esc>
+" onoremap œ <Esc>
+" cnoremap œ <Esc>
 
 nnoremap Q @q
 vmap Q :norm Q<CR>
@@ -452,8 +448,8 @@ noremap <leader>o i<CR><ESC>kA
 
 command! SaveAndMake execute ":silent w | Make"
 nnoremap <F1> :SaveAndMake<CR><Esc>
-imap <F1> <Esc><F1>
-map <F5> :Make clean<CR>
+inoremap <F1> <Esc><F1>
+nnoremap <F5> :Make clean<CR>
 
 " buffer as in hexadecimal editor
 nmap <leader>x :%!xxd<CR>
