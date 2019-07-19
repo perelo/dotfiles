@@ -89,6 +89,9 @@ set shiftwidth=4
 set softtabstop=4
 set autoindent
 
+" round shift indent to neerest shiftwidth
+set shiftround
+
 " Backspace on everything in insert mode
 set backspace=indent,eol,start
 
@@ -278,11 +281,6 @@ autocmd BufRead,BufNewFile *.{tex} set filetype=tex
 " Set commentstring for Python files (vim-commentary plugin)
 autocmd FileType python set commentstring=#\ %s
 
-" Check for .vim.custom in the directory where vim where opened
-if filereadable(".vim.custom")
-    source .vim.custom
-endif
-
 ""
 "" Headers
 ""
@@ -438,6 +436,7 @@ xnoremap <C-h> <gv
 noremap <leader>rw :%s/\v\s+$//<CR>:w<CR>
 noremap <leader>h :tab help<space>
 nnoremap <leader>dx :redraw!<CR>
+nnoremap <leader>b :ls<CR>:b
 
 noremap <leader>vi :edit $MYVIMRC<CR>
 noremap <leader>rvi :source $MYVIMRC<CR>
@@ -448,8 +447,11 @@ noremap <leader>o i<CR><ESC>kA
 
 command! SaveAndMake execute ":silent w | Make"
 nnoremap <F1> :SaveAndMake<CR><Esc>
-inoremap <F1> <Esc><F1>
+imap <F1> <Esc><F1>
 nnoremap <F5> :Make clean<CR>
+
+" write as sudo
+command! W execute 'silent! write !sudo tee % > /dev/null' | silent! edit!
 
 " buffer as in hexadecimal editor
 nmap <leader>x :%!xxd<CR>
