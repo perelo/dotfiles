@@ -33,7 +33,6 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-vinegar'
 Bundle 'tpope/vim-eunuch'
 Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'Lokaltog/vim-easymotion'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'tpope/vim-dispatch'
 Bundle 'junegunn/vim-easy-align'
@@ -42,12 +41,15 @@ Bundle 'itchyny/lightline.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
-Bundle 'tmhedberg/matchit'
 Bundle 'chriskempson/base16-vim'
 Bundle 'wincent/ferret'
 Bundle 'matze/vim-tex-fold'
 Bundle 'gibiansky/vim-latex-objects'
 " Bundle 'ciaranm/securemodelines'
+
+if ! has('nvim')
+    packadd matchit
+endif
 
 " =============================================================================
 " Miscellaneous
@@ -59,7 +61,7 @@ let $VIM='~/.vim/'
 
 " Set comma as <leader> instead of default backslash
 let mapleader = ","
-" reassign ',' motion, /!\ may conflict with " easymotion-prefix
+" reassign ',' motion
 noremap ,, ,
 
 " Remap usefull commands hard to access with azerty
@@ -352,14 +354,6 @@ for s:c in map(range(32,33) + range(65,90) + range(97,122),'nr2char(v:val)')
 endfor
 xnoremap (e [egv
 xnoremap )e ]egv
-
-""
-"" Easymotion
-""
-
-" /!\ œ is mapped to <Esc> in insert mode
-nnoremap œ <Plug>(easymotion-prefix)
-
 
 ""
 "" Easy-Align
