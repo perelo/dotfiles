@@ -5,9 +5,6 @@
 " Clear autocmds
 autocmd!
 
-" Use Vim settings, rather than Vi
-set nocompatible
-
 ""
 "" Vundle
 ""
@@ -404,6 +401,9 @@ nnoremap <expr> <leader>sct executable('ctags') ?
 " Make Y behave like C and D
 nmap Y y$
 
+" pasting in visual don't overwrite @"
+xnoremap <expr> p 'pgv"'.v:register.'y'
+
 nnoremap <Space> .
 
 inoremap œ <Esc>
@@ -496,6 +496,15 @@ function! JumpToNextBufferInJumplist(dir) " 1=forward, -1=backward
 endfunction
 nnoremap <leader><C-O> :call JumpToNextBufferInJumplist(-1)<CR>
 nnoremap <leader><C-I> :call JumpToNextBufferInJumplist( 1)<CR>
+
+function! VSetSearchRegister()
+ let temp = @s
+ norm! gv"sy
+ let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
+ let @s = temp
+endfunction
+xnoremap * :<C-u>call VSetSearchRegister()<CR>/<C-R>/<CR>
+xnoremap # :<C-u>call VSetSearchRegister()<CR>?<C-R>/<CR>
 
 " =============================================================================
 " Fixes
