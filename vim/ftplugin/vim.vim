@@ -4,3 +4,4 @@ augroup SourceOnWrite
         autocmd BufWritePost <buffer> source %
     endif
 augroup END
+set iskeyword-=#
