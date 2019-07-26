@@ -53,7 +53,9 @@ endif
 " =============================================================================
 
 " Enable filetype detection and load plugin files
-filetype plugin on
+if has('autocmd')
+    filetype plugin indent on
+endif
 let $VIM='~/.vim'
 
 " Set comma as <leader> instead of default backslash
@@ -101,6 +103,13 @@ set backspace=indent,eol,start
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
+" Delete comment character when joining commented lines
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j
+endif
+
+set autoread
+
 ""
 "" Wrapping
 ""
@@ -147,6 +156,7 @@ set showmode
 syntax on
 set number
 set scrolloff=2         " Keep more buffer context when scrolling
+set sidescrolloff=1
 set visualbell t_vb=    " Remove bip and flash
 
 if filereadable(expand("~/.vimrc_background"))
