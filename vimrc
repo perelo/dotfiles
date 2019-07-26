@@ -54,7 +54,7 @@ endif
 
 " Enable filetype detection and load plugin files
 filetype plugin on
-let $VIM='~/.vim/'
+let $VIM='~/.vim'
 
 " Set comma as <leader> instead of default backslash
 let mapleader = ","
@@ -183,11 +183,13 @@ endfunction
 " updatecount (200 keystrokes) and
 " updatetime (4 seconds) are fine
 set swapfile
-set directory^=expand('$VIM/swap//')
+execute 'set directory^='.expand('$VIM/swap//')
 
 " persist the undo tree for each file
-set undofile
-set undodir^=expand('$VIM/undo//')
+if has('persistent_undo')
+    set undofile
+    execute 'set undodir^='.expand('$VIM/undo//')
+endif
 
 " =============================================================================
 " Command Line
