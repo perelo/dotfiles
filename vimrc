@@ -88,6 +88,9 @@ set shiftwidth=4
 set softtabstop=4
 set autoindent
 
+" accept mouse
+set mouse=nvchr
+
 " round shift indent to neerest shiftwidth
 set shiftround
 
@@ -171,6 +174,20 @@ function! SynGroup()
   echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfunction
 
+
+" =============================================================================
+" Savings
+" =============================================================================
+
+" Protect changes between writes. Default values of
+" updatecount (200 keystrokes) and
+" updatetime (4 seconds) are fine
+set swapfile
+set directory^=expand('$VIM/swap//')
+
+" persist the undo tree for each file
+set undofile
+set undodir^=expand('$VIM/undo//')
 
 " =============================================================================
 " Command Line
@@ -349,8 +366,13 @@ for s:c in map(range(32,33) + range(65,90) + range(97,122),'nr2char(v:val)')
   exec 'nmap )'.s:c.' ]'.s:c
   exec 'xmap )'.s:c.' ]'.s:c
 endfor
+"
 xnoremap (e [egv
 xnoremap )e ]egv
+
+" because unimpaired breaks sentence motion
+nnoremap )) )
+nnoremap (( (
 
 ""
 "" Easy-Align
