@@ -14,7 +14,7 @@ nnoremap <Space> .
 inoremap œ <Esc>
 vnoremap œ <Esc>
 onoremap œ <Esc>
-cnoremap œ <Esc>
+cnoremap œ <C-C>
 
 nnoremap Q @q
 vmap Q :norm Q<CR>
