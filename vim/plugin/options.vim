@@ -78,6 +78,9 @@ if v:version > 703 || v:version == 703 && has("patch541")
   set formatoptions+=j
 endif
 
+" don't add two spaces when joining lines ending witih '.', '!' and '?'
+set nojoinspaces
+
 " netrw buffers
 let g:netrw_fastbrowse = 0
 let g:netrw_liststyle = 3     " tree-style
