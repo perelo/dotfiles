@@ -62,6 +62,9 @@ nnoremap <leader>rft :exe ':set filetype='.&filetype<CR>
 nnoremap <leader>dg :diffget<cr>
 nnoremap <leader>dp :diffput<cr>
 
+" see also after/plugin/ctrlp.vim
+nnoremap <leader>es :edit $HOME/dotfiles/
+
 " (re)create tag file inside ':pwd'
 nnoremap <expr> <leader>sct executable('ctags') ?
                    \ ":!ctags -R .<CR>"         :
