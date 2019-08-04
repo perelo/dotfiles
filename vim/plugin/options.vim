@@ -105,6 +105,10 @@ if exists('+colorcolumn')
     " exec 'match OverLength /\%'.&cc.'v.\+/'
 endif
 
+let &t_SI = "\<esc>[5 q"    " | cursor in insert mode
+let &t_SR = "\<esc>[5 q"    " | cursor in replace mode
+let &t_EI = "\<esc>[2 q"    " bloc cursor when back to normal
+
 " }}}
 " {{{ Saving
 
