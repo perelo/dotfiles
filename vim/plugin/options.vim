@@ -70,6 +70,9 @@ set wildmode=full
 " search for 'tags' file up the working tree until it finds one
 set tags+=./tags;
 
+" get confirm dialog when :q :e ... fails
+set confirm
+
 " Treat numeral numbers as decimal instead of octals (for <C-a> / <C-x>)
 set nrformats=
 
