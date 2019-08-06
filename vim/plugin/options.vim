@@ -84,6 +84,12 @@ endif
 " don't add two spaces when joining lines ending witih '.', '!' and '?'
 set nojoinspaces
 
+" Remap usefull commands hard to access with azerty
+set langmap=é~,è`,ç^,ù%,µ#
+if ! has('nvim')
+    set nolangremap     " so that noremap don't take langmap into account
+endif
+
 " netrw buffers
 let g:netrw_fastbrowse = 0
 let g:netrw_liststyle = 3     " tree-style

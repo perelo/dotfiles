@@ -98,12 +98,6 @@ vmap 0 g0
 vmap $ g$
 vmap ^ g^
 
-" Remap usefull commands hard to access with azerty
-set langmap=é~,è`,ç^,ù%,µ#
-if ! has('nvim')
-    set nolangremap     " so that noremap don't take langmap into account
-endif
-
 " Change all [ ] mappings to ( ) for unimpaired plugin (thanks to tpope)
 for s:c in map(range(32,33) + range(65,90) + range(97,122),'nr2char(v:val)')
     exec 'nmap ('.s:c.' ['.s:c
