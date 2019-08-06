@@ -29,7 +29,7 @@ xnoremap # :<C-u>call VSetSearchRegister()<CR>?<C-R>/<CR>
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
-inoremap <expr> <c-h> <SID>thesaurus()
+inoremap <expr> <c-h> Thesaurus()
 
 " Drag lines vertically
 xnoremap <C-k> xkP`[V`]

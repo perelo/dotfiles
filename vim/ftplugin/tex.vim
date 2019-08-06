@@ -4,7 +4,7 @@ setlocal shiftwidth=2
 setlocal textwidth=79
 setlocal spell
 setlocal complete+=s " search also in 'thesaurus' file when <C-n>/<C-p>
-setlocal thesaurus=thesaurus-test.txt
+setlocal thesaurus=$VIM/thesaurus/fr1.txt
 
 setlocal foldenable
 " setlocal foldlevel=0 " close all folds
