@@ -37,7 +37,8 @@ set number
 
 " Show invisible characters
 set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
+" set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set listchars=tab:‣·,trail:.,extends:…,nbsp:·
 
 " default windows split below and right instead of above and left
 set splitbelow splitright
