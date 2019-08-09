@@ -47,10 +47,6 @@ nnoremap <leader><C-I> :call JumpToNextBufferInJumplist( 1)<CR>
 noremap <leader>z "=ZoteroCite()<CR>p
 inoremap <C-z> <C-r>=ZoteroCite()<CR>
 
-" missing from unimpaired
-nnoremap (oq :copen<CR>
-nnoremap )oq :cclose<CR>
-
 nnoremap <leader>rw :%s/\v\s+$//<CR>:w<CR>
 nnoremap <leader>h :tab help<space>
 nnoremap <leader>dx :redraw!<CR>
