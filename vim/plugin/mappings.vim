@@ -9,7 +9,7 @@ nmap Y y$
 " pasting in visual don't overwrite @"
 xnoremap <expr> p 'pgv"'.v:register.'y'
 
-nnoremap <Space> .
+nmap <Space> .
 
 inoremap œ <Esc>
 vnoremap œ <Esc>
