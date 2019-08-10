@@ -68,20 +68,3 @@ if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
   "prefered themes : unikitty-dark, atelier-dune, ocean
 endif
-
-" =============================================================================
-" Fixes
-" =============================================================================
-
-" When you’re pressing Escape to leave insert mode in the terminal, it will by
-" default take a second or another keystroke to leave insert mode completely
-" and update the statusline. This fixes that. I got this from:
-" https://powerline.readthedocs.org/en/latest/tipstricks.html#vim
-if !has('gui_running')
-    set ttimeoutlen=10
-    augroup FastEscape
-        autocmd!
-        au InsertEnter * set timeoutlen=0
-        au InsertLeave * set timeoutlen=1000
-    augroup END
-endif

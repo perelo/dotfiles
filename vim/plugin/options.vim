@@ -85,6 +85,11 @@ endif
 " don't add two spaces when joining lines ending witih '.', '!' and '?'
 set nojoinspaces
 
+" don't wait terminal-key-codes, specially usefull when <Esc>
+if !has('gui_running')
+    set ttimeoutlen=10
+endif
+
 " netrw buffers
 let g:netrw_fastbrowse = 0
 let g:netrw_liststyle = 3     " tree-style
