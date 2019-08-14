@@ -46,11 +46,25 @@ function! DeleteNetrwActiveBrowsers()
 endfunction
 
 " Set the search register '@/' to the last or current visually selected text
-function! VSetSearchRegister()
+function! VSetSearchReg()
     let temp = @s
     norm! gv"sy
     let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
     let @s = temp
+endfunction
+
+" highlight last searched until CursorMoved
+function! HLNext()
+  let l:higroup = matchend(getline('.'), '\c'.@/, col('.')-1) == col('.')
+              \ ? 'SpellRare' : 'IncSearch'
+  let s:cur_match = matchadd(l:higroup, '\c\%#'.@/, 101)
+  redraw
+  augroup HLNext
+    autocmd CursorMoved <buffer>
+                \   execute 'call matchdelete('.s:cur_match.')'
+                \ | redraw
+                \ | autocmd! HLNext
+  augroup END
 endfunction
 
 " Returns the current visually selected text

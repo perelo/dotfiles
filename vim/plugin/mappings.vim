@@ -22,8 +22,13 @@ vmap Q :norm Q<CR>
 " Wordwise yank from line above
 inoremap <expr> <C-y> matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(\k\+\\|.\)')
 
-xnoremap * :<C-u>call VSetSearchRegister()<CR>/<C-R>/<CR>
-xnoremap # :<C-u>call VSetSearchRegister()<CR>?<C-R>/<CR>
+xnoremap <silent> * :<C-u>call VSetSearchReg()<CR>/<C-R>/<CR>:call HLNext()<CR>
+xnoremap <silent> # :<C-u>call VSetSearchReg()<CR>?<C-R>/<CR>:call HLNext()<CR>
+
+nnoremap <silent> * *:call HLNext()<CR>
+nnoremap <silent> # #:call HLNext()<CR>
+nnoremap <silent> n n:call HLNext()<CR>
+nnoremap <silent> N N:call HLNext()<CR>
 
 " for more, look at tpope/rsi.vim
 cnoremap <C-A> <Home>
