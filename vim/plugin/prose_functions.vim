@@ -22,17 +22,13 @@ function! Synctex()
 endfunction
 
 " go to tag if cursor is anywhere on '\ref{...}' or '\cite{...}'
-function! TagFromOutside()
-    let li = getline('.') | let col = col('.')
-    let tag_regex = '\v\\(ref|cite)\{(\k+)\}'
-    let tag_pos = [ "" , 0 , 0 ]
-    while tag_pos != [ "", -1, -1 ]
-        let tag_pos = matchstrpos(li, tag_regex, tag_pos[2])
-        if tag_pos[1]+1 > col       " if start of match overrun cursor, break
-            break
-        elseif tag_pos[2] >= col    " tag found
-            return substitute(tag_pos[0], tag_regex, '\2', '')
-        endif
-    endwhile
-    return expand('<cword>')
+function! NextWordFromInside(marks)
+    let l:line          = getline('.')
+    let l:or_marks_pat  = '\%('.join(a:marks,'\|').'\)'
+    let l:opt_marks_pat = '\%(\%['.join(a:marks,']\|\%[').']\)'
+    " echo l:or_marks_pat . ' ' . l:opt_marks_pat
+    let l:pos = matchstrpos(l:line, l:opt_marks_pat.'\%'.(col('.')+1).'c')
+    return pos[0] != '' ?
+                \ matchstr(l:line, l:or_marks_pat.'\zs\k\+', l:pos[1]) :
+                \ expand('<cword>')
 endfunction

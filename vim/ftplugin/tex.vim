@@ -39,7 +39,8 @@ map <leader>p :call Synctex()<CR>
 setlocal iskeyword+=:
 setlocal iskeyword+=-
 
-nnoremap <buffer> <silent> <C-]> :execute 'tag '.TagFromOutside()<CR>
+nnoremap <buffer> <silent> <C-]> :execute
+            \ 'tag '.NextWordFromInside(['\\ref{', '\\cite{'])<CR>
 
 inoremap <buffer> <C-d> <c-o>d/[\.\$]<CR>
 inoremap <buffer> <C-f> <esc>l/\$<cr>la
