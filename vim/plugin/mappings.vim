@@ -53,8 +53,11 @@ noremap <leader>z "=ZoteroCite()<CR>p
 inoremap <C-z> <C-r>=ZoteroCite()<CR>
 
 nnoremap <leader>rw :%s/\v\s+$//<CR>:w<CR>
-nnoremap <leader>h :tab help<space>
 nnoremap <leader>dx :redraw!<CR>
+
+nnoremap <leader>hv :vertical help<Space>
+nnoremap <leader>ht :tabe help<Space>
+nnoremap <leader>hg :helpgrep<space>
 
 nnoremap <leader>vi :edit $MYVIMRC<CR>
 nnoremap <leader>rvi :source $MYVIMRC<CR>
