@@ -57,11 +57,11 @@ endfunction
 function! HLNext()
   let l:higroup = matchend(getline('.'), '\c'.@/, col('.')-1) == col('.')
               \ ? 'SpellRare' : 'IncSearch'
-  let s:cur_match = matchadd(l:higroup, '\c\%#'.@/, 101)
+  let b:match_id = matchadd(l:higroup, '\c\%#'.@/, 101)
   redraw
   augroup HLNext
     autocmd CursorMoved <buffer>
-                \   execute 'call matchdelete('.s:cur_match.')'
+                \   execute 'silent! call matchdelete('.b:match_id.')'
                 \ | redraw
                 \ | autocmd! HLNext
   augroup END
