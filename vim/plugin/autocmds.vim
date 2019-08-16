@@ -1,8 +1,3 @@
-" Exclude quickfix buffer from `:bnext` `:bprevious`
-augroup qf
-    autocmd!
-    autocmd FileType qf set nobuflisted
-augroup END
 
 " Don't keep netrw buffers, wipe them off if they are hidden
 augroup netrw
