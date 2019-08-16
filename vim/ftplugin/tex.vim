@@ -30,10 +30,10 @@ elseif filereadable($HOME.'/.local/share/latex.mk')
   exec "setlocal makeprg=make\\ -f\\ ~/.local/share/latex.mk\\ -C\\ " . expand("%:h")
 endif
 
-command! SaveAndMakePdf execute ":silent w | Make" . substitute(expand("%:p"),"tex$","pdf", "")
+command! -buffer SaveAndMakePdf execute ':silent w | Make '.expand('%:p:s?tex$?pdf?')
 nnoremap <buffer> <F1> :SaveAndMakePdf<CR>
 
-map <leader>p :call Synctex()<CR>
+nnoremap <buffer> <leader>p :call Synctex()<CR>
 
 " add ':' and '-' as keywords, mostly for \ref{...} matching
 setlocal iskeyword+=:
