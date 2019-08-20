@@ -1,4 +1,4 @@
-function! Redir(cmd)
+function! Redir(cmd, mods)
     for win in range(1, winnr('$'))
         if getwinvar(win, 'scratch')
             execute win . 'windo close'
@@ -11,13 +11,13 @@ function! Redir(cmd)
         execute a:cmd
         redir END
     endif
-    new
+    execute a:mods 'new'
     let w:scratch = 1
     setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
     call setline(1, split(output, "\n"))
 endfunction
 
-command! -nargs=1 -complete=command Redir silent call Redir(<q-args>)
+command! -nargs=1 -complete=command Redir silent call Redir(<q-args>, '<mods>')
 
 " Usage:
 "   :Redir hi ...... show the full output of command ':hi' in a scratch window
