@@ -15,6 +15,11 @@ function! JumpToNextBufferInJumplist(dir) " 1=forward, -1=backward
     endfor
 endfunction
 
+function! IsInGitRepo()
+    call system('git rev-parse --git-dir > /dev/null 2>&1')
+    return v:shell_error == 0
+endfunction
+
 " Echoes the syntax group under the cursor
 function! SynGroup()
     let l:s = synID(line('.'), col('.'), 1)
