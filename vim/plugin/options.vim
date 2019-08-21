@@ -115,6 +115,10 @@ set laststatus=2
 " Enable line wrapping
 set wrap
 
+if has('linebreak')
+    set showbreak=↪                 " put this at the start of wrapped lines
+endif
+
 " Highlight overlength columns
 if exists('+colorcolumn')
     set colorcolumn=80
@@ -131,18 +135,23 @@ endif
 " }}}
 " {{{ Saving
 
-" Protect changes between writes. Default values of
-" updatecount (200 keystrokes) and
-" updatetime (4 seconds) are fine
-set swapfile
-execute 'set directory^='.expand('$VIM/swap//')
+if exists('$SUDO_USER')
+    set noswapfile                      " don't create root-owned files
+else
+    execute 'set directory^='.expand('$VIM/tmp/swap//')
+    set swapfile
+endif
 
 " persist the undo tree for each file
 if has('persistent_undo')
-    set undofile
-    execute 'set undodir^='.expand('$VIM/undo//')
+    if exists('$SUDO_USER')
+        set noundofile                    " don't create root-owned files
+    else
+        execute 'set undodir^='.expand('$VIM/tmp/undo//')
+        set undofile
+    endif
 endif
 
 " }}}
 
-" vim: set fdm=marker
+" vim: fdm=marker
