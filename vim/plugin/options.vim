@@ -13,10 +13,13 @@ set hidden
 set backspace=indent,eol,start
 
 " searching
-set incsearch
 set ignorecase
 set smartcase
-set nohlsearch
+
+if has('extra_search')
+    set incsearch
+    set nohlsearch
+endif
 if has('nvim')
     set inccommand=nosplit
 endif
@@ -49,15 +52,19 @@ set sidescrolloff=1     " Scroll immediatly on the side on last column
 set visualbell t_vb=    " Remove bip and flash
 
 " accept mouse
-set mouse=nvchr
+if has('mouse')
+    set mouse=nvchr
+endif
 
 " automatically update buffer if changed, warn if unsaved changes
 set autoread
 
 " Folding
-set foldmethod=indent
-set foldignore=         " default is '#' for C code
-set foldlevelstart=99   " All folds open at start
+if has('folding')
+    set foldmethod=indent
+    set foldignore=         " default is '#' for C code
+    set foldlevelstart=99   " All folds open at start
+endif
 
 set pastetoggle=<F2>
 
@@ -65,11 +72,15 @@ set pastetoggle=<F2>
 set history=100
 
 " Use <Tab> to complete in command line
-set wildmenu
+if has('wildmenu')
+    set wildmenu
+endif
 set wildmode=full
 
 " search for 'tags' file up the working tree until it finds one
-set tags+=./tags;
+if has('+path_extra')
+    set tags+=./tags;
+endif
 
 " get confirm dialog when :q :e ... fails
 set confirm
@@ -111,9 +122,11 @@ if exists('+colorcolumn')
     " exec 'match OverLength /\%'.&cc.'v.\+/'
 endif
 
-let &t_SI = "\<esc>[5 q"    " | cursor in insert mode
-let &t_SR = "\<esc>[5 q"    " | cursor in replace mode
-let &t_EI = "\<esc>[2 q"    " bloc cursor when back to normal
+if has('cursorshape')
+    let &t_SI = "\<esc>[5 q"    " | cursor in insert mode
+    let &t_SR = "\<esc>[5 q"    " | cursor in replace mode
+    let &t_EI = "\<esc>[2 q"    " bloc cursor when back to normal
+endif
 
 " }}}
 " {{{ Saving

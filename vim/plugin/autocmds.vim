@@ -1,3 +1,7 @@
+if !has('autocmd')
+    echom 'Vim doesn''t have +autocmd, don''t source autocmds.vim'
+    finish
+endif
 
 " Don't keep netrw buffers, wipe them off if they are hidden
 augroup netrw

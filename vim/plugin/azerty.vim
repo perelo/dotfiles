@@ -1,7 +1,9 @@
 " Remap usefull commands hard to access with azerty
-set langmap=é~,è`,ç^,ù%,µ#
-if ! has('nvim')
-    set nolangremap     " so that noremap don't take langmap into account
+if has('langmap')
+    set langmap=é~,è`,ç^,ù%,µ#
+    if ! has('nvim')
+        set nolangremap     " so that noremap don't take langmap into account
+    endif
 endif
 
 " Change all [x and ]x mappings to (x and )x

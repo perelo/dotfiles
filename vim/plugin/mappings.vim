@@ -63,8 +63,10 @@ nnoremap <leader>vi :edit $MYVIMRC<CR>
 nnoremap <leader>rvi :source $MYVIMRC<CR>
 nnoremap <leader>rft :exe ':set filetype='.&filetype<CR>
 
-nnoremap <leader>dg :diffget<cr>
-nnoremap <leader>dp :diffput<cr>
+if has('+diff')
+    nnoremap <leader>dg :diffget<cr>
+    nnoremap <leader>dp :diffput<cr>
+endif
 
 " see also after/plugin/ctrlp.vim
 nnoremap <leader>es :edit $HOME/dotfiles/
