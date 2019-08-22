@@ -42,6 +42,10 @@ xnoremap <C-j> xp`[V`]
 xnoremap <C-l> >gv
 xnoremap <C-h> <gv
 
+" go _to_ paragraph (1 line less)
+xnoremap g} :<c-u>call cursor(line("'}")-empty(getline(line("'}"))),col("'>") )<CR>`<gv``
+xnoremap g{ :<c-u>call cursor(line("'{")+empty(getline(line("'{"))),col("'<") )<CR>`>gv``
+
 nnoremap <leader>b :ls<CR>:b
 nnoremap <leader>o i<CR><ESC>kA
 nnoremap <leader>a <C-^>
