@@ -3,6 +3,13 @@ if !has('autocmd')
     finish
 endif
 
+augroup quickfix
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost l*    cwindow
+    autocmd VimEnter        *     cwindow
+augroup END
+
 " Don't keep netrw buffers, wipe them off if they are hidden
 augroup netrw
     autocmd!

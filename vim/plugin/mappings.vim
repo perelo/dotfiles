@@ -89,11 +89,6 @@ nnoremap <F5> :Make clean<CR>
 nmap <leader>x :%!xxd<CR>
 nmap <leader>X :%!xxd -r<CR>
 
-nnoremap <leader>gl :Job xdg-open 'https://tatoeba.org/eng/sentences/search?from=und&to=fra&query=<cword>'<CR>
-xnoremap <leader>gl :<c-u>Job xdg-open 'https://tatoeba.org/eng/sentences/search?from=und&to=fra&query=<c-r>=GetVisualSelection()<CR>'<CR>
-
-nnoremap <leader>gw :Xdg 'https://wordreference.com/enfr/<cword>'<CR>
-
 nnoremap <leader>dnw :call DeleteNetrwActiveBrowsers()<CR>
 
 " Move on lines as displayed (when wrapped)
