@@ -20,3 +20,5 @@ endfor
 " remap sentence motion
 nnoremap )) )
 nnoremap (( (
+xnoremap )) )
+xnoremap (( (
