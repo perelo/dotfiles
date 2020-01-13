@@ -1,4 +1,4 @@
-if !exists('g:loaded_abolish') || g:loaded_ale == 0
+if !exists('g:loaded_abolish') || g:loaded_abolish == 0
     finish
 endif
 
