@@ -70,8 +70,9 @@ modules-right = cpu temperature wlan battery menu0
 tray-position = right
 tray-detached = true
 tray-padding = 20
-tray-offset-y = 27
-tray-scale = 0.8
+tray-offset-x = -400
+; tray-offset-y = 27
+; tray-scale = 0.8
 ; tray-background = #0063ff
 
 ;wm-restack = bspwm

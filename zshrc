@@ -9,19 +9,24 @@ export EDITOR VISUAL MANPAGER
 # load autocompletion
 autoload -Uz compinit && compinit
 
+if [ $HOST = "leto" ] ; then
+    alias firefox="~/tools/firefox/firefox"
+fi
+
 VIMD=vimd
 alias ls="ls --color=auto"
-alias grep='grep --color=auto'
+alias ll='ls -ls --color=auto'
+alias lla='ls -als'
+alias grep='grep --color=auto -i'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias rm="rm -i"            # ask confirmation
+alias rename="rename -v"    # print names of files successfully renamed.
 
-alias ll='ls -l'
-alias lal='ls -al'
 alias vi="vim"
 alias vim="vim --servername $VIMD"
 alias nvim="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
 alias tmux="env TERM=screen-256color tmux -2" # force tmux 256 colors
-alias rm="rm -i"     # ask confirmation
 alias tma="tmux attach-session -t"
 alias r="ranger"
 alias rmswp="rm */.*.swp"
@@ -58,14 +63,6 @@ RPROMPT='$(git_super_status)'
 
 
 LESS=-RX # -X: don't clear screen before and after less
-
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH=$HOME/.local/bin:$PATH
-fi
-
-if [ -d "/usr/local/texlive/2015/bin/x86_64-linux" ] ; then
-    PATH=/usr/local/texlive/2015/bin/x86_64-linux/:$PATH
-fi
 
 unset GREP_OPTIONS
 
