@@ -34,16 +34,42 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'mbbill/undotree'
 Plug 'chriskempson/base16-vim'
-Plug 'wincent/ferret'
 Plug 'matze/vim-tex-fold'
-Plug 'gibiansky/vim-latex-objects'
-Plug 'perelo/thesaurus_query.vim'
-Plug 'arp242/jumpy.vim'
+Plug 'gibiansky/vim-latex-objects' " TODO% fix 'dam' when cursor in on '$'
 Plug 'file:///home/eloi/dotfiles/fzf/'
 Plug 'junegunn/fzf.vim'
 " Plug 'ciaranm/securemodelines'
+Plug 'coderifous/textobj-word-column.vim'
+Plug 'romainl/vim-qf'
+Plug 'romainl/vim-tinyMRU'
+Plug 'cespare/vim-toml'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'tpope/vim-endwise'
+
+
+Plug 'natebosch/vim-lsc'
+
+Plug 'benmills/vimux'
+Plug 'jpalardy/vim-slime'
+
+Plug 'dpelle/vim-LanguageTool'
+
+" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+
+" Plug 'dense-analysis/ale'
+
+" Plug 'deoplete-plugins/deoplete-jedi'
+" Plug 'Shougo/deoplete.nvim'
+" Plug 'roxma/nvim-yarp'
+" Plug 'roxma/vim-hug-neovim-rpc'
+
+" Plug 'perelo/thesaurus_query.vim'
+Plug 'file:///home/eloi/workspace/thesaurus_query.vim/'
 
 call plug#end()
+
+packadd! jumpy.vim
+packadd! cfilter
 
 if ! has('nvim')
     packadd matchit

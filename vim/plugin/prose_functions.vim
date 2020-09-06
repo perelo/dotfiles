@@ -26,9 +26,23 @@ function! NextWordFromInside(marks)
     let l:line          = getline('.')
     let l:or_marks_pat  = '\%('.join(a:marks,'\|').'\)'
     let l:opt_marks_pat = '\%(\%['.join(a:marks,']\|\%[').']\)'
-    " echo l:or_marks_pat . ' ' . l:opt_marks_pat
     let l:pos = matchstrpos(l:line, l:opt_marks_pat.'\%'.(col('.')+1).'c')
     return pos[0] != '' ?
                 \ matchstr(l:line, l:or_marks_pat.'\zs\k\+', l:pos[1]) :
                 \ expand('<cword>')
+endfunction
+
+function! TagRequest() abort
+    let l:cword = expand('<cword>')
+    if taglist(l:cword) == []
+        call system('ctags -R .')
+    endif
+    try
+        execute 'tag '.l:cword
+    catch
+        echohl WarningMsg
+        echo matchstr(v:exception, '^Vim\%((\a\+)\)\=:\zs.*')
+        echohl None
+        return
+    endtry
 endfunction

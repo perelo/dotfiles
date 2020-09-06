@@ -17,3 +17,8 @@ nnoremap )oq :cclose<CR>
 " open and close location list, lose 'list' option toogle
 nnoremap (ol :lopen<CR>
 nnoremap )ol :lclose<CR>
+
+if exists(':TranslateClear') && exists(':TranslateOpen')
+  nnoremap (ts :TranslateOpen<CR>
+  nnoremap )ts :TranslateClear<CR>
+endif

@@ -9,6 +9,9 @@ set showmode
 " Allow unsaved background buffers and remember marks/undo for them
 set hidden
 
+" wrap are indented as the line wrapped
+set breakindent
+
 " Backspace on everything in insert mode
 set backspace=indent,eol,start
 
@@ -56,6 +59,10 @@ if has('mouse')
     set mouse=nvchr
 endif
 
+if executable('ag')
+    set grepprg=ag\ --vimgrep
+endif
+
 " automatically update buffer if changed, warn if unsaved changes
 set autoread
 
@@ -69,13 +76,15 @@ endif
 set pastetoggle=<F2>
 
 " Remember more commands and search history (default: 20)
-set history=100
+if has('cmdline_hist')
+    set history=100
+endif
 
 " Use <Tab> to complete in command line
 if has('wildmenu')
     set wildmenu
 endif
-set wildmode=full
+set wildmode=longest:full,full
 
 " search for 'tags' file up the working tree until it finds one
 if has('+path_extra')
@@ -100,6 +109,8 @@ set nojoinspaces
 if !has('gui_running')
     set ttimeoutlen=10
 endif
+
+set timeoutlen=4000
 
 " netrw buffers
 let g:netrw_fastbrowse = 0

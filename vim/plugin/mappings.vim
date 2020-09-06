@@ -11,10 +11,14 @@ xnoremap <expr> p 'pgv"'.v:register.'y'
 
 nmap <Space> .
 
+" Get out more easily
 inoremap œ <Esc>
 vnoremap œ <Esc>
 onoremap œ <Esc>
 cnoremap œ <C-C>
+" /!\ watchout when writing things like 'dijkstra'
+inoremap jk <ESC>
+inoremap kj <Esc>
 
 nnoremap Q @q
 vmap Q :norm Q<CR>
@@ -47,7 +51,6 @@ xnoremap g} :<c-u>call cursor(line("'}")-empty(getline(line("'}"))),col("'>") )<
 xnoremap g{ :<c-u>call cursor(line("'{")+empty(getline(line("'{"))),col("'<") )<CR>`>gv``
 
 nnoremap <leader>b :ls<CR>:b
-nnoremap <leader>o i<CR><ESC>kA
 nnoremap <leader>a <C-^>
 
 nnoremap <leader><C-O> :call JumpToNextBufferInJumplist(-1)<CR>
@@ -60,7 +63,7 @@ nnoremap <leader>rw :%s/\v\s+$//<CR>:w<CR>
 nnoremap <leader>dx :redraw!<CR>
 
 nnoremap <leader>hv :vertical help<Space>
-nnoremap <leader>ht :tabe help<Space>
+nnoremap <leader>ht :tab help<Space>
 nnoremap <leader>hg :helpgrep<space>
 
 nnoremap <leader>vi :edit $MYVIMRC<CR>
@@ -73,17 +76,26 @@ if has('+diff')
 endif
 
 " see also after/plugin/ctrlp.vim
-nnoremap <leader>es :edit $HOME/dotfiles/
+nnoremap <leader>ed :edit $HOME/dotfiles/
 
-" (re)create tag file inside ':pwd'
+" (re)create tag file inside ':pwd' or in the current file's directory
 nnoremap <expr> <leader>sct executable('ctags') ?
                    \ ":!ctags -R .<CR>"         :
                    \ ":echo 'Cannot execute \"ctags\"'<CR>"
+nnoremap <expr> <leader>scT executable('ctags') ?
+                   \ ":!ctags -f ".expand('%:h')."/tags -R ".expand('%:h')."<CR>":
+                   \ ":echo 'Cannot execute \"ctags\"'<CR>"
 
-command! SaveAndMake execute ":silent w | Make"
-nnoremap <F1> :SaveAndMake<CR><Esc>
-imap <F1> <Esc><F1>
-nnoremap <F5> :Make clean<CR>
+" " nnoremap <c-]> :echo taglist(expand('<cword>'))<CR>
+" nnoremap <expr> <C-]> taglist(expand('<cword>')) == [] ?
+"                 \ ":call RegenerateTags()<CR>" :
+"                 \ ":echo 'plein'<CR>"
+
+let b:make = "Make %"
+let b:make_clean = "Make clean"
+nnoremap <F1> :silent w <bar> execute b:make<CR><CR><Esc>
+inoremap <F1> <Esc>:silent w <bar> execute b:make<CR><Esc>
+nnoremap <F5> :execute b:make_clean<CR><Esc>
 
 " buffer as in hexadecimal editor
 nmap <leader>x :%!xxd<CR>
