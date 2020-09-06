@@ -65,10 +65,9 @@ function! HLNext()
   let b:match_id = matchadd(l:higroup, '\c\%#'.@/, 101)
   redraw
   augroup HLNext
-    autocmd CursorMoved <buffer>
+    autocmd CursorMoved <buffer> ++once
                 \   execute 'silent! call matchdelete('.b:match_id.')'
                 \ | redraw
-                \ | autocmd! HLNext
   augroup END
 endfunction
 
