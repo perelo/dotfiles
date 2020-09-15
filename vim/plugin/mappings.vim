@@ -75,8 +75,15 @@ if has('+diff')
     nnoremap <leader>dp :diffput<cr>
 endif
 
-" see also after/plugin/ctrlp.vim
-nnoremap <leader>ed :edit $HOME/dotfiles/
+" grep lines in files from different directories
+nnoremap <leader>ff :grep!  %:p:h<S-Left><Left>
+nnoremap <leader>fp :grep!<Space>
+nnoremap <leader>fd :grep!  $HOME/dotfiles/<S-Left><Left>
+
+" see also after/plugin/fzf.vim
+nnoremap <leader>ee :edit <C-D>
+nnoremap <leader>ep :edit <C-R>=expand('%:p:h')<CR>/<C-D>
+nnoremap <leader>ed :edit $HOME/dotfiles/<C-D>
 
 " (re)create tag file inside ':pwd' or in the current file's directory
 nnoremap <expr> <leader>sct executable('ctags') ?
