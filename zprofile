@@ -12,8 +12,8 @@ if [ -d "/usr/local/go/bin/" ] ; then
     PATH=/usr/local/go/bin:$PATH
 fi
 
-if [ -d "/usr/local/texlive/2015/bin/x86_64-linux" ] ; then
-    PATH=/usr/local/texlive/2015/bin/x86_64-linux/:$PATH
+if [ -d "/usr/local/texlive/2020/bin/x86_64-linux/" ] ; then
+    PATH=/usr/local/texlive/2020/bin/x86_64-linux/:$PATH
 fi
 
 export PATH="/home/eloi/.pyenv/bin:$PATH"
