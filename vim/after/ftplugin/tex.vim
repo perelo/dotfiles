@@ -19,7 +19,7 @@ setlocal errorformat=%f:%l:\ %m
 let b:make = "Make %:t:r".".pdf"
 " let b:make = "Make ".expand('%:p:r').'.pdf'
 
-set errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m,
+setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m,
 	\%Dmake :\ on\ entre\ dans\ le\ répertoire\ « %f »,
 	\%Xmake :\ on\ quitte\ le\ répertoire\ « %f »
 
@@ -77,7 +77,7 @@ inoremap <buffer> <C-d> <c-o>d/[\.\$]<CR>
 inoremap <buffer> <C-f> <esc>l/\$<cr>la
 
 " inoremap <buffer> <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
-command! Toc g/\v\s*\\%(%(sub)*section|chapter|part|appendix|%(front|back|main)matter)>/#
+command! -range=% Toc <line1>,<line2>g/\v\s*\\%(%(sub)*section|chapter|part|appendix|%(front|back|main)matter)>/#
 " format fraction <word>/<word> by \frac{word}{word}
 command! -buffer -range FracFormat <line1>,<line2>s/\(\k*\)\s*\/\s*\(\k*\)/\\frac\{\1\}\{\2\}/gc
 
