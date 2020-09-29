@@ -49,8 +49,10 @@ xnoremap <C-h> <gv
 " go _to_ paragraph (1 line less)
 xnoremap g} :<c-u>call cursor(line("'}")-empty(getline(line("'}"))),col("'>") )<CR>`<gv``
 xnoremap g{ :<c-u>call cursor(line("'{")+empty(getline(line("'{"))),col("'<") )<CR>`>gv``
+nnoremap g} :<c-u>call cursor(line("'}")-empty(getline(line("'}"))),col(".") )<CR>
+nnoremap g{ :<c-u>call cursor(line("'{")+empty(getline(line("'{"))),col(".") )<CR>
 
-nnoremap <leader>b :ls<CR>:b
+nnoremap <leader>b :ls<CR>:b 
 nnoremap <leader>a <C-^>
 
 nnoremap <leader><C-O> :call JumpToNextBufferInJumplist(-1)<CR>
@@ -79,6 +81,7 @@ endif
 nnoremap <leader>ff :grep!  %:p:h<S-Left><Left>
 nnoremap <leader>fp :grep!<Space>
 nnoremap <leader>fd :grep!  $HOME/dotfiles/<S-Left><Left>
+nnoremap <leader>fr :grep!  $VIMRUNTIME<S-Left><Left>
 
 " see also after/plugin/fzf.vim
 nnoremap <leader>ee :edit <C-D>

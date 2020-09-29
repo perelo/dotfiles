@@ -4,8 +4,8 @@ nnoremap <expr> "? '"' . <SID>BetterRegister('register')
 xnoremap <expr> "? '"' . <SID>BetterRegister('register')
 nnoremap <expr> @? '@' . <SID>BetterRegister('register')
 
-nnoremap <expr> '' "'" . <SID>BetterRegister('mark')
-nnoremap <expr> `` '`' . <SID>BetterRegister('mark')
+nnoremap <expr> '? "'" . <SID>BetterRegister('mark')
+nnoremap <expr> `? '`' . <SID>BetterRegister('mark')
 
 function! <SID>BetterRegister(what)
    let more = &more
