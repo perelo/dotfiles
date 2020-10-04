@@ -43,7 +43,7 @@ endif
 
 "   config variables
 let g:ltyc_ltdirectory = '~/tools/LanguageTool-5.1/'    " home of LT software
-let g:ltyc_server = 'my'                                " use an LT server?
+let g:ltyc_server = ''                                  " use an LT server?
 let g:ltyc_language = 'fr'                              " language code for LT
 let g:ltyc_disable = 'WHITESPACE_RULE,FR_SPELLING_RULE' " LT option --disable
 let g:ltyc_enable = ''                                  " LT option --enable
