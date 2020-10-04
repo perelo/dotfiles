@@ -85,6 +85,19 @@ function! GetVisualSelection()
     return join(lines, "\n")
 endfunction
 
+function! FlashOptionSet(option, how, what)
+    let s:option = a:option
+    exe 'let s:saved_option = &'.a:option
+    let s:saved_updatetime = &updatetime
+    if &updatetime > 200 | let &updatetime = 200 | endif
+    augroup FlashOptionSetAug
+        autocmd CursorHold,CursorHoldI <buffer> ++once
+                    \ let &updatetime = s:saved_updatetime |
+                    \ exe 'let &'.s:option.' = s:saved_option' |
+    augroup END
+    exe 'set '.a:option.a:how.a:what
+endfunction
+
 " Popup thesaurus as <c-x><c-t> but with space added as a keyword
 function! Thesaurus()
     let s:saved_iskeyword = &iskeyword

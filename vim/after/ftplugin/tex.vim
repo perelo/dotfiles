@@ -65,6 +65,8 @@ nnoremap <buffer> (D     :call FlashOptionSet('isk', '-=', '_')<CR>[D
 nnoremap <buffer> )D     :call FlashOptionSet('isk', '-=', '_')<CR>]D
 nnoremap <buffer> (<C-D> :call FlashOptionSet('isk', '-=', '_')<CR>[<C-D>
 nnoremap <buffer> )<C-D> :call FlashOptionSet('isk', '-=', '_')<CR>]<C-D>
+nnoremap <buffer> <C-W>d :call FlashOptionSet('isk', '-=', '_')<CR><C-W>d
+nmap <buffer> <C-W><C-D> <C-W>d
 
 inoremap <buffer> <c-a> <c-g>u<c-o>I
 inoremap <buffer> <c-e> <c-g>u<c-o>A
