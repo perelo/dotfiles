@@ -35,6 +35,7 @@ elseif filereadable($HOME.'/.local/share/latex.mk')
   exec "setlocal makeprg=make\\ -f\\ ~/.local/share/latex.mk\\ -C\\ " . expand("%:h")
 endif
 
+let &l:include = '\v\\%(%(input|include|subfile)\{|documentclass\[)\zs\f+\ze%(\}|\]\{subfiles\})'
 
 setlocal foldenable
 " setlocal foldlevel=0 " close all folds
