@@ -7,6 +7,12 @@ setlocal complete+=s " search also in 'thesaurus' file when <C-n>/<C-p>
 setlocal thesaurus=$VIM/thesaurus/fr1.txt
 setlocal conceallevel=0
 
+hi clear SpellBad
+hi SpellBad cterm=underline
+hi clear SpellCap
+hi link SpellCap SpellBad
+" Prevent hi group texOnlyMath link to Error
+let b:tex_stylish = 1
 
 " classical compilation
 let b:tex_flavor = 'pdflatex'
