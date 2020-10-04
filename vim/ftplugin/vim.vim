@@ -1,7 +1,7 @@
-set textwidth=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
+setlocal textwidth=2
+setlocal shiftwidth=2
+setlocal softtabstop=2
+setlocal expandtab
 
 nnoremap <buffer> <F1> :<c-u>write <bar> source %<CR>
 inoremap <buffer> <F1> <Esc>:write <bar> source %<CR>

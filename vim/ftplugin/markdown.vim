@@ -1,2 +1,2 @@
-set textwidth=79
-set wrap
+setlocal textwidth=79
+setlocal wrap
