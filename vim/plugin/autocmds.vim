@@ -3,6 +3,36 @@ if !has('autocmd')
     finish
 endif
 
+" Copied from defaults.vim
+" Put these in an autocmd group, so that you can revert them with:
+" :augroup vimStartup | au! | augroup END
+augroup vimStartup
+  au!
+  autocmd BufReadPost *
+    \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+    \ |   exe "normal! g`\""
+    \ | endif
+augroup END
+
+augroup LargeFile
+    let g:large_file = 10485760 " 10MB
+    " Set options:
+    "   eventignore+=FileType (no syntax highlighting etc
+    "   assumes FileType always on)
+    "   noswapfile (save copy of file)
+    "   bufhidden=unload (save memory when other file is viewed)
+    "   buftype=nowritefile (is read-only)
+    "   undolevels=-1 (no undo possible)
+    au BufReadPre *
+        \ let f=expand("<afile>") |
+        \ if getfsize(f) > g:large_file |
+        \ set eventignore+=FileType |
+        \ setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 |
+        \ else |
+        \ set eventignore-=FileType |
+        \ endif
+augroup END
+
 augroup quickfix
     autocmd!
     autocmd QuickFixCmdPost [^l]* cwindow
