@@ -37,3 +37,5 @@
   di = diff
   ds = diff --staged
   dw = diff --color-words
+[include]
+  path = /home/eloi/.netlify/helper/git-config

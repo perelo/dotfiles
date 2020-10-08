@@ -38,7 +38,7 @@ nnoremap <silent> N N:call HLNext()<CR>
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
-inoremap <expr> <c-h> Thesaurus()
+" inoremap <expr> <c-x><c-t> Thesaurus32()
 
 " Drag lines vertically
 xnoremap <C-k> xkP`[V`]
@@ -95,6 +95,7 @@ nnoremap <expr> <leader>sct executable('ctags') ?
 nnoremap <expr> <leader>scT executable('ctags') ?
                    \ ":!ctags -f ".expand('%:h')."/tags -R ".expand('%:h')."<CR>":
                    \ ":echo 'Cannot execute \"ctags\"'<CR>"
+cabbrev sct !ctags -R
 
 " " nnoremap <c-]> :echo taglist(expand('<cword>'))<CR>
 " nnoremap <expr> <C-]> taglist(expand('<cword>')) == [] ?
@@ -103,7 +104,7 @@ nnoremap <expr> <leader>scT executable('ctags') ?
 
 let b:make = "Make %"
 let b:make_clean = "Make clean"
-nnoremap <F1> :silent w <bar> execute b:make<CR><CR><Esc>
+nnoremap <F1> :silent w <bar> execute b:make<CR><Esc>
 inoremap <F1> <Esc>:silent w <bar> execute b:make<CR><Esc>
 nnoremap <F5> :execute b:make_clean<CR><Esc>
 
@@ -124,3 +125,4 @@ vmap k gk
 vmap 0 g0
 vmap $ g$
 vmap ^ g^
+

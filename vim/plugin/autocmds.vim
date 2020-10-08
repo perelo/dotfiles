@@ -33,12 +33,19 @@ augroup LargeFile
         \ endif
 augroup END
 
-augroup quickfix
-    autocmd!
-    autocmd QuickFixCmdPost [^l]* cwindow
-    autocmd QuickFixCmdPost l*    cwindow
-    autocmd VimEnter        *     cwindow
-augroup END
+augroup NewSplit
+  autocmd!
+  " autocmd WinNew * au BufEnter * ++once call <SID>NewSplit()
+aug end
+function! <SID>NewSplit()
+  " move help, man and fugitive windows at the far right/left if enough space
+  if (&bt ==? 'help' || &ft ==? 'man' || &ft ==? 'fugitive')
+    let p = winnr('#')
+    if winwidth(p) >= getwinvar(p, '&tw', 80) + getwinvar(winnr(), '&tw', 80)
+      execute 'wincmd ' . (&splitright ? 'L' : 'H')
+    endif
+  endif
+endfunction
 
 " Don't keep netrw buffers, wipe them off if they are hidden
 augroup netrw
@@ -46,6 +53,15 @@ augroup netrw
     autocmd FileType netrw setlocal bufhidden=wipe
     autocmd BufEnter NetrwTreeListing* setlocal filetype=netrw
 augroup END
+
+" if exists('+colorcolumn')
+"     " unfocused windows are getting colorcolumn'd
+"     augroup ColorColumnFocus
+"         au!
+"         autocmd BufEnter,FocusGained,VimEnter,WinEnter * setl colorcolumn=+2
+"         autocmd FocusLost,WinLeave * let &l:colorcolumn=join(range(1,255),',')
+"     augroup END
+" endif
 
 " }}}
 " {{{ filetype specific, new extensions must be in ftdetect/extension.vim

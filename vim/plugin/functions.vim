@@ -20,6 +20,25 @@ function! IsInGitRepo()
     return v:shell_error == 0
 endfunction
 
+function! GitRootDir() abort
+    let l:rootdir = system('git rev-parse --show-toplevel')
+    if v:shell_error != 0
+        return ''
+    endif
+    return l:rootdir
+endfunction
+
+" function! RegenerateTags() abort
+"     echo 'Regenerating tags...'
+"     let l:dir = GitRootDir()
+"     if l:dir == ''
+"         let l:dir = expand('%:p')
+"     endif
+"     call system('ctags -R '.l:dir)
+"     echo 'Done regenerating tags!'
+" endfunction
+
+
 " Echoes the syntax group under the cursor
 function! SynGroup()
     let l:s = synID(line('.'), col('.'), 1)
@@ -85,19 +104,6 @@ function! GetVisualSelection()
     return join(lines, "\n")
 endfunction
 
-function! FlashOptionSet(option, how, what)
-    let s:option = a:option
-    exe 'let s:saved_option = &'.a:option
-    let s:saved_updatetime = &updatetime
-    if &updatetime > 200 | let &updatetime = 200 | endif
-    augroup FlashOptionSetAug
-        autocmd CursorHold,CursorHoldI <buffer> ++once
-                    \ let &updatetime = s:saved_updatetime |
-                    \ exe 'let &'.s:option.' = s:saved_option' |
-    augroup END
-    exe 'set '.a:option.a:how.a:what
-endfunction
-
 " Popup thesaurus as <c-x><c-t> but with space added as a keyword
 function! Thesaurus()
     let s:saved_iskeyword = &iskeyword
@@ -110,6 +116,14 @@ function! Thesaurus()
                     \ autocmd! ThesaurusAuGroup
     augroup END
     set iskeyword+=32
+    return "\<c-x>\<c-t>"
+endfunction
+
+function! Thesaurus32()
+    if has('timers') && !empty(&thesaurus)
+        call timer_start(20, {_->execute('set iskeyword-=32')})
+        set iskeyword+=32
+    endif
     return "\<c-x>\<c-t>"
 endfunction
 

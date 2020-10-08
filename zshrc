@@ -1,10 +1,15 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-EDITOR=vim
-VISUAL=$EDITOR
+EDITOR=nvim
+VISUAL=$DITOR
 MANPAGER="nvim -c 'set ft=man' -"
 export EDITOR VISUAL MANPAGER
+
+# Enable Ctrl-e to edit command line
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^e' edit-command-line
 
 # load autocompletion
 autoload -Uz compinit && compinit
@@ -31,9 +36,13 @@ alias tma="tmux attach-session -t"
 alias r="ranger"
 alias rmswp="rm */.*.swp"
 
+
 alias doci="docker image"
 alias docc="docker container"
 
+function cheat {
+    curl cheat.sh/$1
+}
 
 function acro {
     curl dict://dict.org/d:$1:vera
@@ -67,3 +76,8 @@ LESS=-RX # -X: don't clear screen before and after less
 unset GREP_OPTIONS
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -f /opt/textidote/textidote.zsh ] && source /opt/textidote/textidote.zsh
+
+# The next line updates PATH for Netlify's Git Credential Helper.
+if [ -f '/home/eloi/.netlify/helper/path.zsh.inc' ]; then source '/home/eloi/.netlify/helper/path.zsh.inc'; fi

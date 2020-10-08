@@ -4,3 +4,6 @@
 [submodule "base16-shell"]
 	path = base16-shell
 	url = https://github.com/chriskempson/base16-shell
+[submodule "vim/plugin/flash.vim"]
+	path = vim/plugin/flash.vim
+	url = git@gist.github.com:f4ea457af5e6a69dfa5d81c602381f75.git

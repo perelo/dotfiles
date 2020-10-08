@@ -32,8 +32,28 @@ endsnippet
 
 snippet \[ "bloc math"
 \[
-	${0}
+	${0:${VISUAL}}
 \]
+endsnippet
+
+snippet cal "\mathcal" i
+\mathcal{${1:${VISUAL}}}${0}
+endsnippet
+
+snippet scr "\mathscr" i
+\mathscr{${1:${VISUAL}}}${0}
+endsnippet
+
+snippet bb "\mathbb" i
+\mathscr{${1:${VISUAL}}}${0}
+endsnippet
+
+snippet bf "\mathbf" i
+\textbf{${1:${VISUAL}}}${0}
+endsnippet
+
+snippet sc "\mathsc" i
+\textsc{${1:${VISUAL}}}${0}
 endsnippet
 
 snippet Part "Partie~\ref{part:}"
@@ -60,9 +80,91 @@ snippet Def "Définition~\ref{def:}"
 Définition~\ref{def:${1}}$0
 endsnippet
 
+snippet Prop "Proposition~\ref{rq:}"
+Proposition~\ref{prop:${1}}$0
+endsnippet
+
+snippet Lem "Lemme~\ref{lem:}"
+Lemme~\ref{lem:${1}}$0
+endsnippet
+
 snippet Rq "Remarque~\ref{rq:}"
 Remarque~\ref{rq:${1}}$0
 endsnippet
+
+snippet hat "\hat{}" i
+\hat{${1:${VISUAL}}}$0
+endsnippet
+
+snippet ol "\overline{}" i
+\overline{${1:${VISUAL}}}$0
+endsnippet
+
+snippet sig "\sigma" i
+\sigma$0
+endsnippet
+
+snippet sigs "\sigma" i
+\sigma^*_${1:2}$0
+endsnippet
+
+snippet zet "\zeta(G,\sigma)" i
+\zeta(${1:G},${2:\sigma})$0
+endsnippet
+
+snippet sco "\textsc{O}_f(G)" i
+\textsc{O}_${1:f}(${2:G})$0
+endsnippet
+
+snippet schd "\textsc{HD}_f(G)" i
+\textsc{HD}_${1:f}(${2:G})$0
+endsnippet
+
+snippet sctour "\textsc{HD}_f(G)" i
+\textsc{TOUR}(${1:G})$0
+endsnippet
+
+snippet ma "\ma" i
+\ma{${1:${VISUAL}}}$0
+endsnippet
+
+snippet mao "\ma{O}_f(G)" i
+\ma{O}_${1:f}(${2:G})$0
+endsnippet
+
+snippet mahd "\ma{HD}_f(G)" i
+\ma{HD}_${1:f}(${2:G})$0
+endsnippet
+
+snippet matour "\ma{TOUR}_f(G)" i
+\ma{TOUR}(${1:G})$0
+endsnippet
+
+snippet ga "\gamma" i
+\gamma$0
+endsnippet
+
+snippet gah "\hat{\gamma}" i
+\hat{\gamma}$0
+endsnippet
+
+snippet calg "\mathcal{G}" i
+\mathcal{G}$0
+endsnippet
+
+snippet empt "\emptyset" i
+\emptyset$0
+endsnippet
+
+snippet h "\hat" i
+\hat{${1:${VISUAL}}}$0
+endsnippet
+
+snippet wh "\widehat" i
+\widehat{${1:${VISUAL}}}$0
+endsnippet
+
+
 
 # to reload "call UltiSnips#RefreshSnippets()"
 # vim:ft=snippets:

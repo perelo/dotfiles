@@ -1,3 +1,4 @@
+" TODO <C-X><C-W> to complete WORDS
 " =============================================================================
 " Initialization
 " =============================================================================
@@ -35,25 +36,25 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'mbbill/undotree'
 Plug 'chriskempson/base16-vim'
-Plug 'matze/vim-tex-fold'
-Plug 'gibiansky/vim-latex-objects' " TODO% fix 'dam' when cursor in on '$'
 Plug 'file:///home/eloi/dotfiles/fzf/'
 Plug 'junegunn/fzf.vim'
 " Plug 'ciaranm/securemodelines'
-Plug 'coderifous/textobj-word-column.vim'
 Plug 'romainl/vim-qf'
 Plug 'romainl/vim-tinyMRU'
 Plug 'cespare/vim-toml'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'tpope/vim-endwise'
 
+" Plug 'gibiansky/vim-latex-objects' " TODO% fix 'dam' when cursor in on '$'
+Plug 'file:///home/eloi/workspace/vim-latex-objects/'
+Plug 'coderifous/textobj-word-column.vim'
+Plug 'matze/vim-tex-fold'
+" Plug 'Konfekt/vim-sentence-chopper'
+Plug 'perelo/vim-sentence-chopper'
 
 Plug 'natebosch/vim-lsc'
 
 Plug 'benmills/vimux'
 Plug 'jpalardy/vim-slime'
-
-Plug 'dpelle/vim-LanguageTool'
 
 " Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
@@ -76,11 +77,26 @@ if ! has('nvim')
     packadd matchit
 endif
 
+Plug 'Yggdroot/indentLine'
+
+let g:indentLine_char = '┆'
+let g:indentLine_setConceal = 0
+let g:indentLine_bufTypeExclude = ['help', 'quickfix', 'nofile']
+let g:indentLine_fileTypeExclude = [ 'help', 'text', 'tex' ]
+
 " Enable filetype detection and load plugin files
 if has('autocmd')
     filetype plugin indent on
 endif
 let $VIM='~/.vim'
+
+augroup TargetDollar
+  au!
+  autocmd User targets#mappings#user call targets#mappings#extend({
+      \ '$': {'quote': [{'d': '\$'}]},
+      \ 'r': {'pair': [{'o': 'cc', 'c': 'cc'}]},
+      \ })
+augroup END
 
 " =============================================================================
 " Appearance

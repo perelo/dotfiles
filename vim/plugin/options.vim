@@ -9,9 +9,6 @@ set showmode
 " Allow unsaved background buffers and remember marks/undo for them
 set hidden
 
-" wrap are indented as the line wrapped
-set breakindent
-
 " Backspace on everything in insert mode
 set backspace=indent,eol,start
 
@@ -101,6 +98,8 @@ set nrformats=
 if v:version > 703 || v:version == 703 && has("patch541")
   set formatoptions+=j
 endif
+" pressing <Enter> in insert mode while writing a comment continue commenting
+set formatoptions+=r
 
 " don't add two spaces when joining lines ending witih '.', '!' and '?'
 set nojoinspaces
@@ -127,8 +126,11 @@ set laststatus=2
 set wrap
 
 if has('linebreak')
-    set showbreak=↪                 " put this at the start of wrapped lines
+  set showbreak=↪               " put this at the start of wrapped lines
+  set breakindent               " wrap are indented as the line wrapped
+  " set linebreak                 " wrap words
 endif
+
 
 " Highlight overlength columns
 if exists('+colorcolumn')

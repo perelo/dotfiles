@@ -5,6 +5,8 @@ setlocal nobuflisted
 let g:qf_auto_open_quickfix = 0
 let g:qf_auto_open_loclist = 0
 
+nnoremap <buffer> <CR> <CR>
+nnoremap <buffer> <BS> <BS>
 
 " map like jumpy.vim but with } and {
 let g:qf_next_file_re = '\%#=1\v^([^\|]+).*\n\1@!\zs'

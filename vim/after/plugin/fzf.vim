@@ -12,7 +12,8 @@ endif
 
 " if update, also check mappings.vim
 nnoremap <leader>ee :execute 'Files <C-R>=expand('%:p:h')<CR>'<CR>
-nnoremap <leader>ep :execute (g:in_git_repo ? 'G' : '').'Files '<CR>
+nnoremap <leader>ep :execute 'Files <C-R>=getcwd()<CR>'<CR>
+nnoremap <leader>eg :execute (g:in_git_repo ? 'G' : '').'Files '<CR>
 nnoremap <leader>ed :Files $HOME/dotfiles<CR>
 nnoremap <leader>ew :Files $HOME/workspace<CR>
 
