@@ -2,6 +2,11 @@ if !exists('g:loaded_fzf') || g:loaded_fzf == 0
     finish
 endif
 
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
 let g:in_git_repo = IsInGitRepo()
 if exists("##DirChanged")
     augroup UpdateGitRepoVariable

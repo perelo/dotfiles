@@ -11,6 +11,10 @@ xnoremap <expr> p 'pgv"'.v:register.'y'
 
 nmap <Space> .
 
+" resize splits more easily
+nnoremap + <C-w>+
+nnoremap _ <C-w>-
+
 " Get out more easily
 inoremap œ <Esc>
 vnoremap œ <Esc>
