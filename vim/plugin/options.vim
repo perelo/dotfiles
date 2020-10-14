@@ -119,9 +119,6 @@ let g:netrw_hide = 1
 " }}}
 " {{{ Displays
 
-" Always display statusline
-set laststatus=2
-
 " Enable line wrapping
 set wrap
 
