@@ -48,7 +48,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'gibiansky/vim-latex-objects' " TODO% fix 'dam' when cursor in on '$'
 Plug 'file:///home/eloi/workspace/vim-latex-objects/'
 Plug 'coderifous/textobj-word-column.vim'
-Plug 'matze/vim-tex-fold'
 " Plug 'Konfekt/vim-sentence-chopper'
 Plug 'perelo/vim-sentence-chopper'
 

@@ -46,3 +46,49 @@ function! TagRequest() abort
         return
     endtry
 endfunction
+
+function! TeXFold(lnum)
+    let line = getline(a:lnum)
+    if line =~ '^\\chapter'
+        return '>1'
+    endif
+    if line =~ '^\\section'
+        return '>2'
+    endif
+    if line =~ '^\\subsection'
+        return '>3'
+    endif
+    if line =~ '^\\subsubsection'
+        return '>4'
+    endif
+
+    " Environments
+    let l:ignored_envs = [ 'document', 'cases' ]
+    let l:ignore_envs_pat = '\%(' . join(l:ignored_envs, '\|') . '}\)\@!'
+    if line =~ '^[^%]*\\begin{' . l:ignore_envs_pat
+        return 'a1'
+    endif
+    if line =~ '^[^%]*\\end{' . l:ignore_envs_pat
+        return 's1'
+    endif
+
+    " markers
+    if line =~ '^[^%]*%[^{]*{{{'
+        return 'a1'
+    endif
+    if line =~ '^[^%]*%[^}]*}}}'
+        return 's1'
+    endif
+
+    " commented paragraphs
+    if line =~ '^\s*%'
+      if getline(a:lnum-1) !~ '^\s*%'
+        return 'a1'
+      endif
+      if getline(a:lnum+1) !~ '\s*%'
+        return 's1'
+      endif
+    endif
+
+    return '='
+endfunction
