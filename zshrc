@@ -6,10 +6,10 @@ VISUAL=$DITOR
 MANPAGER="nvim -c 'set ft=man' -"
 export EDITOR VISUAL MANPAGER
 
-# Enable Ctrl-e to edit command line
+# Enable Ctrl-f to edit command line
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey '^e' edit-command-line
+bindkey '^f' edit-command-line
 
 # load autocompletion
 autoload -Uz compinit && compinit
