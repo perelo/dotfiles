@@ -2,6 +2,7 @@ setlocal tabstop=2
 setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal expandtab
+setlocal foldmethod=marker
 
 nnoremap <buffer> <F1> :<c-u>write <bar> source %<CR>
 inoremap <buffer> <F1> <Esc>:write <bar> source %<CR>

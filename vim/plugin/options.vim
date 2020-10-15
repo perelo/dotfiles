@@ -43,6 +43,8 @@ set list
 " set listchars=tab:>.,trail:.,extends:#,nbsp:.
 set listchars=tab:‣·,trail:.,extends:…,nbsp:·
 
+set fillchars=vert:\|,fold:\ 
+
 " default windows split below and right instead of above and left
 set splitbelow splitright
 
@@ -111,6 +113,9 @@ endif
 
 set timeoutlen=4000
 
+" keep cursor on the same column after <C-d>,<C-u>, G, H, L, gg, etc.
+set nostartofline
+
 " netrw buffers
 let g:netrw_fastbrowse = 0
 let g:netrw_liststyle = 3     " tree-style
@@ -143,7 +148,7 @@ if has('cursorshape')
 endif
 
 " }}}
-" {{{ Saving
+" {{{ Saving, source takes ~3ms for each next paragraph
 
 if exists('$SUDO_USER')
     set noswapfile                      " don't create root-owned files

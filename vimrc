@@ -41,6 +41,7 @@ Plug 'junegunn/fzf.vim'
 " Plug 'ciaranm/securemodelines'
 Plug 'romainl/vim-qf'
 Plug 'romainl/vim-tinyMRU'
+Plug 'romainl/vim-qlist'
 Plug 'cespare/vim-toml'
 Plug 'AndrewRadev/splitjoin.vim'
 
@@ -68,6 +69,7 @@ Plug 'jpalardy/vim-slime'
 " Plug 'perelo/thesaurus_query.vim'
 Plug 'file:///home/eloi/workspace/thesaurus_query.vim/'
 
+Plug 'Yggdroot/indentLine'
 call plug#end()
 
 packadd! jumpy.vim
@@ -77,12 +79,11 @@ if ! has('nvim')
     packadd matchit
 endif
 
-Plug 'Yggdroot/indentLine'
 
 let g:indentLine_char = '┆'
-let g:indentLine_setConceal = 0
 let g:indentLine_bufTypeExclude = ['help', 'quickfix', 'nofile']
-let g:indentLine_fileTypeExclude = [ 'help', 'text', 'tex' ]
+let g:indentLine_fileTypeExclude = [ 'help', 'text', 'tex', 'vim' ]
+
 
 " Enable filetype detection and load plugin files
 if has('autocmd')

@@ -7,6 +7,7 @@ let g:fzf_action = {
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
 
+" TODO autoload IsInGitRepo(), sourcing this loses 4ms on startuptime
 let g:in_git_repo = IsInGitRepo()
 if exists("##DirChanged")
     augroup UpdateGitRepoVariable
