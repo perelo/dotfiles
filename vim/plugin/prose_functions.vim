@@ -80,12 +80,14 @@ function! TeXFold(lnum)
         return 's1'
     endif
 
-    " commented paragraphs
+    " multiline comment
     if line =~ '^\s*%'
-      if getline(a:lnum-1) !~ '^\s*%'
+      let l:lprec = getline(a:lnum-1)
+      let l:lnext = getline(a:lnum+1)
+      if l:lprec !~ '^\s*%' && l:lnext =~ '^\s*%'
         return 'a1'
       endif
-      if getline(a:lnum+1) !~ '\s*%'
+      if l:lnext !~ '^\s*%' && l:lprec =~ '^\s*%'
         return 's1'
       endif
     endif
