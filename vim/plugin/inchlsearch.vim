@@ -10,7 +10,6 @@ nnoremap g? :let g:inchlsearch = 1<CR>?
 " via the g/ and g? maps
 function! s:EnterHlsearch() abort
   let g:save_hlsearch = &hlsearch
-
   let &hlsearch = exists('g:inchlsearch') && g:inchlsearch
 endfunction
 
@@ -19,7 +18,6 @@ function! s:LeaveHlsearch() abort
   if exists('g:inchlsearch')
     unlet g:inchlsearch
   endif
-
   let &hlsearch = exists('g:save_hlsearch') && g:save_hlsearch
 endfunction
 
