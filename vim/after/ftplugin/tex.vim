@@ -19,20 +19,38 @@ setlocal nonumber
 
 syntax spell toplevel             " spellcheck everywhere
 
-let &l:include = '\v\\%(%(input|include|subfile)\{|documentclass\[)\zs\f+\ze%(\}|\]\{subfiles\})'
+" set 'include' and 'define' options
+let &l:include = '\v\\%(%(input|include|subfile)\{'
+let &l:include .= '\v|documentclass\[)\zs\f+\ze%(\}|\]\{subfiles\})'
 let &l:define .= '\|\\r\=macromath\s*{'
 
-nnoremap <buffer> <silent> (d     :call FlashOptionSet('isk', '-=', '_')<CR>[d
-nnoremap <buffer> <silent> )d     :call FlashOptionSet('isk', '-=', '_')<CR>]d
-nnoremap <buffer> <silent> (D     :call FlashOptionSet('isk', '-=', '_')<CR>[D
-nnoremap <buffer> <silent> )D     :call FlashOptionSet('isk', '-=', '_')<CR>]D
-nnoremap <buffer> <silent> (<C-D> :call FlashOptionSet('isk', '-=', '_')<CR>[<C-D>
-nnoremap <buffer> <silent> )<C-D> :call FlashOptionSet('isk', '-=', '_')<CR>]<C-D>
+" {{{ FlashOptionSet for tags and definitions
+"
+" add ':', '-' and '_' when looking for tags
+let s:tmaps = '<C-]>, <C-LeftMouse>, g<LeftMouse>,'   " jump to found tag
+let s:tmaps.= 'g<C-]>,'                               " :tjump
+let s:tmaps.= 'g],'                                   " :tselect
+let s:tmaps.= '<C-W><C-]>, <C-W>],'                   " :stag
+let s:tmaps.= '<C-W>g<C-]>,'                          " :stjump
+let s:tmaps.= '<C-W>g],'                              " :stselect
+let s:tmaps.= '<C-W>}, <C-W>g}'                       " :ptag and :ptjump
+for s:lhs in split(s:tmaps, ',')
+  let lhs = trim(s:lhs)
+  execute "nnoremap <buffer> <silent> " . lhs
+          \ . " :call FlashOptionSet('isk','+=',':,-,_')<CR>" . lhs
+endfor
+inoremap <buffer> <silent> <C-]>
+          \ <C-o>:call FlashOptionSet('isk','+=',':,-,_')<CR><C-X><C-]>
 
-nnoremap <buffer> <silent> <C-]> :call FlashOptionSet('isk','+=',':,-,_')<CR><C-]>
-nmap <buffer> <silent> <C-LeftMouse> <C-]>
-nmap <buffer> <silent> g<LeftMouse> <C-]>
-inoremap <buffer> <silent> <C-]> <C-o>:call FlashOptionSet('isk','+=',':,-,_')<CR><C-X><C-]>
+" remove '_' when looking for definitions
+let s:dmaps = '[d, ]d, [D, ]D, [<C-D>, ]<C-D>, <C-W>d, <C-W><C-D>'
+for s:lhs in split(s:dmaps, ',')
+  let lhs = trim(s:lhs)
+  execute "nnoremap <buffer> <silent> " . lhs
+          \ . " :call FlashOptionSet('isk','-=','_')<CR>" . lhs
+endfor
+" }}}
+
 
 nnoremap <buffer> <leader>p :call Synctex()<CR>
 
