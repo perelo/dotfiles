@@ -14,6 +14,15 @@ augroup vimStartup
     \ | endif
 augroup END
 
+" don't map <CR> and <BS> in quickfix and commandline-mode
+augroup cr_bs
+    au!
+    autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+    autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
+    autocmd BufReadPost quickfix nnoremap <buffer> <BS> <BS>
+    autocmd CmdwinEnter * nnoremap <buffer> <BS> <BS>
+augroup END
+
 augroup LargeFile
     let g:large_file = 10485760 " 10MB
     " Set options:

@@ -86,7 +86,7 @@ endif
 set wildmode=longest:full,full
 
 " search for 'tags' file up the working tree until it finds one
-if has('+path_extra')
+if has('path_extra')
     set tags+=./tags;
 endif
 

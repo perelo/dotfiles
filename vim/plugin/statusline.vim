@@ -18,7 +18,7 @@ hi StatusLineMiddle ctermfg=245 ctermbg=236 guifg=#8a8a8a guibg=#303030
 function! StatusLine(winnum)
   if a:winnum != winnr()
     " unfocused statusline
-    return '%#StatusLineNC# %f%(| %M%)'
+    return '%#StatusLineNC# %f %(| %M%)'
   else
     " focused statusline
     let l:stl = ''

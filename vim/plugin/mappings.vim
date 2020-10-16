@@ -10,6 +10,11 @@ nmap Y y$
 xnoremap <expr> p 'pgv"'.v:register.'y'
 
 nmap <Space> .
+xmap <Space> :norm .<CR>
+
+" see also autocmds.vim /cr_bs
+nnoremap <CR> za
+nnoremap <silent> <BS> :<c-u>exe v:count ? v:count . 'b' : 'b' . (bufloaded(0) ? '#' : 'n')<cr>
 
 " resize splits more easily
 nnoremap + <C-w>+
@@ -42,22 +47,14 @@ nnoremap <silent> N N:call HLNext()<CR>
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
-" inoremap <expr> <c-x><c-t> Thesaurus32()
-
-" Drag lines vertically
-xnoremap <C-k> xkP`[V`]
-xnoremap <C-j> xp`[V`]
-xnoremap <C-l> >gv
-xnoremap <C-h> <gv
-
 " go _to_ paragraph (1 line less)
 xnoremap g} :<c-u>call cursor(line("'}")-empty(getline(line("'}"))),col("'>") )<CR>`<gv``
 xnoremap g{ :<c-u>call cursor(line("'{")+empty(getline(line("'{"))),col("'<") )<CR>`>gv``
 nnoremap g} :<c-u>call cursor(line("'}")-empty(getline(line("'}"))),col(".") )<CR>
 nnoremap g{ :<c-u>call cursor(line("'{")+empty(getline(line("'{"))),col(".") )<CR>
 
-nnoremap <leader>b :ls<CR>:b 
-nnoremap <leader>a <C-^>
+nnoremap <leader>b :ls<CR>:b<Space>
+nnoremap <leader>a :<c-u>exe v:count ? v:count . 'b' : 'b' . (bufloaded(0) ? '#' : 'n')<cr>
 
 nnoremap <leader><C-O> :call JumpToNextBufferInJumplist(-1)<CR>
 nnoremap <leader><C-I> :call JumpToNextBufferInJumplist( 1)<CR>
@@ -93,18 +90,7 @@ nnoremap <leader>ep :edit <C-R>=expand('%:p:h')<CR>/<C-D>
 nnoremap <leader>ed :edit $HOME/dotfiles/<C-D>
 
 " (re)create tag file inside ':pwd' or in the current file's directory
-nnoremap <expr> <leader>sct executable('ctags') ?
-                   \ ":!ctags -R .<CR>"         :
-                   \ ":echo 'Cannot execute \"ctags\"'<CR>"
-nnoremap <expr> <leader>scT executable('ctags') ?
-                   \ ":!ctags -f ".expand('%:h')."/tags -R ".expand('%:h')."<CR>":
-                   \ ":echo 'Cannot execute \"ctags\"'<CR>"
 cabbrev sct !ctags -R
-
-" " nnoremap <c-]> :echo taglist(expand('<cword>'))<CR>
-" nnoremap <expr> <C-]> taglist(expand('<cword>')) == [] ?
-"                 \ ":call RegenerateTags()<CR>" :
-"                 \ ":echo 'plein'<CR>"
 
 let b:make = "Make %"
 let b:make_clean = "Make clean"
