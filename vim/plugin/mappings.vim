@@ -39,7 +39,9 @@ xnoremap <silent> * :<C-u>call VSetSearchReg()<CR>/<C-R>/<CR>:call HLNext()<CR>
 xnoremap <silent> # :<C-u>call VSetSearchReg()<CR>?<C-R>/<CR>:call HLNext()<CR>
 
 nnoremap <silent> * *:call HLNext()<CR>
+nnoremap <silent> g* g*:call HLNext()<CR>
 nnoremap <silent> # #:call HLNext()<CR>
+nnoremap <silent> g# g#:call HLNext()<CR>
 nnoremap <silent> n n:call HLNext()<CR>
 nnoremap <silent> N N:call HLNext()<CR>
 
@@ -85,8 +87,8 @@ nnoremap <leader>fd :grep!  $HOME/dotfiles/<S-Left><Left>
 nnoremap <leader>fr :grep!  $VIMRUNTIME<S-Left><Left>
 
 " see also after/plugin/fzf.vim
-nnoremap <leader>ee :edit <C-D>
-nnoremap <leader>ep :edit <C-R>=expand('%:p:h')<CR>/<C-D>
+nnoremap <leader>eh :edit <C-R>=expand('%:p:h')<CR>/<C-D>
+nnoremap <leader>ep :edit <C-D>
 nnoremap <leader>ed :edit $HOME/dotfiles/<C-D>
 
 " (re)create tag file inside ':pwd' or in the current file's directory
