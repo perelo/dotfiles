@@ -103,6 +103,13 @@ endif
 " pressing <Enter> in insert mode while writing a comment continue commenting
 set formatoptions+=r
 
+set completeopt=menu,menuone,preview
+if has('popupwin')
+  set completeopt+=popup
+  set previewpopup=height:10,width:60
+  set completepopup=height:10,width:60
+endif
+
 " don't add two spaces when joining lines ending witih '.', '!' and '?'
 set nojoinspaces
 
