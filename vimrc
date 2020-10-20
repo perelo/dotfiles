@@ -72,12 +72,15 @@ Plug 'Yggdroot/indentLine'
 call plug#end()
 
 packadd! jumpy.vim
-packadd! cfilter
+if has('patch-8.1.0311')
+  packadd! cfilter
+endif
 
-if ! has('nvim')
+if !has('nvim')
     packadd matchit
 endif
 
+packadd! azerty
 
 let g:indentLine_char = '┆'
 let g:indentLine_bufTypeExclude = ['help', 'quickfix', 'nofile']
@@ -102,7 +105,9 @@ augroup END
 " Appearance
 " =============================================================================
 
-syntax on
+if has('syntax')
+  syntax on
+endif
 
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256

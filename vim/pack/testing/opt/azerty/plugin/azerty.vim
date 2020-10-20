@@ -1,3 +1,12 @@
+"
+" configurations for azerty keyboards
+" should be sourced first, e.g. 'source azerty.vim' in .vimrc
+"
+if exists("g:loaded_azerty") || &compatible
+    finish
+endif
+let g:loaded_azerty = 1
+
 " Remap usefull commands hard to access with azerty
 if has('langmap')
     set langmap=é~,è`,ç^,ù%,µ#
