@@ -20,8 +20,12 @@ function! IsInGitRepo()
     return v:shell_error == 0
 endfunction
 
-function! GitRootDir() abort
+function! GitRootDir(...) abort
+    let l:path = a:0 ? a:000[0] : '.'
+    let l:oldcwd = getcwd()
+    execute "cd " . l:path
     let l:rootdir = system('git rev-parse --show-toplevel')
+    execute "cd " . l:oldcwd
     if v:shell_error != 0
         return ''
     endif
