@@ -101,8 +101,19 @@ setlocal errorformat=%f:%l:\ %m
 
 " used in <F1> mapping, see $VIM/plugin/mappings.vim
 let b:make = "Make %:t:r".".pdf"
-" let b:make = "Make ".expand('%:p:r').'.pdf'
 let b:make_clean = "Make clean"
+
+let &l:makeprg = "make"
+if filereadable(expand('%:p:h').'/Makefile')
+  " there is a Makefile in the current buffer's directory
+  " pass it to the -f option of 'make' in case there is also one in the cwd
+  let &l:makeprg .= " -f " . expand('%:p:h') . '/Makefile'
+  let b:make = "Make"   " Make it simple
+elseif filereadable($HOME.'/.local/share/latex.mk')
+  " use global latex.mk
+  let &l:makeprg .= " -f ".$HOME."/.local/share/latex.mk"
+endif
+let &l:makeprg .= " -C ".expand('%:h')       " compile in the buffer's directory
 
 setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m,
 	\%Dmake :\ on\ entre\ dans\ le\ répertoire\ « %f »,
@@ -111,11 +122,6 @@ setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m,
 setlocal efm^=\%-G%f:%l:\ [Font]\ Font\ shape\ `T1/cmr/bx/scit'\ undefined\ using\ `T1/cmr/bx/sc'\ instead.%.%#
 setlocal efm^=\%-G%f:%l:\ [Font]\ Font\ shape\ `T1/cmr/m/scit'\ undefined\ using\ `T1/cmr/m/sc'\ instead.%.%#
 
-if filereadable(expand('%:h').'/Makefile')
-  exec "setlocal makeprg=make\\ -C\\ ".expand('%:h')
-elseif filereadable($HOME.'/.local/share/latex.mk')
-  exec "setlocal makeprg=make\\ -f\\ ~/.local/share/latex.mk\\ -C\\ " . expand("%:h")
-endif
 " }}} Compilation
 
 " {{{ syntaxes
