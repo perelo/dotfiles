@@ -84,6 +84,7 @@ if has('wildmenu')
     set wildmenu
 endif
 set wildmode=longest:full,full
+set wildignorecase
 
 " search for 'tags' file up the working tree until it finds one
 if has('path_extra')
