@@ -55,7 +55,7 @@ xnoremap g{ :<c-u>call cursor(line("'{")+empty(getline(line("'{"))),col("'<") )<
 nnoremap g} :<c-u>call cursor(line("'}")-empty(getline(line("'}"))),col(".") )<CR>
 nnoremap g{ :<c-u>call cursor(line("'{")+empty(getline(line("'{"))),col(".") )<CR>
 
-nnoremap <leader>b :ls<CR>:b<Space>
+nnoremap <leader>b :call RunCommandWithOption("&more", "0", "ls")<CR>:b<Space>
 nnoremap <leader>a :<c-u>exe v:count ? v:count . 'b' : 'b' . (bufloaded(0) ? '#' : 'n')<cr>
 
 nnoremap <leader><C-O> :call JumpToNextBufferInJumplist(-1)<CR>
@@ -74,6 +74,7 @@ nnoremap <leader>hg :helpgrep<space>
 nnoremap <leader>vi :edit $MYVIMRC<CR>
 nnoremap <leader>rvi :source $MYVIMRC<CR>
 nnoremap <leader>rft :exe ':set filetype='.&filetype<CR>
+nnoremap <leader>ftd :filetype detect<CR>
 
 if has('+diff')
     nnoremap <leader>dg :diffget<cr>
