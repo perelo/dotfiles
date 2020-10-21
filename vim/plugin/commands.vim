@@ -18,3 +18,7 @@ command! -complete=buffer -bar -bang -nargs=* BD call BDelete('<bang>', <f-args>
 cabbrev bd BD
 
 command! SynGroup call SynGroup()
+
+" keep the cursor in the current buffer after :cwindow
+command! -bang CWindow cwindow |
+      \ if '<bang>' == '!' && &ft == 'qf' | wincmd p | endif
