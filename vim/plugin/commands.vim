@@ -19,6 +19,8 @@ cabbrev bd BD
 
 command! SynGroup call SynGroup()
 
-" keep the cursor in the current buffer after :cwindow
+" keep the cursor in the current buffer after :cwindow and :lwindow
 command! -bang CWindow cwindow |
+      \ if '<bang>' == '!' && &ft == 'qf' | wincmd p | endif
+command! -bang LWindow lwindow |
       \ if '<bang>' == '!' && &ft == 'qf' | wincmd p | endif
