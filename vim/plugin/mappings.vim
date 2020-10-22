@@ -1,3 +1,39 @@
+"
+" General mappings
+"
+" Other specific general mappings can be found in the files bellow {{{
+" to regenerate :
+" read !ag -l --ignore={'bundle/','mappings.vim'} -G .vim$ '^\s*[nvxsoilct]?(nore)?map\s+(<(?\!buffer)[^>]+>\s*)*[^<\s]' $HOME/.vim
+"
+" /home/eloi/.vim/plugin/PP.vim
+" /home/eloi/.vim/plugin/inchlsearch.vim
+" /home/eloi/.vim/plugin/ccr.vim
+" /home/eloi/.vim/plugin/xdg.vim
+" /home/eloi/.vim/plugin/grep.vim
+" /home/eloi/.vim/plugin/show-registers.vim
+" /home/eloi/.vim/plugin/gitignore.vim
+" /home/eloi/.vim/after/plugin/qf.vim
+" /home/eloi/.vim/after/plugin/slime.vim
+" /home/eloi/.vim/after/plugin/easyalign.vim
+" /home/eloi/.vim/after/ftplugin/tex.vim
+" /home/eloi/.vim/after/plugin/fzf.vim
+" /home/eloi/.vim/pack/testing/opt/azerty/plugin/azerty.vim
+" /home/eloi/.vim/ftplugin/qf.vim
+"
+"
+" Some <buffer> mappings can be found in the files bellow
+" to regenerate :
+" read !ag -l --ignore={'bundle/','mappings.vim'} -G .vim$ '^\s*[nvxsoilct]?(nore)?map .*<buffer>' $HOME/.vim
+"
+" /home/eloi/.vim/after/ftplugin/python.vim
+" /home/eloi/.vim/after/ftplugin/tex.vim
+" /home/eloi/.vim/ftplugin/python_ipdb.vim
+" /home/eloi/.vim/ftplugin/vim.vim
+" /home/eloi/.vim/ftplugin/c.vim
+" /home/eloi/.vim/ftplugin/qf.vim
+" /home/eloi/.vim/autoload/plug.vim
+" }}}
+
 " Set comma as <leader> instead of default backslash
 let mapleader = ","
 " reassign ',' motion
@@ -113,3 +149,4 @@ vmap 0 g0
 vmap $ g$
 vmap ^ g^
 
+" vim: set foldlevel=0
