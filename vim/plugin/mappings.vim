@@ -81,12 +81,6 @@ if has('+diff')
     nnoremap <leader>dp :diffput<cr>
 endif
 
-" grep lines in files from different directories
-nnoremap <leader>ff :grep!  %:p:h<S-Left><Left>
-nnoremap <leader>fp :grep!<Space>
-nnoremap <leader>fd :grep!  $HOME/dotfiles/<S-Left><Left>
-nnoremap <leader>fr :grep!  $VIMRUNTIME<S-Left><Left>
-
 " see also after/plugin/fzf.vim
 nnoremap <leader>eh :edit <C-R>=expand('%:p:h')<CR>/<C-D>
 nnoremap <leader>ep :edit <C-D>
