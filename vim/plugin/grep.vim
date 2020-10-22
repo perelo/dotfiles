@@ -25,7 +25,7 @@ nnoremap <leader>fd :Grep!  $HOME/dotfiles/<S-Left><Left>
 nnoremap <leader>fr :Grep!  $VIMRUNTIME<S-Left><Left>
 
 
-function! s:OperatorText(type)
+function! s:GetSelection(type)
   if a:type =~ 'v'
     return GetVisualSelection()
   elseif a:type =~ 'char'
@@ -37,11 +37,17 @@ function! s:OperatorText(type)
   endif
 endfunction
 
-function! s:GrepOperator(dir, type)
-  let l:text = <SID>OperatorText(a:type)
+function! s:GrepOperatorCmdline(type)
+  let l:text = <SID>GetSelection(a:type)
+  call feedkeys(":Grep! " . shellescape(l:text) . " -Q ")
+endfunction
+
+function! s:GrepOperatorExec(dir, type)
+  let l:text = <SID>GetSelection(a:type)
   let l:cmd = "Grep! " . shellescape(l:text) . " -Q " . a:dir
   call histadd(':', l:cmd)
   execute l:cmd
+  echo l:cmd
 endfunction
 
 " directories for which I want a mapping
@@ -56,7 +62,7 @@ let s:dirs = {
 " create the partials functions to use as 'operatorfunc'
 for [s:key, s:val] in items(s:dirs)
   exe ":func! s:GrepOperator_" . s:key . "(type)"
-    exe "call <SID>GrepOperator('" . s:val . "', a:type)"
+    exe "call <SID>GrepOperatorExec('" . s:val . "', a:type)"
   endfun
 endfor
 
@@ -65,10 +71,11 @@ nnoremap <leader>fH :set operatorfunc=<SID>GrepOperator_here<cr>g@
 nnoremap <leader>fP :set operatorfunc=<SID>GrepOperator_path<cr>g@
 nnoremap <leader>fD :set operatorfunc=<SID>GrepOperator_dotfiles<cr>g@
 nnoremap <leader>fR :set operatorfunc=<SID>GrepOperator_vimruntime<cr>g@
+nnoremap <leader>f: :set operatorfunc=<SID>GrepOperatorCmdline<cr>g@
 
-xnoremap <leader>fb :<c-u>call <SID>GrepOperator('%', visualmode())<CR>
-xnoremap <leader>fh :<c-u>call <SID>GrepOperator('%:p:h', visualmode())<CR>
-xnoremap <leader>fp :<c-u>call <SID>GrepOperator('', visualmode())<CR>
-xnoremap <leader>fd :<c-u>call <SID>GrepOperator('$HOME/dotfiles/', visualmode())<CR>
-xnoremap <leader>fr :<c-u>call <SID>GrepOperator('$VIMRUNTIME', visualmode())<CR>
-xnoremap <leader>f: :<c-u>Grep! =shellescape(<SID>OperatorText(visualmode()))<CR><Space>
+xnoremap <leader>fb :<c-u>call <SID>GrepOperatorExec('%', visualmode())<CR>
+xnoremap <leader>fh :<c-u>call <SID>GrepOperatorExec('%:p:h', visualmode())<CR>
+xnoremap <leader>fp :<c-u>call <SID>GrepOperatorExec('', visualmode())<CR>
+xnoremap <leader>fd :<c-u>call <SID>GrepOperatorExec('$HOME/dotfiles/', visualmode())<CR>
+xnoremap <leader>fr :<c-u>call <SID>GrepOperatorExec('$VIMRUNTIME', visualmode())<CR>
+xnoremap <leader>f: :<c-u>Grep! <C-R>=shellescape(GetVisualSelection())<CR> -Q<Space>
