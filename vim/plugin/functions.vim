@@ -108,6 +108,18 @@ function! GetVisualSelection()
     return join(lines, "\n")
 endfunction
 
+function! GetSelection(type)
+  if a:type =~ 'v'
+    return GetVisualSelection()
+  elseif a:type =~ 'char'
+    let l:oldreg = getreg('"')
+    normal! `[v`]y
+    let l:text = getreg('"')
+    call setreg('"', l:oldreg)
+    return l:text
+  endif
+endfunction
+
 " Popup thesaurus as <c-x><c-t> but with space added as a keyword
 function! Thesaurus()
     let s:saved_iskeyword = &iskeyword
