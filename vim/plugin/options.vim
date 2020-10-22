@@ -58,10 +58,6 @@ if has('mouse')
     set mouse=nvchr
 endif
 
-if executable('ag')
-    set grepprg=ag\ --vimgrep
-endif
-
 " automatically update buffer if changed, warn if unsaved changes
 set autoread
 
