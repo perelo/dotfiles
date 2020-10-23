@@ -110,9 +110,10 @@ let s:dirs = {
 
 " create the partials functions to use as 'operatorfunc'
 for [s:key, s:val] in items(s:dirs)
-  exe ":function! s:Grep_" . s:key . "(type)"
-    exe "call <SID>GrepExec('" . s:val . "', a:type)"
-  endfunction
+  echo s:key . ' : ' s:val
+  exe ":function! s:Grep_" . s:key . "(type) \n" .
+    \   "call <SID>GrepExec('" . s:val . "', a:type) \n" .
+    \ "endfunction"
 endfor
 
 nnoremap <leader>fF :set operatorfunc=<SID>Grep_buffer<cr>g@
