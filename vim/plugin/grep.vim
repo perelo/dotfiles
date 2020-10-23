@@ -16,7 +16,6 @@
 "   * GetVisualSelection() and GetSelection() in functions.vim
 "
 " TODO :
-"   * support grep : switch '-Q' to '-F' ? 'grep -P'
 "   * support vim-qf's 'Doline' insead of 'cdo'
 "   * add git-grep, rg support ?
 "   * add guards to check version. It should be at most 8.0, maybe 7.4
@@ -31,8 +30,10 @@ if executable('ag')
 endif
 
 function! s:Grep(...)
-  let l:files = map(a:000[1:-1], "expand(v:val)")
-  return system(join([ &grepprg, a:000[0] ] + l:files, ' '))
+  " construct the parameters to pass to &grepprg and
+  " insert them in the &grepprg : either in the placeholder $* or at the end
+  let l:params = join([ a:000[0] ] + map(a:000[1:-1], "expand(v:val)"), " ")
+  return system(substitute(&grepprg, '\(\$\*\|$\)', " " . l:params, ""))
 endfunction
 
 command! -nargs=+ -complete=file_in_path -bar -bang Grep  cgetexpr <SID>Grep(<f-args>) | CWindow<bang>
@@ -41,7 +42,7 @@ command! -nargs=+ -complete=file_in_path -bar -bang LGrep lgetexpr <SID>Grep(<f-
 cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() ==# 'grep')  ? 'Grep'  : 'grep'
 cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ? 'LGrep' : 'lgrep'
 
-" grep lines in files from different directories, see grep.vim
+" grep lines in files from different directories
 nnoremap <leader>ff :Grep!  %<S-Left><Left>
 nnoremap <leader>fh :Grep!  %:p:h<S-Left><Left>
 nnoremap <leader>fp :Grep!  .<S-Left><Left>
@@ -49,20 +50,56 @@ nnoremap <leader>fd :Grep!  $HOME/dotfiles/<S-Left><Left>
 nnoremap <leader>fr :Grep!  $VIMRUNTIME<S-Left><Left>
 
 
-function! s:GrepOperatorCmdline(type)
+"
+" Below, the searched text is extracted from the current buffer,
+" so we want to search for litteral (fixed) strings.
+"
+
+function! s:GetLitteralFlag()
+  if &grepprg =~ "^grep"
+    let s:litteral_flag = "-F"
+  elseif &grepprg =~ "^ag"
+    let s:litteral_flag = "-Q"
+  endif
+endfunction
+call <SID>GetLitteralFlag()
+
+augroup GrepLitteralFlag
+  au!
+  autocmd OptionSet grepprg call <SID>GetLitteralFlag()
+augroup END
+
+function! s:GetGrepCmdLitteral(type)
   call setreg('"', GetSelection(a:type))
-  call feedkeys(":Grep! " . shellescape(getreg('"')) . " -Q ")
+  return 'Grep! ' . shellescape(getreg('"')) . ' ' . s:litteral_flag
 endfunction
 
-function! s:GrepOperatorExec(dir, type)
-  call setreg('"', GetSelection(a:type))
-  let l:cmd = "Grep! " . shellescape(getreg('"')) . " -Q " . a:dir
+function! s:GrepCmdline(type)
+  call feedkeys(':' . <SID>GetGrepCmdLitteral(a:type) . ' ')
+endfunction
+
+function! s:GrepExec(dir, type)
+  let l:cmd = <SID>GetGrepCmdLitteral(a:type) . ' ' . a:dir
   call histadd(':', l:cmd)
   execute l:cmd
   echo l:cmd
 endfunction
 
-" directories for which I want a mapping
+xnoremap <leader>ff :<c-u>call <SID>GrepExec('%', visualmode())<CR>
+xnoremap <leader>fh :<c-u>call <SID>GrepExec('%:p:h', visualmode())<CR>
+xnoremap <leader>fp :<c-u>call <SID>GrepExec('', visualmode())<CR>
+xnoremap <leader>fd :<c-u>call <SID>GrepExec('$HOME/dotfiles/', visualmode())<CR>
+xnoremap <leader>fr :<c-u>call <SID>GrepExec('$VIMRUNTIME', visualmode())<CR>
+
+nnoremap <leader>f: :set operatorfunc=<SID>GrepCmdline<cr>g@
+xnoremap <leader>f: :<c-u><C-R>=<SID>GetGrepCmdLitteral(visualmode())<CR><Space>
+
+
+"
+" Now, create the operator-pending mappings.
+"
+
+" directories for which there is a mapping
 let s:dirs = {
       \ 'buffer' : "%",
       \ 'here' : "%:p:h",
@@ -73,23 +110,15 @@ let s:dirs = {
 
 " create the partials functions to use as 'operatorfunc'
 for [s:key, s:val] in items(s:dirs)
-  exe ":func! s:GrepOperator_" . s:key . "(type)"
-    exe "call <SID>GrepOperatorExec('" . s:val . "', a:type)"
-  endfun
+  exe ":function! s:Grep_" . s:key . "(type)"
+    exe "call <SID>GrepExec('" . s:val . "', a:type)"
+  endfunction
 endfor
 
-nnoremap <leader>fF :set operatorfunc=<SID>GrepOperator_buffer<cr>g@
-nnoremap <leader>fH :set operatorfunc=<SID>GrepOperator_here<cr>g@
-nnoremap <leader>fP :set operatorfunc=<SID>GrepOperator_path<cr>g@
-nnoremap <leader>fD :set operatorfunc=<SID>GrepOperator_dotfiles<cr>g@
-nnoremap <leader>fR :set operatorfunc=<SID>GrepOperator_vimruntime<cr>g@
-nnoremap <leader>f: :set operatorfunc=<SID>GrepOperatorCmdline<cr>g@
-
-xnoremap <leader>ff :<c-u>call <SID>GrepOperatorExec('%', visualmode())<CR>
-xnoremap <leader>fh :<c-u>call <SID>GrepOperatorExec('%:p:h', visualmode())<CR>
-xnoremap <leader>fp :<c-u>call <SID>GrepOperatorExec('', visualmode())<CR>
-xnoremap <leader>fd :<c-u>call <SID>GrepOperatorExec('$HOME/dotfiles/', visualmode())<CR>
-xnoremap <leader>fr :<c-u>call <SID>GrepOperatorExec('$VIMRUNTIME', visualmode())<CR>
-xnoremap <leader>f: :<c-u>Grep! <C-R>=shellescape(GetVisualSelection())<CR> -Q<Space>
+nnoremap <leader>fF :set operatorfunc=<SID>Grep_buffer<cr>g@
+nnoremap <leader>fH :set operatorfunc=<SID>Grep_here<cr>g@
+nnoremap <leader>fP :set operatorfunc=<SID>Grep_path<cr>g@
+nnoremap <leader>fD :set operatorfunc=<SID>Grep_dotfiles<cr>g@
+nnoremap <leader>fR :set operatorfunc=<SID>Grep_vimruntime<cr>g@
 
 nnoremap <leader>R :<c-u>cdo s/\<<C-R>"\>
