@@ -1,0 +1,11 @@
+################################################################################
+# my snippets
+# defaults are at ~/.vim/bundle/vim-snippets/UltiSnips/vim.snippets
+# to reload ":call UltiSnips#RefreshSnippets()"
+################################################################################
+
+snippet func "function!" b
+function! ${1:function_name}()
+	${2:${VISUAL}}
+endfunction
+endsnippet
