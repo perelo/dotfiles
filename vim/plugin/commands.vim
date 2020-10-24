@@ -1,3 +1,6 @@
+"
+" see functions.vim for some function definitions
+"
 " write as sudo
 command! W execute 'silent! write !sudo tee % > /dev/null' | silent! edit!
 
@@ -16,6 +19,8 @@ endfunction
 
 command! -complete=buffer -bar -bang -nargs=* BD call BDelete('<bang>', <f-args>)
 cabbrev bd BD
+
+command! -nargs=+ -complete=customlist,CompleteNetrwListed DeleteNetrw bd <args>
 
 command! SynGroup call SynGroup()
 

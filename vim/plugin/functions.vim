@@ -53,28 +53,12 @@ function! SynGroup()
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfunction
 
-" Find and asks to delete active Netrw buffers
-function! DeleteNetrwActiveBrowsers()
-    let bs = filter(range(1,bufnr('$')), 'getbufvar(v:val, "netrw_browser_active")')
-    " for i in range(1, bufnr('$'))
-    let delbufs = []
-    for i in bs
-        let bname = bufname(i)
-        let choice = confirm('Delete buffer '.bname, "&Yes\n&No\n&All\n&Quit", 1)
-        if choice == 1
-            let delbufs += [i]
-        elseif choice == 3
-            let delbufs += bs[index(bs,i):]
-            break
-        elseif choice == 4
-            return
-        endif
-    endfor
-    if !empty(delbufs)
-        exe ":bdelete ".join(delbufs, ' ')
-    else
-        echo "No netrw buffers to delete."
-    endif
+function! CompleteNetrwListed(ArgLead, CmdLine, CursorPos)
+    return map(
+          \ filter(range(1,bufnr('$')),
+                  \ 'getbufvar(v:val, "netrw_browser_active") && ' .
+                  \ 'getbufvar(v:val, "&buflisted")')
+          \ , "bufname(v:val)")
 endfunction
 
 " Set the search register '@/' to the last or current visually selected text
