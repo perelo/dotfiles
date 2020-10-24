@@ -21,7 +21,11 @@ function! IsInGitRepo()
 endfunction
 
 function! GitRootDir(...) abort
-    let l:path = a:0 ? a:000[0] : '.'
+    let l:path = a:0 ? expand(a:000[0]) : '.'
+    let l:path = isdirectory(l:path) ? l:path : fnamemodify(l:path, ":h")
+    if !isdirectory(l:path)
+      return ''
+    endif
     let l:oldcwd = getcwd()
     execute "cd " . l:path
     let l:rootdir = system('git rev-parse --show-toplevel')
@@ -29,7 +33,7 @@ function! GitRootDir(...) abort
     if v:shell_error != 0
         return ''
     endif
-    return l:rootdir
+    return l:rootdir[:-2]
 endfunction
 
 " function! RegenerateTags() abort

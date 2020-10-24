@@ -46,6 +46,7 @@ cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ? 'L
 nnoremap <leader>ff :Grep!  %<S-Left><Left>
 nnoremap <leader>fh :Grep!  %:p:h<S-Left><Left>
 nnoremap <leader>fp :Grep!  .<S-Left><Left>
+nnoremap <leader>fg :Grep!  <C-R>=GitRootDir("%")<CR><S-Left><Left>
 nnoremap <leader>fd :Grep!  $HOME/dotfiles/<S-Left><Left>
 nnoremap <leader>fr :Grep!  $VIMRUNTIME<S-Left><Left>
 
@@ -88,6 +89,7 @@ endfunction
 xnoremap <leader>ff :<c-u>call <SID>GrepExec('%', visualmode())<CR>
 xnoremap <leader>fh :<c-u>call <SID>GrepExec('%:p:h', visualmode())<CR>
 xnoremap <leader>fp :<c-u>call <SID>GrepExec('', visualmode())<CR>
+xnoremap <leader>fg :<c-u>call <SID>GrepExec("'".GitRootDir('%')."'", visualmode())<CR>
 xnoremap <leader>fd :<c-u>call <SID>GrepExec('$HOME/dotfiles/', visualmode())<CR>
 xnoremap <leader>fr :<c-u>call <SID>GrepExec('$VIMRUNTIME', visualmode())<CR>
 
@@ -99,7 +101,7 @@ xnoremap <leader>f: :<c-u><C-R>=<SID>GetGrepCmdLitteral(visualmode())<CR><Space>
 " Now, create the operator-pending mappings.
 "
 
-" directories for which there is a mapping
+" static directories for which there is a mapping
 let s:dirs = {
       \ 'buffer' : "%",
       \ 'here' : "%:p:h",
@@ -114,10 +116,14 @@ for [s:key, s:val] in items(s:dirs)
     \   "call <SID>GrepExec('" . s:val . "', a:type) \n" .
     \ "endfunction"
 endfor
+function! s:Grep_gitdir(type)
+  call <SID>GrepExec("'" . GitRootDir("%") . "'", a:type)
+endfunction
 
 nnoremap <leader>fF :set operatorfunc=<SID>Grep_buffer<cr>g@
 nnoremap <leader>fH :set operatorfunc=<SID>Grep_here<cr>g@
 nnoremap <leader>fP :set operatorfunc=<SID>Grep_path<cr>g@
+nnoremap <leader>fG :set operatorfunc=<SID>Grep_gitdir<cr>g@
 nnoremap <leader>fD :set operatorfunc=<SID>Grep_dotfiles<cr>g@
 nnoremap <leader>fR :set operatorfunc=<SID>Grep_vimruntime<cr>g@
 
