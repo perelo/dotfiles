@@ -34,10 +34,6 @@
 " /home/eloi/.vim/autoload/plug.vim
 " }}}
 
-" Set comma as <leader> instead of default backslash
-let mapleader = ","
-" reassign ',' motion
-noremap ,, ,
 
 " Make Y behave like C and D
 nmap Y y$
@@ -82,7 +78,6 @@ nnoremap <silent> n n:call HLNext()<CR>
 nnoremap <silent> N N:call HLNext()<CR>
 
 " for more, look at tpope/rsi.vim
-cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
 " go _to_ paragraph (1 line less)

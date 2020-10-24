@@ -71,6 +71,10 @@ Plug 'file:///home/eloi/workspace/thesaurus_query.vim/'
 Plug 'Yggdroot/indentLine'
 call plug#end()
 
+" Set comma as <leader> instead of default backslash
+let mapleader = ","
+noremap ,, ,
+
 packadd! jumpy.vim
 if has('patch-8.1.0311')
   packadd! cfilter
@@ -81,6 +85,10 @@ if !has('nvim')
 endif
 
 packadd! azerty
+
+" disable default Vimball plugin
+let g:loaded_vimball = 1
+let g:loaded_vimballPlugin = 1
 
 let g:indentLine_char = '┆'
 let g:indentLine_bufTypeExclude = ['help', 'quickfix', 'nofile']
@@ -108,6 +116,7 @@ augroup END
 if has('syntax')
   syntax on
 endif
+so $VIM/plugin/statusline.vim
 
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
