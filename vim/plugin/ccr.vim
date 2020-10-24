@@ -33,6 +33,9 @@ function! CCR()
     elseif cmdline =~ '\C^undol'
         " like :undolist but prompts for a change to undo
         return "\<CR>:u "
+    elseif cmdline =~ '\k\+$'
+        " expand abbreviation
+        return "\<C-]>\<CR>"
     else
         return "\<CR>"
     endif
