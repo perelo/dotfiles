@@ -56,14 +56,9 @@ Plug 'natebosch/vim-lsc'
 Plug 'benmills/vimux'
 Plug 'jpalardy/vim-slime'
 
-" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-
-" Plug 'dense-analysis/ale'
-
-" Plug 'deoplete-plugins/deoplete-jedi'
-" Plug 'Shougo/deoplete.nvim'
-" Plug 'roxma/nvim-yarp'
-" Plug 'roxma/vim-hug-neovim-rpc'
+if has('nvim')
+  Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+endif
 
 " Plug 'perelo/thesaurus_query.vim'
 Plug 'file:///home/eloi/workspace/thesaurus_query.vim/'
