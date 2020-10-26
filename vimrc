@@ -45,6 +45,13 @@ Plug 'romainl/vim-qlist'
 Plug 'cespare/vim-toml'
 Plug 'AndrewRadev/splitjoin.vim'
 
+" Extend insert-completion, see plugin/ctrlx.vim
+Plug 'inkarkat/vim-ingo-library'
+Plug 'inkarkat/vim-CompleteHelper'
+Plug 'inkarkat/vim-WORDComplete'
+Plug '~/.vim/plugin/vim-LineComplete'   " script_id=4911
+Plug '~/.vim/plugin/vim-AlphaComplete'  " script_id=4912
+
 " Plug 'gibiansky/vim-latex-objects' " TODO% fix 'dam' when cursor in on '$'
 Plug 'file:///home/eloi/workspace/vim-latex-objects/'
 Plug 'coderifous/textobj-word-column.vim'
