@@ -28,7 +28,7 @@ alias egrep='egrep --color=auto'
 alias rm="rm -i"            # ask confirmation
 alias rename="rename -v"    # print names of files successfully renamed.
 
-alias vi="vim"
+alias vi="vi"
 alias vim="vim --servername $VIMD"
 alias nvim="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
 alias tmux="env TERM=screen-256color tmux -2" # force tmux 256 colors
@@ -36,9 +36,19 @@ alias tma="tmux attach-session -t"
 alias r="ranger"
 alias rmswp="rm */.*.swp"
 
-
 alias doci="docker image"
 alias docc="docker container"
+
+function amendpdf {
+    if [ ${PWD} = "/home/eloi/workspace/topocap/redac/" ]; then
+        rm -f chap-exact/chap-exact.pdf
+        make chap-exact
+        git add chap-exact/chap-exact.pdf
+        git ci --amend
+    else
+        echo "nothing to be done"
+    fi
+}
 
 function cheat {
     curl cheat.sh/$1

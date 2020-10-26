@@ -43,12 +43,12 @@ cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() ==# 'grep')  ? 'G
 cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ? 'LGrep' : 'lgrep'
 
 " grep lines in files from different directories
-nnoremap <leader>ff :Grep!  %<S-Left><Left>
-nnoremap <leader>fh :Grep!  %:p:h<S-Left><Left>
-nnoremap <leader>fp :Grep!  .<S-Left><Left>
-nnoremap <leader>fg :Grep!  <C-R>=GitRootDir("%")<CR><S-Left><Left>
-nnoremap <leader>fd :Grep!  $HOME/dotfiles/<S-Left><Left>
-nnoremap <leader>fr :Grep!  $VIMRUNTIME<S-Left><Left>
+nnoremap <leader>ff :LGrep!  %<S-Left><Left>
+nnoremap <leader>fh :LGrep!  %:p:h<S-Left><Left>
+nnoremap <leader>fp :LGrep!  .<S-Left><Left>
+nnoremap <leader>fg :LGrep!  <C-R>=GitRootDir("%")<CR><S-Left><Left>
+nnoremap <leader>fd :LGrep!  $HOME/dotfiles/<S-Left><Left>
+nnoremap <leader>fr :LGrep!  $VIMRUNTIME<S-Left><Left>
 
 
 "
@@ -72,7 +72,7 @@ augroup END
 
 function! s:GetGrepCmdLitteral(type)
   call setreg('"', GetSelection(a:type))
-  return 'Grep! ' . shellescape(getreg('"')) . ' ' . s:litteral_flag
+  return 'LGrep! ' . shellescape(getreg('"')) . ' ' . s:litteral_flag
 endfunction
 
 function! s:GrepCmdline(type)
@@ -128,3 +128,18 @@ nnoremap <leader>fD :set operatorfunc=<SID>Grep_dotfiles<cr>g@
 nnoremap <leader>fR :set operatorfunc=<SID>Grep_vimruntime<cr>g@
 
 nnoremap <leader>R :<c-u>cdo s/\<<C-R>"\>
+
+" Coool. You got some nice things in there!
+
+" Allow me to contribute.
+
+" * It seems we forgot about the `$*` placeholder in `:h grepprg`.
+
+" >The placeholder "$\*" is allowed to specify where the arguments will be included.
+
+"   The default `&grepprg` value on Unix is `grep -n $* /dev/null` so it might be good to support it. Maybe something like `substitute(&grepprg, '\(\$\*\|$\)', " " . l:params, "")`
+
+" * You forgot to document about your [folds](https://github.com/qalshidi/vim-bettergrep/blob/main/autoload/bettergrep.vim#L71-L73). They are pretty :)
+" * I wonder if the autocmds for the `qf` filetype belong in a grep plugin. I would rather integrate them with [vim-qf](https://github.com/romainl/vim-qf) which already have a subset of your `qf_mappings`.
+
+" You can check out my version of better grepping [here](https://github.com/perelo/dotfiles). It's mostly about mappings to search in different directories.

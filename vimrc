@@ -24,6 +24,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-eunuch'
+Plug 'moll/vim-bbye', { 'frozen':1, 'branch':'my-dev' }
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-dispatch'
@@ -65,6 +66,7 @@ Plug 'jpalardy/vim-slime'
 
 if has('nvim')
   Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 endif
 
 " Plug 'perelo/thesaurus_query.vim'
@@ -89,12 +91,12 @@ endif
 packadd! azerty
 
 " disable default Vimball plugin
-let g:loaded_vimball = 1
-let g:loaded_vimballPlugin = 1
+" let g:loaded_vimball = 1
+" let g:loaded_vimballPlugin = 1
 
 let g:indentLine_char = '┆'
 let g:indentLine_bufTypeExclude = ['help', 'quickfix', 'nofile']
-let g:indentLine_fileTypeExclude = [ 'help', 'text', 'tex', 'vim' ]
+let g:indentLine_fileTypeExclude = [ 'help', 'text', 'gitcommit', 'tex', 'vim']
 
 
 " Enable filetype detection and load plugin files

@@ -15,10 +15,6 @@ function! CCR()
     elseif cmdline =~ '\v\C^(cli|lli)'
         " like :clist or :llist but prompts for an error/location number
         return "\<CR>:sil " . repeat(cmdline[0], 2) . "\<Space>"
-    elseif cmdline =~ '\C^old'
-        " like :oldfiles but prompts for an old file to edit
-        set nomore
-        return "\<CR>:sil se more|e #<"
     elseif cmdline =~ '\C^changes'
         " like :changes but prompts for a change to jump to
         set nomore
@@ -33,8 +29,9 @@ function! CCR()
     elseif cmdline =~ '\C^undol'
         " like :undolist but prompts for a change to undo
         return "\<CR>:u "
-    elseif cmdline =~ '\k\+$'
-        " expand abbreviation
+    elseif cmdline =~ '^%\?\k\+$'
+        " expand abbreviation if we didn't had time to <space>
+        " /!\ if the abbreviated cmd can have ranges, it only works with %
         return "\<C-]>\<CR>"
     else
         return "\<CR>"

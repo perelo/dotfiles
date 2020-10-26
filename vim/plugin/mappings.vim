@@ -8,15 +8,17 @@
 " /home/eloi/.vim/plugin/PP.vim
 " /home/eloi/.vim/plugin/inchlsearch.vim
 " /home/eloi/.vim/plugin/ccr.vim
-" /home/eloi/.vim/plugin/xdg.vim
-" /home/eloi/.vim/plugin/grep.vim
 " /home/eloi/.vim/plugin/show-registers.vim
+" /home/eloi/.vim/plugin/grep.vim
 " /home/eloi/.vim/plugin/gitignore.vim
-" /home/eloi/.vim/after/plugin/qf.vim
-" /home/eloi/.vim/after/plugin/slime.vim
+" /home/eloi/.vim/plugin/xdg.vim
+" /home/eloi/.vim/plugin/ctrlx.vim
+" /home/eloi/.vim/plugin/cmdline_completion.vim
 " /home/eloi/.vim/after/plugin/easyalign.vim
-" /home/eloi/.vim/after/ftplugin/tex.vim
+" /home/eloi/.vim/after/plugin/slime.vim
+" /home/eloi/.vim/after/plugin/qf.vim
 " /home/eloi/.vim/after/plugin/fzf.vim
+" /home/eloi/.vim/after/ftplugin/tex.vim
 " /home/eloi/.vim/pack/testing/opt/azerty/plugin/azerty.vim
 " /home/eloi/.vim/ftplugin/qf.vim
 "
@@ -92,6 +94,11 @@ nnoremap <leader>a :<c-u>exe v:count ? v:count . 'b' : 'b' . (bufloaded(0) ? '#'
 nnoremap <leader><C-O> :call JumpToNextBufferInJumplist(-1)<CR>
 nnoremap <leader><C-I> :call JumpToNextBufferInJumplist( 1)<CR>
 
+" see also after/plugin/fzf.vim
+nnoremap <leader>eh :edit <C-R>=expand('%:p:h')<CR>/<C-D>
+nnoremap <leader>ep :edit <C-D>
+nnoremap <leader>ed :edit $HOME/dotfiles/<C-D>
+
 noremap <leader>z "=ZoteroCite()<CR>p
 inoremap <C-z> <C-r>=ZoteroCite()<CR>
 
@@ -100,7 +107,7 @@ nnoremap <leader>dx :redraw!<CR>
 
 nnoremap <leader>hv :vertical help<Space>
 nnoremap <leader>ht :tab help<Space>
-nnoremap <leader>hg :helpgrep<space>
+nnoremap <leader>hg :lhelpgrep<space>
 
 nnoremap <leader>vi :edit $MYVIMRC<CR>
 nnoremap <leader>rvi :source $MYVIMRC<CR>
@@ -116,6 +123,8 @@ endif
 nnoremap <leader>eh :edit <C-R>=expand('%:p:h')<CR>/<C-D>
 nnoremap <leader>ep :edit <C-D>
 nnoremap <leader>ed :edit $HOME/dotfiles/<C-D>
+nnoremap <leader>ev :edit $HOME/dotfiles/vim/<C-D>
+nnoremap <leader>er :edit $VIMRUNTIME<C-D>
 
 " (re)create tag file inside ':pwd' or in the current file's directory
 cabbrev sct !ctags -R
