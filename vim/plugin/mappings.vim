@@ -107,7 +107,7 @@ nnoremap <leader>hg :helpgrep<space>
 nnoremap <leader>vi :edit $MYVIMRC<CR>
 nnoremap <leader>rvi :source $MYVIMRC<CR>
 nnoremap <leader>rft :exe ':set filetype='.&filetype<CR>
-nnoremap <leader>ftd :filetype detect<CR>
+nnoremap <leader>dft :filetype detect<CR>
 
 if has('+diff')
     nnoremap <leader>dg :diffget<cr>
@@ -131,12 +131,6 @@ let b:make_clean = "Make clean"
 nnoremap <F1> :silent w <bar> execute b:make<CR><Esc>
 inoremap <F1> <Esc>:silent w <bar> execute b:make<CR><Esc>
 nnoremap <F5> :execute b:make_clean<CR><Esc>
-
-" buffer as in hexadecimal editor
-nmap <leader>x :%!xxd<CR>
-nmap <leader>X :%!xxd -r<CR>
-
-nnoremap <leader>dnw :call DeleteNetrwActiveBrowsers()<CR>
 
 " Move on lines as displayed (when wrapped)
 nmap j gj

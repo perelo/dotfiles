@@ -29,3 +29,7 @@ command! -bang CWindow cwindow |
       \ if '<bang>' == '!' && &ft == 'qf' | wincmd p | endif
 command! -bang LWindow lwindow |
       \ if '<bang>' == '!' && &ft == 'qf' | wincmd p | endif
+
+" buffer as in hexadecimal editor
+command! XXD %!xxd
+command! XXDReverse %!xxd -r
