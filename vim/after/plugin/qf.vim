@@ -4,7 +4,6 @@ endif
 let g:loaded_qf = 1
 
 let g:qf_mapping_ack_style = 1
-let g:qf_auto_resize = 0
 
 " unimpaired style, lose '&list' toogle
 nmap yoq <Plug>(qf_qf_toggle_stay)
