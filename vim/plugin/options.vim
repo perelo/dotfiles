@@ -146,6 +146,10 @@ if has('cursorshape')
     let &t_EI = "\<esc>[2 q"    " bloc cursor when back to normal
 endif
 
+" modify other key
+let &t_TI = "\<Esc>[>4;2m"
+let &t_TE = "\<Esc>[>4;m"
+
 " }}}
 " {{{ Saving, source takes ~3ms for each next paragraph
 

@@ -14,6 +14,7 @@
 " Dependencies :
 "   * CWindow and LWindow in commands.vim
 "   * GetVisualSelection() and GetSelection() in functions.vim
+"   * global variable g:my_dirs in ../../vimrc
 "
 " TODO :
 "   * support vim-qf's 'Doline' insead of 'cdo'

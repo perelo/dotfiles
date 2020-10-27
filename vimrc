@@ -46,6 +46,7 @@ Plug 'junegunn/fzf.vim'
 
 " file-related
 Plug 'tpope/vim-vinegar'
+" Plug 'moll/vim-bbye'
 Plug 'ap/vim-buftabline'
 
 " lsp-related

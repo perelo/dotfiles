@@ -3,7 +3,7 @@ setlocal softtabstop=2
 setlocal shiftwidth=2
 setlocal textwidth=79
 setlocal spell
-setlocal complete+=s " search also in 'thesaurus' file when <C-n>/<C-p>
+" setlocal complete+=s " search also in 'thesaurus' file when <C-n>/<C-p>
 setlocal thesaurus=$VIM/thesaurus/fr1.txt
 setlocal conceallevel=0
 setlocal wildignore+=*.aux,*.log,*.bbl,*.blg,*.synctex.gz,*.pdf
@@ -12,10 +12,10 @@ setlocal iskeyword+=-       " composed-words
 setlocal foldenable
 setlocal foldmethod=expr
 setlocal foldexpr=TeXFold(v:lnum) " see $VIM/plugin/functions.vim
-setlocal foldlevelstart=2         " fold sections on start
+" setlocal foldlevelstart=2         " fold sections on start
 
 " test without numbers
-setlocal nonumber
+" setlocal nonumber
 
 syntax spell toplevel             " spellcheck everywhere
 

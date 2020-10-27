@@ -36,9 +36,19 @@ alias tma="tmux attach-session -t"
 alias r="ranger"
 alias rmswp="rm */.*.swp"
 
-
 alias doci="docker image"
 alias docc="docker container"
+
+function amendpdf {
+    if [ ${PWD} = "/home/eloi/workspace/topocap/redac/" ]; then
+        rm -f chap-exact/chap-exact.pdf
+        make chap-exact
+        git add chap-exact/chap-exact.pdf
+        git ci --amend
+    else
+        echo "nothing to be done"
+    fi
+}
 
 function cheat {
     curl cheat.sh/$1
