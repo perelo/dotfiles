@@ -8,15 +8,17 @@
 " /home/eloi/.vim/plugin/PP.vim
 " /home/eloi/.vim/plugin/inchlsearch.vim
 " /home/eloi/.vim/plugin/ccr.vim
-" /home/eloi/.vim/plugin/xdg.vim
-" /home/eloi/.vim/plugin/grep.vim
 " /home/eloi/.vim/plugin/show-registers.vim
+" /home/eloi/.vim/plugin/grep.vim
 " /home/eloi/.vim/plugin/gitignore.vim
-" /home/eloi/.vim/after/plugin/qf.vim
-" /home/eloi/.vim/after/plugin/slime.vim
+" /home/eloi/.vim/plugin/xdg.vim
+" /home/eloi/.vim/plugin/ctrlx.vim
+" /home/eloi/.vim/plugin/cmdline_completion.vim
 " /home/eloi/.vim/after/plugin/easyalign.vim
-" /home/eloi/.vim/after/ftplugin/tex.vim
+" /home/eloi/.vim/after/plugin/slime.vim
+" /home/eloi/.vim/after/plugin/qf.vim
 " /home/eloi/.vim/after/plugin/fzf.vim
+" /home/eloi/.vim/after/ftplugin/tex.vim
 " /home/eloi/.vim/pack/testing/opt/azerty/plugin/azerty.vim
 " /home/eloi/.vim/ftplugin/qf.vim
 "

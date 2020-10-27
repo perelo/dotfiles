@@ -9,29 +9,21 @@ let g:fzf_action = {
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
 
-" TODO autoload IsInGitRepo(), sourcing this loses 4ms on startuptime
-let g:in_git_repo = IsInGitRepo()
-if exists("##DirChanged")
-    augroup UpdateGitRepoVariable
-        au!
-        autocmd DirChanged * let g:in_git_repo = IsInGitRepo()
-    augroup END
-endif
-
-" if update, also check mappings.vim
+" if update, also check ../../plugin/mappings.vim and ../../plugin/grep.vim
+nnoremap <leader>ee :execute 'Files <C-R>=expand('%:p')<CR>'<CR>
 nnoremap <leader>eh :execute 'Files <C-R>=expand('%:p:h')<CR>'<CR>
 nnoremap <leader>ep :execute 'Files <C-R>=getcwd()<CR>'<CR>
-nnoremap <leader>eg :execute (g:in_git_repo ? 'G' : '').'Files '<CR>
+nnoremap <leader>eg :call fzf#vim#gitfiles('', {'dir' : GitRootDir('%')})<CR>
 nnoremap <leader>ed :Files $HOME/dotfiles<CR>
+nnoremap <leader>er :Files $VIMRUNTIME<CR>
+
 nnoremap <leader>ew :Files $HOME/workspace<CR>
 
-nnoremap <leader>er :Files $VIMRUNTIME<CR>
 nnoremap <leader>eb :Buffer<CR>
-nnoremap <leader>et :Tags<CR>
-nnoremap <leader>eh :History<CR>
-nnoremap <leader>e: :History:<CR>
+nnoremap <leader>eo :History<CR>
 
-" override <leader>hh in plugin/mappings.vim
+nnoremap <leader>et :Tags<CR>
+nnoremap <leader>e: :History:<CR>
 nnoremap <leader>hh :Helptags<CR>
 
 " " spell replacement with <leader>z=

@@ -15,11 +15,6 @@ function! JumpToNextBufferInJumplist(dir) " 1=forward, -1=backward
     endfor
 endfunction
 
-function! IsInGitRepo()
-    call system('git rev-parse --git-dir > /dev/null 2>&1')
-    return v:shell_error == 0
-endfunction
-
 function! GitRootDir(...) abort
     let l:path = a:0 ? expand(a:000[0]) : '.'
     let l:path = isdirectory(l:path) ? l:path : fnamemodify(l:path, ":h")
