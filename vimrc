@@ -47,14 +47,13 @@ Plug 'cespare/vim-toml'
 Plug 'AndrewRadev/splitjoin.vim'
 
 " Extend insert-completion, see plugin/ctrlx.vim
+" see also AlphaCompelte and LineComplete below
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-CompleteHelper'
 Plug 'inkarkat/vim-WORDComplete'
-Plug '~/.vim/plugin/vim-LineComplete'   " script_id=4911
-Plug '~/.vim/plugin/vim-AlphaComplete'  " script_id=4912
 
 " Plug 'gibiansky/vim-latex-objects' " TODO% fix 'dam' when cursor in on '$'
-Plug 'file:///home/eloi/workspace/vim-latex-objects/'
+Plug 'perelo/vim-latex-objects', { 'branch':'testing' }
 Plug 'coderifous/textobj-word-column.vim'
 " Plug 'Konfekt/vim-sentence-chopper'
 Plug 'perelo/vim-sentence-chopper'
@@ -85,6 +84,10 @@ endif
 if !has('nvim')
     packadd matchit
 endif
+
+packadd! AlphaComplete
+packadd! LineComplete
+packadd! SwapText
 
 packadd! azerty
 

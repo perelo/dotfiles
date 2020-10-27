@@ -1,0 +1,1 @@
+SwapText-1.02.vmb: call delete('/home/eloi/.vim/pack/vimball/opt/SwapText/autoload/SwapText.vim')|call delete('/home/eloi/.vim/pack/vimball/opt/SwapText/plugin/SwapText.vim')|call delete('/home/eloi/.vim/pack/vimball/opt/SwapText/doc/SwapText.txt')
