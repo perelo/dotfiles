@@ -1,0 +1,25 @@
+Host ens
+    User perdereau.e
+    Hostname ens1.luminy.univmed.fr
+    IdentityFile ~/.ssh/lis_rsa
+
+Host sas
+    User perdereau.e
+    Hostname sas.luminy.univ-amu.fr
+    Port 8012
+    IdentityFile ~/.ssh/lis_rsa
+
+Host lis
+    User eloi.perdereau
+    Hostname saphir2.lis-lab.fr
+    IdentityFile ~/.ssh/lis_rsa
+
+Host gitlab-lis
+    Hostname gitlab.lis-lab.fr
+    IdentityFile ~/.ssh/lis_rsa
+    IdentitiesOnly yes
+
+Host github
+    Hostname github.com
+    IdentityFile ~/.ssh/perso_rsa
+    IdentitiesOnly yes
