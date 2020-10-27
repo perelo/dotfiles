@@ -64,7 +64,7 @@ Plug 'benmills/vimux'
 Plug 'jpalardy/vim-slime'
 
 if has('nvim')
-  Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 endif
 
 " Plug 'perelo/thesaurus_query.vim'
