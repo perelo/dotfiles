@@ -94,7 +94,7 @@ let g:loaded_vimballPlugin = 1
 
 let g:indentLine_char = '┆'
 let g:indentLine_bufTypeExclude = ['help', 'quickfix', 'nofile']
-let g:indentLine_fileTypeExclude = [ 'help', 'text', 'tex', 'vim' ]
+let g:indentLine_fileTypeExclude = [ 'help', 'text', 'gitcommit', 'tex', 'vim']
 
 
 " Enable filetype detection and load plugin files
