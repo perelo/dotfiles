@@ -111,6 +111,20 @@ augroup TargetDollar
       \ })
 augroup END
 
+" static directories which are interesting to me.
+" see plugin/mappings.vim, plugin/grep.vim, after/plugin/fzf.vim
+let g:my_dirs = {
+      \ 'buffer' : "'%'",
+      \ 'here' : "'%:p:h'",
+      \ 'path' : "'.'",
+      \ 'gitdir' : "GitRootDir('%')",
+      \ 'dotfiles' : "'$HOME/dotfiles'",
+      \ 'workspace' : "'$HOME/workspace'",
+      \ 'vimfiles' : "'$VIM'",
+      \ 'runtime' : "'$VIMRUNTIME'",
+      \ }
+
+
 " =============================================================================
 " Appearance
 " =============================================================================

@@ -114,10 +114,14 @@ if has('+diff')
     nnoremap <leader>dp :diffput<cr>
 endif
 
-" see also after/plugin/fzf.vim
-nnoremap <leader>eh :edit <C-R>=expand('%:p:h')<CR>/<C-D>
-nnoremap <leader>ep :edit <C-D>
-nnoremap <leader>ed :edit $HOME/dotfiles/<C-D>
+" open file from directories in g:my_dirs, see $HOME/.vimrc
+let s:dirs_to_search = copy(g:my_dirs)
+call remove(s:dirs_to_search, 'buffer')  " % is not a directory, use <leader>p
+let s:dirname2char = map(copy(s:dirs_to_search), 'v:key[0]')
+for [dirname, dir] in items(s:dirs_to_search)
+  exe 'nnoremap <leader>e' . s:dirname2char[dirname] . ' ' .
+    \ ':<c-u>edit <C-R>=expand(' . dir . ')<CR>/<C-D>'
+endfor
 
 " (re)create tag file inside ':pwd' or in the current file's directory
 cabbrev sct !ctags -R

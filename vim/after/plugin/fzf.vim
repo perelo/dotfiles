@@ -9,15 +9,19 @@ let g:fzf_action = {
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
 
-" if update, also check ../../plugin/mappings.vim and ../../plugin/grep.vim
-nnoremap <leader>ee :execute 'Files <C-R>=expand('%:p')<CR>'<CR>
-nnoremap <leader>eh :execute 'Files <C-R>=expand('%:p:h')<CR>'<CR>
-nnoremap <leader>ep :execute 'Files <C-R>=getcwd()<CR>'<CR>
-nnoremap <leader>eg :call fzf#vim#gitfiles('', {'dir' : GitRootDir('%')})<CR>
-nnoremap <leader>ed :Files $HOME/dotfiles<CR>
-nnoremap <leader>er :Files $VIMRUNTIME<CR>
 
-nnoremap <leader>ew :Files $HOME/workspace<CR>
+" open file from directories in g:my_dirs, see $HOME/.vimrc
+" it should reflect $HOME/.vim/plugin/mappings.vim <leader>e mappings
+let s:dirs_to_search = copy(g:my_dirs)
+call remove(s:dirs_to_search, 'buffer')  " % is not a directory, use <leader>p
+let s:dirname2char = map(copy(s:dirs_to_search), 'v:key[0]')
+for [dirname, dir] in items(s:dirs_to_search)
+  exe 'nnoremap <leader>e' . s:dirname2char[dirname] . ' ' .
+    \ ':<c-u>Files <C-R>=' . dir . '<CR><CR>'
+endfor
+
+" remap <leader>eg to GFiles on the right root
+nnoremap <leader>eg :call fzf#vim#gitfiles('', {'dir' : GitRootDir('%')})<CR>
 
 nnoremap <leader>eb :Buffer<CR>
 nnoremap <leader>eo :History<CR>
