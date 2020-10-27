@@ -2,6 +2,9 @@
 
 " set a prompt ready to jump after list-like commands 
 function! CCR()
+    if getcmdtype() != ':'
+      return "\<CR>"
+    endif
     let cmdline = getcmdline()
     if cmdline =~ '\v\C^(ls|files|buffers)'
         " like :ls but prompts for a buffer command
@@ -15,10 +18,6 @@ function! CCR()
     elseif cmdline =~ '\v\C^(cli|lli)'
         " like :clist or :llist but prompts for an error/location number
         return "\<CR>:sil " . repeat(cmdline[0], 2) . "\<Space>"
-    elseif cmdline =~ '\C^old'
-        " like :oldfiles but prompts for an old file to edit
-        set nomore
-        return "\<CR>:sil se more|e #<"
     elseif cmdline =~ '\C^changes'
         " like :changes but prompts for a change to jump to
         set nomore
