@@ -120,12 +120,6 @@ set timeoutlen=4000
 " keep cursor on the same column after <C-d>,<C-u>, G, H, L, gg, etc.
 set nostartofline
 
-" netrw buffers
-let g:netrw_fastbrowse = 0
-let g:netrw_liststyle = 1     " like ls
-let g:netrw_hide = 1
-let g:netrw_altfile = 1       " keep the alternate buffer !
-
 " }}}
 " {{{ Displays
 
