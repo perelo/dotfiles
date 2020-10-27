@@ -30,6 +30,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'junegunn/vim-easy-align'
 Plug 'ap/vim-buftabline'
 Plug 'wellle/targets.vim'
+Plug 'arp242/jumpy.vim'
 " Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 Plug 'SirVer/ultisnips'
@@ -77,7 +78,6 @@ call plug#end()
 let mapleader = ","
 noremap ,, ,
 
-packadd! jumpy.vim
 if has('patch-8.1.0311')
   packadd! cfilter
 endif
