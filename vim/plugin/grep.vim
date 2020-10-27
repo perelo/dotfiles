@@ -89,7 +89,7 @@ endfunction
 xnoremap <leader>ff :<c-u>call <SID>GrepExec('%', visualmode())<CR>
 xnoremap <leader>fh :<c-u>call <SID>GrepExec('%:p:h', visualmode())<CR>
 xnoremap <leader>fp :<c-u>call <SID>GrepExec('', visualmode())<CR>
-xnoremap <leader>fg :<c-u>call <SID>GrepExec("'".GitRootDir('%')."'", visualmode())<CR>
+xnoremap <leader>fg :<c-u>call <SID>GrepExec(GitRootDir('%'), visualmode())<CR>
 xnoremap <leader>fd :<c-u>call <SID>GrepExec('$HOME/dotfiles/', visualmode())<CR>
 xnoremap <leader>fr :<c-u>call <SID>GrepExec('$VIMRUNTIME', visualmode())<CR>
 
@@ -103,22 +103,20 @@ xnoremap <leader>f: :<c-u><C-R>=<SID>GetGrepCmdLitteral(visualmode())<CR><Space>
 
 " static directories for which there is a mapping
 let s:dirs = {
-      \ 'buffer' : "%",
-      \ 'here' : "%:p:h",
-      \ "path" : ".",
-      \ "dotfiles" : "$HOME/dotfiles/",
-      \ "vimruntime" : "$VIMRUNTIME",
+      \ 'buffer' : "'%'",
+      \ 'here' : "'%:p:h'",
+      \ 'path' : "getcwd()",
+      \ 'gitdir' : "GitRootDir('%')",
+      \ 'dotfiles' : "'$HOME/dotfiles/'",
+      \ 'vimruntime' : "'$VIMRUNTIME'",
       \ }
 
 " create the partials functions to use as 'operatorfunc'
 for [s:key, s:val] in items(s:dirs)
   exe ":function! s:Grep_" . s:key . "(type) \n" .
-    \   "call <SID>GrepExec('" . s:val . "', a:type) \n" .
+    \   "call <SID>GrepExec(" . s:val . ", a:type) \n" .
     \ "endfunction"
 endfor
-function! s:Grep_gitdir(type)
-  call <SID>GrepExec("'" . GitRootDir("%") . "'", a:type)
-endfunction
 
 nnoremap <leader>fF :set operatorfunc=<SID>Grep_buffer<cr>g@
 nnoremap <leader>fH :set operatorfunc=<SID>Grep_here<cr>g@
