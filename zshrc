@@ -30,7 +30,7 @@ alias rename="rename -v"    # print names of files successfully renamed.
 
 alias vi="vim"
 alias vim="vim --servername $VIMD"
-alias nvim="nvim /tmp/nvimsocket"
+alias nvim="nvim --listen /tmp/nvimsocket"
 alias tmux="env TERM=screen-256color tmux -2" # force tmux 256 colors
 alias tma="tmux attach-session -t"
 alias r="ranger"

@@ -114,4 +114,6 @@ fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+[ -d ~/.local/bin ] && PATH=~/.local/bin/:$PATH
+
 source /home/eloi/.config/broot/launcher/bash/br
