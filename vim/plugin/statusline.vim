@@ -47,7 +47,11 @@ endfunction
 
 function! s:RefreshStatusLine()
   for n in range(1, winnr('$'))
-    call setwinvar(n, '&statusline', '%!StatusLine(' . n . ')')
+    " let vim-qf do its job on quickfix windows.
+    " see ../after/plugin/qf.vim for config
+    if ! exists('g:loaded_qf') || getwinvar(n, '&filetype') != 'qf'
+      call setwinvar(n, '&statusline', '%!StatusLine(' . n . ')')
+    endif
   endfor
 endfunction
 

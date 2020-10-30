@@ -19,7 +19,7 @@
 " TODO :
 "   * support vim-qf's 'Doline' insead of 'cdo'
 "   * add git-grep, rg support ?
-"   * add guards to check version. It should be at most 8.0, maybe 7.4
+"   * add guards to check version. maybe 7.4.2200 because of title setting
 "   * maybe inject `setreg('"', ...)` into Grep directly. It would be more
 "     consistent with the moments where ':Grep ...' is not pre-filled with an
 "     operator-pending or visual mapping.
@@ -34,11 +34,12 @@ function! s:Grep(...)
   " construct the parameters to pass to &grepprg and
   " insert them in the &grepprg : either in the placeholder $* or at the end
   let l:params = join([ a:000[0] ] + map(a:000[1:-1], "expand(v:val)"), " ")
-  return system(substitute(&grepprg, '\(\$\*\|$\)', " " . l:params, ""))
+  let s:cmd = substitute(&grepprg, '\(\$\*\|$\)', " " . l:params, "")
+  return system(s:cmd)
 endfunction
 
-command! -nargs=+ -complete=file_in_path -bar -bang Grep  cgetexpr <SID>Grep(<f-args>) | CWindow<bang>
-command! -nargs=+ -complete=file_in_path -bar -bang LGrep lgetexpr <SID>Grep(<f-args>) | LWindow<bang>
+command! -nargs=+ -complete=file_in_path -bar -bang Grep  cgetexpr <SID>Grep(<f-args>) | CWindow<bang> | call setqflist([], 'a', {'title': ' ' . s:cmd})
+command! -nargs=+ -complete=file_in_path -bar -bang LGrep lgetexpr <SID>Grep(<f-args>) | LWindow<bang> | call setloclist(0, [], 'a', {'title': ' ' . s:cmd})
 
 cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() ==# 'grep')  ? 'Grep'  : 'grep'
 cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ? 'LGrep' : 'lgrep'
@@ -66,7 +67,7 @@ augroup END
 
 function! s:GetGrepCmdLitteral(type)
   call setreg('"', GetSelection(a:type))
-  return s:grep . ' ' . shellescape(getreg('"')) . ' ' . s:litteral_flag
+  return s:grep . ' ' . s:litteral_flag . ' ' . shellescape(getreg('"'))
 endfunction
 
 function! s:GrepCmdline(type)
@@ -78,7 +79,6 @@ function! s:GrepExec(dir, type)
   call histadd(':', l:cmd)
   echo l:cmd
   execute l:cmd
-  echo l:cmd
 endfunction
 
 

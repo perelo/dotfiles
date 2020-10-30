@@ -25,9 +25,9 @@ command! -nargs=+ -complete=customlist,CompleteNetrwListed DeleteNetrw bd <args>
 command! SynGroup call SynGroup()
 
 " keep the cursor in the current buffer after :cwindow and :lwindow
-command! -bang CWindow cwindow |
+command! -bar -bang CWindow cwindow |
       \ if '<bang>' == '!' && &ft == 'qf' | wincmd p | endif
-command! -bang LWindow lwindow |
+command! -bar -bang LWindow lwindow |
       \ if '<bang>' == '!' && &ft == 'qf' | wincmd p | endif
 
 " buffer as in hexadecimal editor
