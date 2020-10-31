@@ -60,10 +60,12 @@ function! s:GetLitteralFlag()
 endfunction
 call <SID>GetLitteralFlag()
 
-augroup GrepLitteralFlag
-  au!
-  autocmd OptionSet grepprg call <SID>GetLitteralFlag()
-augroup END
+if exists('#OptionSet')
+  augroup GrepLitteralFlag
+    au!
+    autocmd OptionSet grepprg call <SID>GetLitteralFlag()
+  augroup END
+endif
 
 function! s:GetGrepCmdLitteral(type)
   call setreg('"', GetSelection(a:type))

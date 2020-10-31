@@ -128,10 +128,12 @@ set wrap
 
 if has('linebreak')
   set showbreak=↪               " put this at the start of wrapped lines
-  set breakindent               " wrap are indented as the line wrapped
   " set linebreak                 " wrap words
 endif
 
+if has('&breakindent')
+  set breakindent               " wrap are indented as the line wrapped
+endif
 
 " Highlight overlength columns
 if exists('+colorcolumn')
@@ -141,14 +143,18 @@ if exists('+colorcolumn')
 endif
 
 if has('cursorshape')
-    let &t_SI = "\<esc>[5 q"    " | cursor in insert mode
+  let &t_SI = "\<esc>[5 q"    " | cursor in insert mode
+  let &t_EI = "\<esc>[2 q"    " bloc cursor when back to normal
+  if has('patch-7.4.687')
     let &t_SR = "\<esc>[5 q"    " | cursor in replace mode
-    let &t_EI = "\<esc>[2 q"    " bloc cursor when back to normal
+  endif
 endif
 
-" modify other key
-let &t_TI = "\<Esc>[>4;2m"
-let &t_TE = "\<Esc>[>4;m"
+if has('patch-8.1.2144')
+  " modify other key
+  let &t_TI = "\<Esc>[>4;2m"
+  let &t_TE = "\<Esc>[>4;m"
+endif
 
 " }}}
 " {{{ Saving, source takes ~3ms for each next paragraph

@@ -36,9 +36,11 @@ Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-CompleteHelper'
 Plug 'inkarkat/vim-WORDComplete'
 
-" snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+if has('+python3')
+  " snippets
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+endif
 
 " fuzzy
 Plug 'file:///home/eloi/dotfiles/fzf/'
@@ -49,8 +51,10 @@ Plug 'tpope/vim-vinegar'
 " Plug 'moll/vim-bbye'
 Plug 'ap/vim-buftabline'
 
-" lsp-related
-Plug 'natebosch/vim-lsc'
+if v:version >= 800
+  " lsp-related
+  Plug 'natebosch/vim-lsc'
+endif
 
 " out-of-vim related
 Plug 'tpope/vim-eunuch'
@@ -63,28 +67,29 @@ endif
 
 call plug#end()
 
-" vimball plugins
-packadd! AlphaComplete    " https://www.vim.org/scripts/script.php?script_id=4912
-packadd! LineComplete     " https://www.vim.org/scripts/script.php?script_id=4911
-packadd! SwapText         " https://www.vim.org/scripts/script.php?script_id=4971
+if has('+packages')
+  " vimball plugins
+  packadd! AlphaComplete    " https://www.vim.org/scripts/script.php?script_id=4912
+  packadd! LineComplete     " https://www.vim.org/scripts/script.php?script_id=4911
+  packadd! SwapText         " https://www.vim.org/scripts/script.php?script_id=4971
 
-" my plugin
-packadd! azerty
+  " my plugin
+  packadd! azerty
 
-" contributing
-packadd! thesaurus_query.vim
-packadd! vim-latex-objects
-packadd! vim-sentence-chopper
+  " contributing
+  packadd! thesaurus_query.vim
+  packadd! vim-latex-objects
+  packadd! vim-sentence-chopper
 
 
-
-" default plugins
-if has('patch-8.1.0311')
-  packadd! cfilter
-endif
-if !has('nvim')
-    packadd! matchit
-endif
+  " default plugins
+  if has('patch-8.1.0311')
+    packadd! cfilter
+  endif
+  if !has('nvim')
+      packadd! matchit
+  endif
+endif " has('+packages')
 
 " disable default Vimball plugin
 let g:loaded_vimball = 1
