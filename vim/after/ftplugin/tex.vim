@@ -8,10 +8,12 @@ setlocal thesaurus=$VIM/thesaurus/fr1.txt
 setlocal conceallevel=0
 setlocal wildignore+=*.aux,*.log,*.bbl,*.blg,*.synctex.gz,*.pdf
 setlocal iskeyword+=-       " composed-words
+setlocal suffixesadd+=.cls
 
 setlocal foldenable
 setlocal foldmethod=expr
 setlocal foldexpr=TeXFold(v:lnum) " see $VIM/plugin/functions.vim
+setlocal foldopen-=block          " don't open fold on }-like commands
 " setlocal foldlevelstart=2         " fold sections on start
 
 " test without numbers
