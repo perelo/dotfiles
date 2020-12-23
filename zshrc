@@ -25,6 +25,7 @@ alias lla='ls -als'
 alias grep='grep --color=auto -i'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias ip='ip -c'
 alias rm="rm -i"            # ask confirmation
 alias rename="rename -v"    # print names of files successfully renamed.
 
