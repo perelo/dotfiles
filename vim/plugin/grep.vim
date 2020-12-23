@@ -45,7 +45,7 @@ cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() ==# 'grep')  ? 'G
 cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ? 'LGrep' : 'lgrep'
 
 " which :Grep version to use for mappings
-let s:grep = 'Grep!'
+let s:grep = 'LGrep!'
 
 "
 " Functions to search text extracted from the current buffer,
