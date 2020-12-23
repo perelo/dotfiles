@@ -16,10 +16,16 @@ if [ -d "/usr/local/texlive/2020/bin/x86_64-linux/" ] ; then
     PATH=/usr/local/texlive/2020/bin/x86_64-linux/:$PATH
 fi
 
-export PATH="/home/eloi/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if command -v pyenv &> /dev/null
+then
+    export PATH="/home/eloi/.pyenv/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 
-export PATH="/home/eloi/.gem/bin:$PATH"
-export PATH="/home/eloi/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+if command -v rbenv &> /dev/null
+then
+    export PATH="/home/eloi/.gem/bin:$PATH"
+    export PATH="/home/eloi/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
