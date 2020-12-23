@@ -36,6 +36,10 @@ Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-CompleteHelper'
 Plug 'inkarkat/vim-WORDComplete'
 
+" syntax files
+Plug 'cespare/vim-toml'
+Plug 'tpope/vim-liquid'
+
 " snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
