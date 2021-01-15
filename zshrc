@@ -91,4 +91,4 @@ unset GREP_OPTIONS
 [ -f /opt/textidote/textidote.zsh ] && source /opt/textidote/textidote.zsh
 
 # The next line updates PATH for Netlify's Git Credential Helper.
-if [ -f '/home/eloi/.netlify/helper/path.zsh.inc' ]; then source '/home/eloi/.netlify/helper/path.zsh.inc'; fi
+if [ -f '$HOME/.netlify/helper/path.zsh.inc' ]; then source '$HOME/.netlify/helper/path.zsh.inc'; fi

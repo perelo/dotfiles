@@ -18,14 +18,14 @@ fi
 
 if command -v pyenv &> /dev/null
 then
-    export PATH="/home/eloi/.pyenv/bin:$PATH"
+    export PATH="$HOME/.pyenv/bin:$PATH"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 fi
 
 if command -v rbenv &> /dev/null
 then
-    export PATH="/home/eloi/.gem/bin:$PATH"
-    export PATH="/home/eloi/.rbenv/bin:$PATH"
+    export PATH="$HOME/.gem/bin:$PATH"
+    export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init -)"
 fi

@@ -116,4 +116,4 @@ fi
 
 [ -d ~/.local/bin ] && PATH=~/.local/bin/:$PATH
 
-source /home/eloi/.config/broot/launcher/bash/br
+source $HOME/.config/broot/launcher/bash/br
