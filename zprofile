@@ -12,8 +12,8 @@ if [ -d "/usr/local/go/bin/" ] ; then
     PATH=/usr/local/go/bin:$PATH
 fi
 
-if [ -d "/usr/local/texlive/2020/bin/x86_64-linux/" ] ; then
-    PATH=/usr/local/texlive/2020/bin/x86_64-linux/:$PATH
+if [ -d "$HOME/.local/texlive/2020/bin/x86_64-linux/" ] ; then
+    PATH=~/.local/texlive/2020/bin/x86_64-linux/:$PATH
 fi
 
 if command -v pyenv &> /dev/null
