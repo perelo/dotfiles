@@ -1,9 +1,9 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-EDITOR=nvim
-VISUAL=$DITOR
-MANPAGER="nvim -c 'set ft=man' -"
+EDITOR=vim
+VISUAL=$EDITOR
+MANPAGER="less"
 export EDITOR VISUAL MANPAGER
 
 # Enable Ctrl-f to edit command line
@@ -20,8 +20,9 @@ fi
 
 VIMD=vimd
 alias ls="ls --color=auto"
-alias ll='ls -ls --color=auto'
-alias lla='ls -als'
+alias ll='ls -lsh --color=auto'
+alias lla='ls -alsh --color=auto'
+alias lls='ls -lshS --color=auto'
 alias grep='grep --color=auto -i'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
