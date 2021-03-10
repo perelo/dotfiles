@@ -7,3 +7,6 @@
 [submodule "vim/plugin/flash.vim"]
 	path = vim/plugin/flash.vim
 	url = git@gist.github.com:f4ea457af5e6a69dfa5d81c602381f75.git
+[submodule "config/i3/i3scripts"]
+	path = config/i3/i3scripts
+	url = https://github.com/justbuchanan/i3scripts

@@ -147,10 +147,10 @@ bindsym $mod+Down  move workspace to output down
 bindsym $mod+Up    move workspace to output up
 bindsym $mod+Right move workspace to output right
 
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+# # Pulse Audio controls
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
@@ -228,9 +228,12 @@ bar {
     tray_output None
     mode invisible
 }
+exec_always --no-startup-id "gnome-flashback"
 exec_always --no-startup-id "killall polybar; polybar -r default"
+exec_always --no-startup-id "~/.config/i3/i3scripts/autoname_workspaces.py"
+exec_always --no-startup-id "redshift -l 43.2965:5.3698"
 # execute a tmux session (no.8) and launch scripts
-exec_always --no-startup-id "tmux new-session -d -s 8 'source .zprofile;~/.config/i3/autoname_workspaces.py;read' \; split-window -d 'redshift -l 43.2965:5.3698;read' \; select-layout even-horizontal"
+# exec_always --no-startup-id "tmux new-session -d -s 8 'source .zprofile;~/.config/i3/i3scripts/autoname_workspaces.py;read' \; split-window -d 'redshift -l 43.2965:5.3698;read' \; select-layout even-horizontal"
 
 # start a terminal with tmux & without menubar
 bindsym $mod+Return exec gnome-terminal --hide-menubar -e "tmux -2"
