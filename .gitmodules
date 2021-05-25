@@ -6,7 +6,16 @@
 	url = https://github.com/chriskempson/base16-shell
 [submodule "vim/plugin/flash.vim"]
 	path = vim/plugin/flash.vim
-	url = git@gist.github.com:f4ea457af5e6a69dfa5d81c602381f75.git
+	url = https://gist.github.com/perelo/f4ea457af5e6a69dfa5d81c602381f75
 [submodule "config/i3/i3scripts"]
 	path = config/i3/i3scripts
-	url = https://github.com/justbuchanan/i3scripts
+	url = https://github.com/perelo/i3scripts
+[submodule "vim/pack/testing/opt/thesaurus_query.vim"]
+	path = vim/pack/testing/opt/thesaurus_query.vim
+	url = https://github.com/Ron89/thesaurus_query.vim
+[submodule "vim/pack/testing/opt/vim-latex-objects"]
+	path = vim/pack/testing/opt/vim-latex-objects
+	url = https://github.com/gibiansky/vim-latex-objects
+[submodule "vim/pack/testing/opt/vim-sentence-chopper"]
+	path = vim/pack/testing/opt/vim-sentence-chopper
+	url = https://github.com/Konfekt/vim-sentence-chopper
