@@ -229,6 +229,7 @@ bar {
     mode invisible
 }
 exec_always --no-startup-id "gnome-flashback"
+exec_always --no-startup-id "nm-applet"
 exec_always --no-startup-id "killall polybar; polybar -r default"
 exec_always --no-startup-id "~/.config/i3/i3scripts/autoname_workspaces.py"
 exec_always --no-startup-id "redshift -l 43.2965:5.3698"
