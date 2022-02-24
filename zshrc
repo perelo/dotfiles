@@ -6,6 +6,12 @@ VISUAL=$EDITOR
 MANPAGER="less"
 export EDITOR VISUAL MANPAGER
 
+HISTFILE="~/.zsh_history"
+SAVEHIST=100
+setopt appendhistory
+setopt share_history
+setopt inc_append_history
+
 # Enable Ctrl-f to edit command line
 autoload -U edit-command-line
 zle -N edit-command-line
