@@ -40,6 +40,7 @@ confitems = [
     "i3/",
     "lxterminal/",
     "polybar/",
+    "base16-shell/",
     "rofi/",
 ]
 
