@@ -23,7 +23,6 @@ if [ $HOST = "leto" ] ; then
     alias firefox="~/tools/firefox/firefox"
 fi
 
-VIMD=vimd
 alias ls="ls --color=auto"
 alias ll='ls -lsh --color=auto'
 alias lla='ls -alsh --color=auto'
@@ -37,7 +36,6 @@ alias rename="rename -v"    # print names of files successfully renamed.
 alias rsync="rsync --progress"
 
 alias vi="vim"
-alias vim="vim --servername $VIMD"
 alias nvim="nvim --listen /tmp/nvimsocket"
 alias tmux="env TERM=screen-256color tmux -2" # force tmux 256 colors
 alias tma="tmux attach-session -t"
