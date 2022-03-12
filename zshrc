@@ -34,6 +34,7 @@ alias egrep='egrep --color=auto'
 alias ip='ip -c'
 alias rm="rm -i"            # ask confirmation
 alias rename="rename -v"    # print names of files successfully renamed.
+alias rsync="rsync --progress"
 
 alias vi="vim"
 alias vim="vim --servername $VIMD"
