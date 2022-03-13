@@ -41,11 +41,14 @@ Plug 'cespare/vim-toml'
 Plug 'tpope/vim-liquid'
 
 " snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+
+if has('python3')
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+endif
 
 " fuzzy
-Plug 'file:///home/eloi/dotfiles/fzf/'
+Plug 'file://'.$HOME.'/dotfiles/fzf/'
 Plug 'junegunn/fzf.vim'
 
 " file-related
