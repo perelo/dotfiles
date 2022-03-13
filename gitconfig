@@ -3,7 +3,7 @@
   name = Eloi Perdereau
 
 [core]
-  editor = nvim
+  editor = vim
   excludesfile = ~/.gitignore
 
 [color]
