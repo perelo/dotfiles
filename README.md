@@ -23,6 +23,11 @@ Installation
     cd fzf
     ./install
 
+### Add vim's tmp and swap directory
+
+    mkdir -p ~/.vim/tmp/swap/
+    mkdir -p ~/.vim/tmp/undo/
+
 ### Backup old dotfiles and install new ones
 
     python3 links.py
