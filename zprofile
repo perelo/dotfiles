@@ -8,8 +8,8 @@ if [ -d "/usr/local/go/bin/" ] ; then
     PATH=/usr/local/go/bin:$PATH
 fi
 
-if [ -d "$HOME/.local/texlive/2020/bin/x86_64-linux/" ] ; then
-    PATH=~/.local/texlive/2020/bin/x86_64-linux/:$PATH
+if [ -d "$HOME/.local/texlive/2022/bin/x86_64-linux/" ] ; then
+    PATH=~/.local/texlive/2022/bin/x86_64-linux/:$PATH
 fi
 
 if command -v pyenv &> /dev/null
@@ -24,4 +24,8 @@ then
     export PATH="$HOME/.gem/bin:$PATH"
     export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init -)"
+fi
+
+if [ -d "$HOME/.local/share/coursier/bin" ] ; then
+    export PATH=$HOME/.local/share/coursier/bin:$PATH
 fi
