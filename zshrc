@@ -37,7 +37,6 @@ alias rsync="rsync --progress"
 
 alias vi="vim"
 alias nvim="nvim --listen /tmp/nvimsocket"
-alias tmux="env TERM=screen-256color tmux -2" # force tmux 256 colors
 alias tma="tmux attach-session -t"
 alias r="ranger"
 alias rmswp="rm */.*.swp"

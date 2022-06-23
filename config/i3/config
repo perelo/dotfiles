@@ -237,7 +237,7 @@ exec_always --no-startup-id "redshift -l 43.2965:5.3698"
 # exec_always --no-startup-id "tmux new-session -d -s 8 'source .zprofile;~/.config/i3/i3scripts/autoname_workspaces.py;read' \; split-window -d 'redshift -l 43.2965:5.3698;read' \; select-layout even-horizontal"
 
 # start a terminal with tmux & without menubar
-bindsym $mod+Return exec gnome-terminal --hide-menubar -e "tmux -2"
+bindsym $mod+Return exec gnome-terminal --hide-menubar -- $SHELL -i -c tmux
 bindsym $mod+t exec gnome-terminal --hide-menubar
 # start firefox
 bindsym $mod+Shift+f exec firefox
