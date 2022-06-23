@@ -73,18 +73,16 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 autoload -U colors && colors
 setopt prompt_subst
 
+# https://github.com/romkatv/gitstatus
+source $HOME/.zsh/gitstatus/gitstatus.prompt.zsh
+RPROMPT='$GITSTATUS_PROMPT'
+
 # bira theme from
 # https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/bira.zsh-theme
 local user_host='%{$terminfo[bold]$fg[green]%}%n@%m %{$reset_color%}'
 local current_dir='%{$terminfo[bold]$fg[blue]%}%~ %{$reset_color%}'
 PROMPT="╭─${user_host}${current_dir}
 ╰─%B$%b "
-
-# git-prompt from
-# https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git-prompt
-source $HOME/.zsh/git-prompt/git-prompt.plugin.zsh
-RPROMPT='$(git_super_status)'
-
 
 LESS=-RX # -X: don't clear screen before and after less
 

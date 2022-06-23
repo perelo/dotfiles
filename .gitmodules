@@ -19,3 +19,6 @@
 [submodule "vim/pack/testing/opt/vim-sentence-chopper"]
 	path = vim/pack/testing/opt/vim-sentence-chopper
 	url = https://github.com/Konfekt/vim-sentence-chopper
+[submodule "zsh/gitstatus"]
+	path = zsh/gitstatus
+	url = https://github.com/romkatv/gitstatus
