@@ -3,3 +3,5 @@ Session.vim
 tags
 
 *.pyc
+
+config/nvim/plugged/

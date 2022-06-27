@@ -9,7 +9,7 @@ autocmd!
 "" vim-plug, see $HOME/.vim/autoload/plug.vim
 ""
 
-call plug#begin("~/.vim/bundle")
+call plug#begin(has('nvim') ? stdpath('config') . "/plugged" : "~/.vim/bundle")
 
 " 
 Plug 'tpope/vim-abolish'
@@ -143,6 +143,9 @@ if has('syntax')
 endif
 so $VIM/plugin/statusline.vim
 
+if has('nvim')
+  Plug 'RRethy/nvim-base16'
+endif
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
