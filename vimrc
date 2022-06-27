@@ -123,6 +123,7 @@ let g:netrw_hide = 1
 let g:netrw_altfile = 1       " keep the alternate buffer !
 
 " indentLine config
+let g:indentLine_enabled = 0
 let g:indentLine_char = '┆'
 let g:indentLine_bufTypeExclude = ['help', 'quickfix', 'nofile']
 let g:indentLine_fileTypeExclude = [ 'help', 'text', 'gitcommit', 'tex', 'vim']
