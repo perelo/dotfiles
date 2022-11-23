@@ -39,9 +39,19 @@ Plug 'inkarkat/vim-WORDComplete'
 " syntax files
 Plug 'cespare/vim-toml'
 Plug 'tpope/vim-liquid'
+Plug 'vmchale/dhall-vim'
+Plug 'jvirtanen/vim-hcl'
+
+" ftplugins
+if has('python3') && executable('pandoc')
+  Plug 'vim-pandoc/vim-pandoc'
+  Plug 'vim-pandoc/vim-pandoc-syntax'
+endif
+
+Plug 'preservim/vim-markdown'
+Plug 'jjo/vim-cue'
 
 " snippets
-
 if has('python3')
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
@@ -123,8 +133,10 @@ let g:netrw_hide = 1
 let g:netrw_altfile = 1       " keep the alternate buffer !
 
 " indentLine config
-let g:indentLine_enabled = 0
-let g:indentLine_char = '┆'
+" let g:indentLine_enabled = 0
+let g:indentLine_char = '|'
+let g:indentLine_color_term = 202
+let g:indentLine_fileType = ['yaml']
 let g:indentLine_bufTypeExclude = ['help', 'quickfix', 'nofile']
 let g:indentLine_fileTypeExclude = [ 'help', 'text', 'gitcommit', 'tex', 'vim']
 

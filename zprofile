@@ -1,11 +1,17 @@
 emulate sh -c 'source ~/.profile'
 
-if [ -d "$HOME/go/bin" ] ; then
-    PATH=$HOME/go/bin:$PATH
+# Dhall language
+if [ -d "$HOME/.local/dhall/" ] ; then
+    PATH=$HOME/.local/dhall/bin:$PATH
 fi
 
-if [ -d "/usr/local/go/bin/" ] ; then
-    PATH=/usr/local/go/bin:$PATH
+if [ -d "$HOME/.local/go/bin" ] ; then
+    PATH=$HOME/.local/go/bin:$PATH
+fi
+
+# usual GOPATH
+if [ -d "$HOME/go/bin" ] ; then
+    PATH=$HOME/go/bin:$PATH
 fi
 
 if [ -d "$HOME/.local/texlive/2022/bin/x86_64-linux/" ] ; then

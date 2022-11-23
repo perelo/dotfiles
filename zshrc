@@ -43,17 +43,8 @@ alias rmswp="rm */.*.swp"
 
 alias doci="docker image"
 alias docc="docker container"
-
-function amendpdf {
-    if [ ${PWD} = "/home/eloi/workspace/topocap/redac/" ]; then
-        rm -f chap-exact/chap-exact.pdf
-        make chap-exact
-        git add chap-exact/chap-exact.pdf
-        git ci --amend
-    else
-        echo "nothing to be done"
-    fi
-}
+alias ku="kubectl"
+alias tf="terraform"
 
 function cheat {
     curl cheat.sh/$1
@@ -94,3 +85,20 @@ unset GREP_OPTIONS
 
 # The next line updates PATH for Netlify's Git Credential Helper.
 if [ -f '$HOME/.netlify/helper/path.zsh.inc' ]; then source '$HOME/.netlify/helper/path.zsh.inc'; fi
+
+for tool in  kubectl minikube helm
+do
+    if command -v $tool &> /dev/null
+    then
+        source <($tool completion zsh)
+    fi
+done
+
+# for rootless docker
+# https://docs.docker.com/engine/security/rootless/#prerequisites
+export DOCKER_HOST=unix:///run/user/1000/docker.sock
+
+# # >>>> Vagrant command completion (start)
+# fpath=(/usr/share/rubygems-integration/all/gems/vagrant-2.2.14/contrib/zsh $fpath)
+# compinit
+# # <<<<  Vagrant command completion (end)
