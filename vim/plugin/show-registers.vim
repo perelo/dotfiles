@@ -1,3 +1,7 @@
+"
+" Add mappings to optionally (with '?') show registers before using them.
+" Do so by intercepting commands as '"'.
+"
 inoremap <c-r>? <c-r>="\<lt>c-r>" . <SID>BetterRegister('register')<cr>
 cnoremap <c-r>? <c-r>="\<lt>c-r>" . <SID>BetterRegister('register')<cr>
 nnoremap <expr> "? '"' . <SID>BetterRegister('register')

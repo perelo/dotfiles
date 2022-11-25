@@ -45,6 +45,9 @@ set listchars=tab:‣·,trail:·,extends:…,nbsp:·
 
 set fillchars=vert:\|,fold:\ 
 
+" remove '=' from file name definitions so 'key=file/name.txt' works
+set isfname-==
+
 " default windows split below and right instead of above and left
 set splitbelow splitright
 
@@ -164,7 +167,7 @@ endif
 if has('persistent_undo')
     if exists('$SUDO_USER')
         set noundofile                    " don't create root-owned files
-    else
+    elseif ! has('nvim')                  " <!> nvim is incompatible with vim's undofile <!>
         execute 'set undodir^='.expand('$VIM/tmp/undo//')
         set undofile
     endif

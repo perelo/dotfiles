@@ -73,7 +73,7 @@ augroup END
 " endif
 
 " }}}
-" {{{ filetype specific, new extensions must be in ftdetect/extension.vim
+" {{{ filetype specific, new extensions must be in ../ftdetect/extension.vim
 
 augroup ft
     autocmd!
