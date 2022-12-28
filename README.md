@@ -45,3 +45,6 @@ Installation
 * vim's `UltiSnips` plugin requires Python's `unidecode` :
 
     `pip install unidecode`
+
+* i3 autotiling based on height/weight ratio
+    pip3 install autotiling
