@@ -36,8 +36,5 @@ let g:vim_markdown_follow_anchor = 1
 " don't try to autoindent nested item
 let g:vim_markdown_new_list_item_indent = 0
 
-" remove 'gf', 'gx', ',xi' mappings
-let g:pandoc#hypertext#use_default_mappings = 0
-
 " don't make, just save. Use e.g. 'grit' for preview
 let b:make = ""
