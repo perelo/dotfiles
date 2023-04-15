@@ -1,1 +1,2 @@
-set nolist  " because formatting uses tabs
+setlocal nolist  " because formatting uses tabs
+setlocal iskeyword+=#

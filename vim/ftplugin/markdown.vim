@@ -5,8 +5,9 @@ setlocal tabstop=2
 setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal expandtab
-setlocal textwidth=79
-setlocal wrap
+setlocal textwidth=0  " keep long lines when inserting
+setlocal wrap " long lines visible
+setlocal colorcolumn=0
 
 setlocal spell
 setlocal spelllang=en,fr
