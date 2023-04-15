@@ -41,6 +41,7 @@ Plug 'cespare/vim-toml'
 Plug 'tpope/vim-liquid'
 Plug 'vmchale/dhall-vim'
 Plug 'jvirtanen/vim-hcl'
+Plug 'Procrat/oz.vim'
 
 " ftplugins
 if has('python3') && executable('pandoc')
