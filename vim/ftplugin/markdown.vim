@@ -8,6 +8,7 @@ setlocal expandtab
 setlocal textwidth=0  " keep long lines when inserting
 setlocal wrap " long lines visible
 setlocal colorcolumn=0
+setlocal showbreak=↼⇥               " 2 char
 
 setlocal spell
 setlocal spelllang=en,fr

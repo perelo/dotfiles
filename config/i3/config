@@ -157,8 +157,9 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #d
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
+bindsym $mod+F4 exec light -U 10 # decrease screen brightness
 
 # set $alt-monitor HDMI-0
 # workspace 5 output $alt-monitor
@@ -171,7 +172,7 @@ bindsym $mod+Shift+r restart
 
 # exit
 set $mode_power (L)ock (D)éconnecter (V)eille (H)iberner (R)edémarrer (E)teindre
-bindsym $mod+F4 mode "$mode_power"
+# bindsym $mod+F4 mode "$mode_power"
 bindsym $mod+Shift+e mode "$mode_power"
 mode "$mode_power" {
     bindsym l mode "default", exec --no-startup-id "~/.config/i3/i3exit lock"
@@ -231,7 +232,7 @@ bar {
 }
 exec_always --no-startup-id "~/.config/i3/i3scripts/autoname_workspaces.py"
 # https://github.com/nwg-piotr/autotiling
-exec_always --no-startup-id "autotiling --limit 2"
+exec_always --no-startup-id "~/.local/bin/autotiling --limit 2"
 
 exec_always --no-startup-id "gnome-flashback"
 exec_always --no-startup-id "nm-applet"
