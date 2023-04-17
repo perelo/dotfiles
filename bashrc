@@ -117,3 +117,5 @@ fi
 [ -d ~/.local/bin ] && PATH=~/.local/bin/:$PATH
 
 source $HOME/.config/broot/launcher/bash/br
+
+complete -C /usr/bin/terraform terraform

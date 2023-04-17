@@ -1,5 +1,9 @@
 emulate sh -c 'source ~/.profile'
 
+if [ -d "$HOME/.local/bin/" ] ; then
+    PATH=$HOME/.local/bin:$PATH
+fi
+
 # Dhall language
 if [ -d "$HOME/.local/dhall/" ] ; then
     PATH=$HOME/.local/dhall/bin:$PATH
@@ -9,13 +13,20 @@ if [ -d "$HOME/.local/go/bin" ] ; then
     PATH=$HOME/.local/go/bin:$PATH
 fi
 
+if [ -d "/usr/local/go/bin" ] ; then
+    PATH=/usr/local/go/bin:$PATH
+fi
+
 # usual GOPATH
 if [ -d "$HOME/go/bin" ] ; then
     PATH=$HOME/go/bin:$PATH
 fi
 
-if [ -d "$HOME/.local/texlive/2022/bin/x86_64-linux/" ] ; then
-    PATH=~/.local/texlive/2022/bin/x86_64-linux/:$PATH
+if [ -d "/usr/local/texlive/2022/bin/x86_64-linux/" ] ; then
+    PATH=/usr/local/texlive/2022/bin/x86_64-linux/:$PATH
+fi
+if [ -d "/usr/local/texlive/2022/texmf-dist/doc/man" ] ; then
+    MANPATH=/usr/local/texlive/2022/texmf-dist/doc/man:$MANPATH
 fi
 
 if command -v pyenv &> /dev/null

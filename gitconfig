@@ -39,3 +39,7 @@
   dw = diff --color-words
 [include]
   path = /home/eloi/.netlify/helper/git-config
+[credential "https://git.overleaf.com"]
+	username = eloi.perdereau@imt-atlantique.fr
+[pull]
+	rebase = false

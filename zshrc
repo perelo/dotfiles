@@ -86,13 +86,18 @@ unset GREP_OPTIONS
 # The next line updates PATH for Netlify's Git Credential Helper.
 if [ -f '$HOME/.netlify/helper/path.zsh.inc' ]; then source '$HOME/.netlify/helper/path.zsh.inc'; fi
 
-for tool in  kubectl minikube helm
+# completion for various CLIs
+for tool in  kubectl minikube helm cue
 do
     if command -v $tool &> /dev/null
     then
         source <($tool completion zsh)
     fi
 done
+
+# terraform CLI completion
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
 
 # for rootless docker
 # https://docs.docker.com/engine/security/rootless/#prerequisites

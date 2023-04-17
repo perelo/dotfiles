@@ -17,5 +17,5 @@
 	@echo "\\\\newcommand{\\\\revisionhash}{`git log -1 --format=\"%h\" $<`(`git describe --dirty --abbrev --always --tags`)}" >> gitrevision.tex # obsolete, garde pour rétrocompatitibilité
 
 clean:
-	rm -rfv *.ps *.aux *.bbl *.blg *.log *.toc *.snm *.out *.nav tags *.vtc *.dvi *.sta *.lof *.lot *.bcf *.synctex.gz *.revtex *.acn *.idx *.ntn *.run.xml *.xdy *.nlg *.not *.alg *.gls *.acr *.glg *.ilg *.ind *.ist
+	rm -rfv *.ps *.aux *.bbl *.blg *.log *.toc *.snm *.out *.nav tags *.vtc *.dvi *.sta *.lof *.lot *.bcf *.synctex.gz *.revtex *.acn *.idx *.ntn *.run.xml *.xdy *.nlg *.not *.alg *.gls *.acr *.glg *.ilg *.ind *.ist *.rubbercache
 
