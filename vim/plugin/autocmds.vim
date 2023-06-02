@@ -73,15 +73,18 @@ augroup END
 " endif
 
 " }}}
-" {{{ filetype specific, new extensions must be in ../ftdetect/extension.vim
+" {{{ filetype specific, new extensions should be in ../ftdetect/extension.vim
 
 augroup ft
     autocmd!
     " Make sure all markdown files have the correct filetype
-    autocmd BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} set filetype=markdown
+    autocmd BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setlocal filetype=markdown
 
     " Tex files must be 'tex' filetype not 'plaintex'
-    autocmd BufRead,BufNewFile *.{tex} set filetype=tex
+    autocmd BufRead,BufNewFile *.{tex} setlocal filetype=tex
+
+    " Life filetype for *.lf files
+    au BufNewFile,BufRead *.lf setlocal filetype=life
 augroup END
 
 " }}}
