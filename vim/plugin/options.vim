@@ -71,7 +71,8 @@ if has('folding')
     set foldlevelstart=99   " All folds open at start
 endif
 
-set pastetoggle=<F2>
+" toggle paste mode. Comment for now because <Fx> used for REPL
+" set pastetoggle=<F2>
 
 " Remember more commands and search history (default: 20)
 if has('cmdline_hist')
