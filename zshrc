@@ -65,8 +65,10 @@ autoload -U colors && colors
 setopt prompt_subst
 
 # https://github.com/romkatv/gitstatus
-source $HOME/.zsh/gitstatus/gitstatus.prompt.zsh
-RPROMPT='$GITSTATUS_PROMPT'
+if [ -f $HOME/.zsh/gitstatus/gitstatus.prompt.zsh ]; then
+    source $HOME/.zsh/gitstatus/gitstatus.prompt.zsh
+    RPROMPT='$GITSTATUS_PROMPT'
+fi
 
 # bira theme from
 # https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/bira.zsh-theme
