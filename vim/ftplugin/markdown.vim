@@ -21,9 +21,9 @@ hi clear SpellCap           " osef des majuscules
 " composed-words are words
 setlocal iskeyword+=-
 
-set conceallevel=2
+setlocal conceallevel=2
 
-set foldnestmax=4
+setlocal foldnestmax=4
 
 " don't map anything
 let g:vim_markdown_no_default_key_mappings = 1

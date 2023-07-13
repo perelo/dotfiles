@@ -79,6 +79,9 @@ nnoremap <silent> g# g#:call HLNext()<CR>
 nnoremap <silent> n n:call HLNext()<CR>
 nnoremap <silent> N N:call HLNext()<CR>
 
+" make $ go to the last character instead of +1
+xnoremap $ $?\S<CR>
+
 " for more, look at tpope/rsi.vim
 cnoremap <C-E> <End>
 
