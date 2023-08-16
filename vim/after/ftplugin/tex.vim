@@ -53,6 +53,7 @@ for s:lhs in split(s:dmaps, ',')
 endfor
 " }}}
 
+xnoremap <buffer> g$ $?\S<CR>
 
 nnoremap <buffer> <leader>p :call Synctex()<CR>
 
@@ -131,6 +132,8 @@ hi clear SpellBad
 hi SpellBad cterm=underline
 hi clear SpellCap
 hi link SpellCap SpellBad
+
+hi link texOnlyMath Normal
 " Prevent hi group texOnlyMath link to Error
 let b:tex_stylish = 1
 " }}}
@@ -147,4 +150,8 @@ endif
 
 " surround word by { } and insert \
 " let @s="ysiw}i\\"
+"
+" append \left and \right to \{ and \}
+" s?\ze\\}?\\right?g | s?\ze\\{?\\left?g
+"
 " vim: set foldmethod=marker

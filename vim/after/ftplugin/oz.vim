@@ -1,4 +1,5 @@
 setlocal foldmethod=indent
+setlocal smartindent        " so cinwords apply
 
 if exists(':VimuxRunCommand')
     nnoremap <buffer> <F1> :silent w <bar> call VimuxRunCommandInDir('ozc -c '.expand('%:t'), 0)<CR>

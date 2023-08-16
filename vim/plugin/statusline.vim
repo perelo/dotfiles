@@ -29,6 +29,9 @@ function! StatusLine(winnum)
     let l:stl .= '%#StatusLineLeft#'
     let l:stl .= '%( %R |%)'                       " RO
     let l:stl .= '%( (%{gitbranch#name()})%)'      " git branch
+    if exists("b:cuecmd")
+      let l:stl .= '%( $'.b:cuecmd.'%)'      " b:cuecmd
+    endif
     let l:stl .= '%( %t %)'                        " filename
     let l:stl .= '%(| %M %)'                       " modified
     let l:stl .= '%#StatusLineMiddle#'
