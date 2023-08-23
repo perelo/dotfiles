@@ -42,4 +42,4 @@
 [credential "https://git.overleaf.com"]
 	username = eloi.perdereau@imt-atlantique.fr
 [pull]
-	rebase = false
+	rebase = true
