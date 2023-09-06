@@ -111,7 +111,7 @@ if filereadable(expand('%:p:h').'/Makefile')
   " there is a Makefile in the current buffer's directory
   " pass it to the -f option of 'make' in case there is also one in the cwd
   let &l:makeprg .= " -f " . expand('%:p:h') . '/Makefile'
-  let b:make = "Make"   " Make it simple
+  " let b:make = "Make"   " Make it simple
 elseif filereadable($HOME.'/.local/share/latex.mk')
   " use global latex.mk
   let &l:makeprg .= " -f ".$HOME."/.local/share/latex.mk"
@@ -121,9 +121,8 @@ let &l:makeprg .= " -C ".expand('%:h')       " compile in the buffer's directory
 setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m,
 	\%Dmake :\ on\ entre\ dans\ le\ répertoire\ « %f »,
 	\%Xmake :\ on\ quitte\ le\ répertoire\ « %f »
-" TODO remove
-setlocal efm^=\%-G%f:%l:\ [Font]\ Font\ shape\ `T1/cmr/bx/scit'\ undefined\ using\ `T1/cmr/bx/sc'\ instead.%.%#
-setlocal efm^=\%-G%f:%l:\ [Font]\ Font\ shape\ `T1/cmr/m/scit'\ undefined\ using\ `T1/cmr/m/sc'\ instead.%.%#
+" setlocal efm^=\%-G%f:%l:\ [Font]\ Font\ shape\ `T1/cmr/bx/scit'\ undefined\ using\ `T1/cmr/bx/sc'\ instead.%.%#
+
 
 " }}} Compilation
 

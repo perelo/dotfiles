@@ -152,14 +152,16 @@ bindsym $mod+Ctrl+Left move workspace to output left
 bindsym $mod+Ctrl+Right move workspace to output right
 
 # # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1000 #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1000 #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SINK@ toggle # mute sound
 
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
-bindsym $mod+F4 exec light -U 10 # decrease screen brightness
+ # Sreen brightness controls
+# bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
+# bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +1%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 1%-
 
 # set $alt-monitor HDMI-0
 # workspace 5 output $alt-monitor
@@ -220,8 +222,9 @@ for_window [instance="Toplevel"] floating enable
 for_window [class="Toplevel"] floating enable
 for_window [window_role="Preferences"] floating enable
 
-for_window [class="gnome-control-center"] floating enable
-for_window [class="pavucontrol"] floating enable
+for_window [class="Gnome-control-center"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Gnome-calculator"] floating enable
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -232,11 +235,12 @@ bar {
 }
 exec_always --no-startup-id "~/.config/i3/i3scripts/autoname_workspaces.py"
 # https://github.com/nwg-piotr/autotiling
-exec_always --no-startup-id "~/.local/bin/autotiling --limit 2"
+# exec_always --no-startup-id "~/.local/bin/autotiling --limit 2"
 
 exec_always --no-startup-id "gnome-flashback"
 exec_always --no-startup-id "nm-applet"
-exec_always --no-startup-id "killall polybar; polybar -r default"
+exec_always --no-startup-id "pasystray"
+exec_always --no-startup-id "killall polybar; polybar -r default --config=~/.config/polybar/config.ini"
 exec_always --no-startup-id "redshift -l 43.2965:5.3698"
 # execute a tmux session (no.8) and launch scripts
 # exec_always --no-startup-id "tmux new-session -d -s 8 'source .zprofile;~/.config/i3/i3scripts/autoname_workspaces.py;read' \; split-window -d 'redshift -l 43.2965:5.3698;read' \; select-layout even-horizontal"

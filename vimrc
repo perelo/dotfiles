@@ -31,6 +31,9 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'Yggdroot/indentLine'
 Plug 'itchyny/vim-gitbranch'
 
+" yank form everywhere using OSC52
+Plug 'greymd/oscyank.vim'
+
 " insert-completion, also AlphaCompelte and LineComplete below
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-CompleteHelper'
