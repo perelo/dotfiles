@@ -3,6 +3,8 @@ setlocal iskeyword+=#   " so that Definitions (e.g. #List) are words
 
 let b:cuecmd="cue"
 
+let g:cue_fmt_on_save = 0
+
 if exists(':VimuxRunCommand')
     nnoremap <buffer> <F1> :silent w <bar> VimuxRunCommand b:cuecmd.' eval '.expand("%:p")<CR>
     inoremap <buffer> <F1> <Esc>:silent w <bar> VimuxRunCommand b:cuecmd.' eval '.expand('%:p')<CR>
