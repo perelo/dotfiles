@@ -43,6 +43,7 @@ Plug 'vmchale/dhall-vim'
 Plug 'jvirtanen/vim-hcl'
 Plug 'Procrat/oz.vim'
 Plug 'adimit/prolog.vim'
+Plug 'kframework/k-editor-support', { 'rtp': 'vim' }
 
 " ftplugins
 if has('python3') && executable('pandoc')
