@@ -1,7 +1,10 @@
+setlocal sw=2 sts=2 ts=2
 setlocal nolist  " because formatting uses tabs
 setlocal iskeyword+=#   " so that Definitions (e.g. #List) are words
 
 let b:cuecmd="cue"
+let g:cue_fmt_on_save = 0
+
 
 let g:cue_fmt_on_save = 0
 
@@ -12,6 +15,11 @@ if exists(':VimuxRunCommand')
     " TODO GetVisualSelection should be escaped
     xnoremap <buffer> <F1> :<C-u>VimuxRunCommand 'echo "'.GetVisualSelection().'" \| '.b:cuecmd.' eval -'<CR>
 
-    " VisualSelect and Evaluate inner braces
-    nmap <buffer> <F2> vi}<F1>
-endi
+    nnoremap <buffer> <F2> :silent w <bar> VimuxRunLastCommand<CR>
+    inoremap <buffer> <F2> <Esc>:silent w <bar> VimuxRunLastCommand<CR>
+
+    nnoremap <buffer> <F3> :silent w <bar> call VimuxRunCommand("<C-R>=g:VimuxLastCommand<CR>")
+    inoremap <buffer> <F3> <Esc>:silent w <bar> call VimuxRunCommand("<C-R>=g:VimuxLastCommand<CR>")
+    inoremap <buffer> <F2> <Esc>:silent w <bar> VimuxRunLastCommand<CR>
+    nnoremap <buffer> <F4> :silent w <bar> VimuxPromptCommand<CR>
+endif

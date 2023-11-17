@@ -1,3 +1,4 @@
+setlocal ts=2 sw=2 sts=2
 
 " filetype detected in ../plugin/autocmds.vim
 setlocal commentstring=\%\ %s

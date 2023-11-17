@@ -46,6 +46,9 @@ alias docc="docker container"
 alias ku="kubectl"
 alias tf="terraform"
 
+alias kompiled="kompile --enable-llvm-debug"
+alias krund="krun --debugger"
+
 function cheat {
     curl cheat.sh/$1
 }

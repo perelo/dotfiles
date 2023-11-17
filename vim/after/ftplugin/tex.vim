@@ -72,6 +72,8 @@ inoremap <buffer> <C-l> <c-g>u<Esc>[s1z=gi<c-g>u
 " y surround by a command : \command{text}
 let b:surround_{char2nr("c")} = "\\\1command: \1{\r}"
 
+let b:surround_{char2nr("t")} = "\\texttt{\r}"
+
 nnoremap <silent> <Plug>ChangeSurroundCommand %F\%%cT\
     \:call repeat#set("\<Plug>ChangeSurroundCommand")<CR>
 nmap csc <Plug>ChangeSurroundCommand

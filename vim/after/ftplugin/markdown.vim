@@ -1,5 +1,4 @@
-" see also ~/.vim/after/ftplugin/markdown.vim
-" to override vim-markdown
+
 
 setlocal tabstop=2
 setlocal shiftwidth=2
@@ -40,5 +39,9 @@ let g:vim_markdown_follow_anchor = 1
 let g:vim_markdown_new_list_item_indent = 0
 
 
-" don't make, just save. Use e.g. 'grit' for preview
-let b:make = ""
+if expand("%:p") =~ $HOME."/workspace/ue-cloud-tf/"
+  let b:make = "Make %:t:r".".html"
+else
+  " don't make, just save. Use e.g. 'grit' for preview
+  let b:make = ""
+endif
