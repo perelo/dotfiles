@@ -36,7 +36,7 @@ Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-CompleteHelper'
 Plug 'inkarkat/vim-WORDComplete'
 
-" syntax files
+" syntax files, apriori don't contain ftplugin/
 Plug 'cespare/vim-toml'
 Plug 'tpope/vim-liquid'
 Plug 'vmchale/dhall-vim'
@@ -46,13 +46,17 @@ Plug 'adimit/prolog.vim'
 Plug 'kframework/k-editor-support', { 'rtp': 'vim' }
 
 " ftplugins
+"
 if has('python3') && executable('pandoc')
   Plug 'vim-pandoc/vim-pandoc'
   Plug 'vim-pandoc/vim-pandoc-syntax'
 endif
+" Plug 'preservim/vim-markdown'
 
-Plug 'preservim/vim-markdown'
+Plug 'nickel-lang/vim-nickel'
 Plug 'jjo/vim-cue'
+Plug 'kframework/k-editor-support', { 'rtp': 'vim' }
+Plug 'google/vim-jsonnet'
 
 " snippets
 if has('python3')

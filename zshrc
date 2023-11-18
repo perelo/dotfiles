@@ -24,8 +24,8 @@ if [ $HOST = "leto" ] ; then
 fi
 
 alias ls="ls --color=auto"
-alias ll='ls -lsh --color=auto'
-alias lla='ls -alsh --color=auto'
+alias ll='ls -klsh --color=auto'
+alias lla='ls -kalsh --color=auto'
 alias lls='ls -lshS --color=auto'
 alias grep='grep --color=auto -i'
 alias fgrep='fgrep --color=auto'
@@ -34,6 +34,8 @@ alias ip='ip -c'
 alias rm="rm -i"            # ask confirmation
 alias rename="rename -v"    # print names of files successfully renamed.
 alias rsync="rsync --progress"
+alias tree="tree -C"
+alias df="df -hT"           # "human", filesystem "Type"
 
 alias vi="vim"
 alias nvim="nvim --listen /tmp/nvimsocket"
@@ -48,6 +50,10 @@ alias tf="terraform"
 
 alias kompiled="kompile --enable-llvm-debug"
 alias krund="krun --debugger"
+
+# just make it work
+alias nickel="docker run --rm -it ghcr.io/tweag/nickel:1.1.1"
+alias gephi="~/Documents/gephi-0.10.1/bin/gephi"
 
 function cheat {
     curl cheat.sh/$1

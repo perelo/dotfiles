@@ -22,7 +22,10 @@ if [ -d "$HOME/go/bin" ] ; then
     PATH=$HOME/go/bin:$PATH
 fi
 
-if [ -d "/usr/local/texlive/2023/bin/x86_64-linux/" ] ; then
+PATH=~/.local/texlive/2023/bin/x86_64-linux:$PATH
+MANPATH=~/.local/texlive/2023/texmf-dist/doc/man:$MANPATH
+
+if [ -d "~/.local/texlive/2023/bin/x86_64-linux/" ] ; then
     PATH=/usr/local/texlive/2023/bin/x86_64-linux/:$PATH
 fi
 if [ -d "/usr/local/texlive/2023/texmf-dist/doc/man" ] ; then
