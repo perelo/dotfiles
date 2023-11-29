@@ -19,5 +19,5 @@ if exists("g:loaded_dispatch")
   let b:cmd = "Dispatch kompile %"
 endif
 
-nnoremap <F1> :silent w <bar> execute b:cmd<CR><Esc>
-inoremap <F1> <Esc>:silent w <bar> execute b:cmd<CR><Esc>
+nnoremap <buffer> <F1> :silent w <bar> execute b:cmd<CR><Esc>
+inoremap <buffer> <F1> <Esc>:silent w <bar> execute b:cmd<CR><Esc>
