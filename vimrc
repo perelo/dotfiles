@@ -31,6 +31,9 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'Yggdroot/indentLine'
 Plug 'itchyny/vim-gitbranch'
 
+" yank form everywhere using OSC52
+Plug 'greymd/oscyank.vim'
+
 " insert-completion, also AlphaCompelte and LineComplete below
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-CompleteHelper'
@@ -44,19 +47,17 @@ Plug 'jvirtanen/vim-hcl'
 Plug 'Procrat/oz.vim'
 Plug 'adimit/prolog.vim'
 Plug 'kframework/k-editor-support', { 'rtp': 'vim' }
+Plug 'preservim/vim-markdown'
+Plug 'jjo/vim-cue'
+Plug 'google/vim-jsonnet'
+Plug 'nickel-lang/vim-nickel'
 
-" ftplugins
-"
+" language ftplugins
+Plug 'sheerun/vim-polyglot'
 if has('python3') && executable('pandoc')
   Plug 'vim-pandoc/vim-pandoc'
   Plug 'vim-pandoc/vim-pandoc-syntax'
 endif
-" Plug 'preservim/vim-markdown'
-
-Plug 'nickel-lang/vim-nickel'
-Plug 'jjo/vim-cue'
-Plug 'kframework/k-editor-support', { 'rtp': 'vim' }
-Plug 'google/vim-jsonnet'
 
 " snippets
 if has('python3')
