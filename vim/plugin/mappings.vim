@@ -126,6 +126,14 @@ for [dirname, dir] in items(s:dirs_to_search)
     \ ':<c-u>edit <C-R>=expand(' . dir . ')<CR>/<C-D>'
 endfor
 
+" prepare editing file in the directory of current file
+" Eatchar used to eat trailing space, see `helpgrep Eatchar`
+func Eatchar(pat)
+  let c = nr2char(getchar(0))
+  return (c =~ a:pat) ? '' : c
+endfunc
+cnoreabbrev eh e <c-r>=expand('%:h')<cr>/<c-d><c-r>=Eatchar('\s')<cr>
+
 " (re)create tag file inside ':pwd' or in the current file's directory
 cabbrev sct !ctags -R
 
