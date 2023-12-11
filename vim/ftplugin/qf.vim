@@ -13,6 +13,7 @@ nnoremap [ol :lopen<CR>
 nnoremap ]ol :lclose<CR>
 
 " exchange :cnfile/cpfile and :clast/cfirst mappings from unimpaired
+" also see ../after/plugin/qf.vim for yoq yol
 nnoremap ]Q :cnfile<CR>
 nnoremap [Q :cpfile<CR>
 nnoremap ]<C-Q> :clast<CR>
@@ -21,6 +22,8 @@ nnoremap ]L :lnfile<CR>
 nnoremap [L :lpfile<CR>
 nnoremap ]<C-L> :llast<CR>
 nnoremap [<C-L> :lfirst<CR>
+
+autocmd QuickFixCmdPost * cclose
 
 if executable('xdg-open')
   nnoremap <buffer> <leader>p :call system('xdg-open '
