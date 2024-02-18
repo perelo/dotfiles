@@ -30,6 +30,7 @@ Plug 'coderifous/textobj-word-column.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'Yggdroot/indentLine'
 Plug 'itchyny/vim-gitbranch'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " yank form everywhere using OSC52
 Plug 'greymd/oscyank.vim'
@@ -75,7 +76,13 @@ Plug 'tpope/vim-vinegar'
 Plug 'ap/vim-buftabline'
 
 " lsp-related
-Plug 'natebosch/vim-lsc'
+if !has("nvim")
+  Plug 'prabirshrestha/vim-lsp'
+  " Plug 'mattn/vim-lsp-settings'
+endif
+if has("nvim")
+  Plug 'neovim/nvim-lspconfig'
+endif
 
 " out-of-vim related
 Plug 'tpope/vim-eunuch'
@@ -121,18 +128,20 @@ let $VIM='~/.vim'
 let mapleader = ","
 noremap ,, ,
 
-" static directories which are interesting to me.
-" see plugin/mappings.vim, plugin/grep.vim, after/plugin/fzf.vim
-let g:my_dirs = {
-      \ 'buffer' : "'%'",
-      \ 'here' : "'%:p:h'",
-      \ 'path' : "'.'",
-      \ 'gitdir' : "GitRootDir('%')",
-      \ 'dotfiles' : "'$HOME/dotfiles'",
-      \ 'workspace' : "'$HOME/workspace'",
-      \ 'vimfiles' : "'$VIM'",
-      \ 'runtime' : "'$VIMRUNTIME'",
-      \ }
+" " static directories which are interesting to me.
+" " see $HOME/.vim/plugin/abbrev.vim, 
+" " see $HOME/.vim/plugin/grep.vim
+" " see $HOME/.vim/after/plugin/fzf.vim
+" " \ 'b - buffer'     : "'%'",
+" let g:my_dirs = {
+"       \ 'h - here'       : "'%:p:h'",
+"       \ 'p - path (pwd)' : "'.'",
+"       \ 'g - gitdir'     : "GitRootDir('%')",
+"       \ 'd - dotfiles'   : "'$HOME/dotfiles'",
+"       \ 'w - workspace'  : "'$HOME/workspace'",
+"       \ 'v - vimfiles'   : "'$VIM'",
+"       \ 'r - runtime'    : "'$VIMRUNTIME'",
+"       \ }
 
 " netrw config
 let g:netrw_fastbrowse = 0
@@ -168,6 +177,7 @@ so $VIM/plugin/statusline.vim
 if has('nvim')
   Plug 'RRethy/nvim-base16'
 endif
+Plug 'folke/lsp-colors.nvim'
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
