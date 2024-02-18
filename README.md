@@ -48,3 +48,6 @@ Installation
 
 * i3 autotiling based on height/weight ratio
     pip3 install autotiling
+
+* dconf
+  * `org.gnome.gnome-flashback status-notifier-watcher` for tray icons.

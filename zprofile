@@ -20,6 +20,7 @@ fi
 # usual GOPATH
 if [ -d "$HOME/go/bin" ] ; then
     PATH=$HOME/go/bin:$PATH
+    GOPATH=$HOME/go
 fi
 
 PATH=~/.local/texlive/2023/bin/x86_64-linux:$PATH

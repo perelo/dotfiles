@@ -43,8 +43,7 @@ alias tma="tmux attach-session -t"
 alias r="ranger"
 alias rmswp="rm */.*.swp"
 
-alias doci="docker image"
-alias docc="docker container"
+alias dok="docker"
 alias ku="kubectl"
 alias tf="terraform"
 
@@ -108,7 +107,7 @@ done
 
 # terraform CLI completion
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/terraform terraform
+complete -o nospace -C terraform terraform
 
 # for rootless docker
 # https://docs.docker.com/engine/security/rootless/#prerequisites
