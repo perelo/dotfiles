@@ -94,26 +94,27 @@ xnoremap <leader>f: :<c-u><C-R>=<SID>GetGrepCmdLitteral(visualmode())<CR><Space>
 " dictionaries that maps g:my_dirs keys to a {str} to be used as
 " <leader>f{str} mapping
 " use the first letter of the dirname except for 'buffer' : use 'f' or 'F'
-let s:dirname2char = extend(map(copy(g:my_dirs), 'v:key[0]'), { 'buffer' : 'f' })
+" let s:dirname2char = extend(map(copy(g:my_dirs), 'v:key[0]'), { 'buffer' : 'f' })
+" let s:dirname2char = map(copy(g:my_dirs), 'v:key[0]')
 
-for [dirname, dir] in items(g:my_dirs)
+" for [dirname, dir] in items(g:my_dirs)
 
-  " populate the cmdline with :Grep  'directory'
-  exec 'nnoremap <leader>f' . s:dirname2char[dirname] . ' ' .
-    \ ':' . s:grep. '  <C-R>=' . dir . '<CR><S-Left><Left>'
+"   " populate the cmdline with :Grep  'directory'
+"   exec 'nnoremap <leader>f' . s:dirname2char[dirname] . ' ' .
+"     \ ':' . s:grep. '  <C-R>=' . dir . '<CR><S-Left><Left>'
 
-  " visual Grep, litteral string
-  exec 'xnoremap <leader>f' . s:dirname2char[dirname] . ' ' .
-    \ ':<c-u>call <SID>GrepExec(' . dir . ', visualmode())<CR>'
+"   " visual Grep, litteral string
+"   exec 'xnoremap <leader>f' . s:dirname2char[dirname] . ' ' .
+"     \ ':<c-u>call <SID>GrepExec(' . dir . ', visualmode())<CR>'
 
-  " operator-pending maps, first create the 'partial' function
-  exe ":function! s:Grep_" . dirname . "(type) \n" .
-    \ "  call <SID>GrepExec(" . dir . ", a:type) \n" .
-    \ "endfunction"
-  exe 'nnoremap <leader>f' . toupper(s:dirname2char[dirname]) .
-          \ ' :set operatorfunc=<SID>Grep_' . dirname . '<cr>g@'
+"   " operator-pending maps, first create the 'partial' function
+"   exe ":function! s:Grep_" . dirname . "(type) \n" .
+"     \ "  call <SID>GrepExec(" . dir . ", a:type) \n" .
+"     \ "endfunction"
+"   exe 'nnoremap <leader>f' . toupper(s:dirname2char[dirname]) .
+"           \ ' :set operatorfunc=<SID>Grep_' . dirname . '<cr>g@'
 
-endfor
+" endfor
 
 nnoremap <leader>R :<c-u>cdo s/\<<C-R>"\>
 

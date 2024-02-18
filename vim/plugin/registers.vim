@@ -1,3 +1,4 @@
+
 "
 " Add mappings to optionally (with '?') show registers before using them.
 " Do so by intercepting commands as '"'.
@@ -28,3 +29,23 @@ function! <SID>BetterRegister(what)
        endif
    endwhile
 endfunction
+
+
+" From
+" https://www.reddit.com/r/vim/comments/1ap2s64/repost_from_nvim_sharing_some_coolimo_reg/
+function! CycleReg()
+    " make delete behaviour of having the registers 1-9 cycle the values of all
+    " the previous deletes, work *also* on yank
+    if v:event.operator == 'y' && v:event.regname == ''
+        let @9 = @8
+        let @8 = @7
+        let @7 = @6
+        let @6 = @5
+        let @5 = @4
+        let @4 = @3
+        let @3 = @2
+        let @2 = @1
+        let @1 = @0
+    endif
+endfunction
+autocmd TextYankPost * call CycleReg()

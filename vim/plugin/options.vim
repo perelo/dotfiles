@@ -167,10 +167,12 @@ endif
 " persist the undo tree for each file
 if has('persistent_undo')
     if exists('$SUDO_USER')
-        set noundofile                    " don't create root-owned files
-    elseif ! has('nvim')                  " <!> nvim is incompatible with vim's undofile <!>
-        execute 'set undodir^='.expand('$VIM/tmp/undo//')
-        set undofile
+        setl noundofile                    " don't create root-owned files
+    elseif !has('nvim')
+        execute 'setl undodir^='.expand('$VIM/tmp/undo//')
+        setl undofile
+    else
+      setl undofile
     endif
 endif
 

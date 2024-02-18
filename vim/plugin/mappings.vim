@@ -59,9 +59,18 @@ inoremap œ <Esc>
 vnoremap œ <Esc>
 onoremap œ <Esc>
 cnoremap œ <C-C>
+" sometimes it's œ, sometimes it's ²
+inoremap ² <Esc>
+vnoremap ² <Esc>
+onoremap ² <Esc>
+cnoremap ² <C-C>
 " /!\ watchout when writing things like 'dijkstra'
 inoremap jk <ESC>
 inoremap kj <Esc>
+inoremap JK <ESC>:w<CR>
+inoremap KJ <ESC>:w<CR>
+inoremap jK <ESC>:w<CR>
+inoremap kJ <ESC>:w<CR>
 
 nnoremap Q @q
 vmap Q :norm Q<CR>
@@ -84,6 +93,7 @@ xnoremap $ $?\S<CR>
 
 " for more, look at tpope/rsi.vim
 cnoremap <C-E> <End>
+cnoremap <C-A> <Home>
 
 " go _to_ paragraph (1 line less)
 xnoremap g} :<c-u>call cursor(line("'}")-empty(getline(line("'}"))),col("'>") )<CR>`<gv``
@@ -116,28 +126,6 @@ if has('+diff')
     nnoremap <leader>dg :diffget<cr>
     nnoremap <leader>dp :diffput<cr>
 endif
-
-" open file from directories in g:my_dirs, see $HOME/.vimrc
-let s:dirs_to_search = copy(g:my_dirs)
-call remove(s:dirs_to_search, 'buffer')  " % is not a directory, use <leader>p
-let s:dirname2char = map(copy(s:dirs_to_search), 'v:key[0]')
-for [dirname, dir] in items(s:dirs_to_search)
-  exe 'nnoremap <leader>e' . s:dirname2char[dirname] . ' ' .
-    \ ':<c-u>edit <C-R>=expand(' . dir . ')<CR>/<C-D>'
-endfor
-
-" prepare editing file in the directory of current file
-" Eatchar used to eat trailing space, see `helpgrep Eatchar`
-func Eatchar(pat)
-  let c = nr2char(getchar(0))
-  return (c =~ a:pat) ? '' : c
-endfunc
-cnoreabbrev eh e <c-r>=expand('%:h')<cr>/<c-d><c-r>=Eatchar('\s')<cr>
-
-cnoreabbrev sas saveas <c-r>=expand('%:p:h')<cr>/<c-r>=Eatchar('\s')<cr>
-
-" (re)create tag file inside ':pwd' or in the current file's directory
-cabbrev sct !ctags -R
 
 let b:make = "Make %"
 let b:make_clean = "Make clean"

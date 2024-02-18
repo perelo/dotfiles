@@ -94,7 +94,7 @@ augroup ft
 augroup END
 
 " }}}
-" {{{ skeletons - tidy and do something with ultisnips
+" {{{ skeletons - TODO tidy and do something with ultisnips
 
 augroup skeleton
     autocmd!
@@ -121,6 +121,10 @@ augroup skeleton
     " Insert macro gate
     autocmd BufNewFile *.{h,hpp,hxx} call InsertMacroGate()
     autocmd BufNewFile *.{c,cpp,cxx} exe "normal! o"
+
+    " Begin with an empty module w/ capital filename as name
+    autocmd BufNewFile *.k so $VIM/skeletons/k_header.txt
+    autocmd BufNewFile *.k exe "% s/@[fF]ile/" .toupper(expand("%:t:r"))
 augroup END
 
 " }}}
