@@ -14,3 +14,8 @@ let g:lightline = {
     \   'gitbranch': 'gitbranch#name'
     \ },
     \ }
+
+let g:lightline.component+={
+  'cuecmd': 'cuecmd'
+  }
+let g:lightline.active.right+=['cuecmd']

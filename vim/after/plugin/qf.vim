@@ -3,6 +3,7 @@ if !exists("g:loaded_qf") || g:loaded_qf == 0
 endif
 
 let g:qf_mapping_ack_style = 1
+let g:qf_window_bottom = 0
 let g:qf_loclist_window_bottom = 0
 let g:qf_bufname_or_text = 0        " 0:buffer&text, 1:buffer, 2:text
 
