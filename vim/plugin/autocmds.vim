@@ -88,9 +88,6 @@ augroup ft
 
     " Life filetype for *.lf files
     au BufNewFile,BufRead *.txtar setlocal filetype=txt
-
-    " K-Framework filetype for *.k files
-    au BufNewFile,BufRead *.k setlocal filetype=kframework
 augroup END
 
 " }}}
