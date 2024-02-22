@@ -17,10 +17,13 @@ if [ -d "/usr/local/go/bin" ] ; then
     PATH=/usr/local/go/bin:$PATH
 fi
 
+if [ -d "$HOME/go" ] ; then
+    export GOPATH=$HOME/go
+    export GOROOT=$HOME/go
+fi
 # usual GOPATH
 if [ -d "$HOME/go/bin" ] ; then
     PATH=$HOME/go/bin:$PATH
-    GOPATH=$HOME/go
 fi
 
 PATH=~/.local/texlive/2023/bin/x86_64-linux:$PATH
