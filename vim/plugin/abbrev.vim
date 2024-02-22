@@ -1,10 +1,11 @@
 
-" prepare editing file in the directory of current file
 " Eatchar used to eat trailing space, see `helpgrep Eatchar`
 func! Eatchar(pat)
   let c = nr2char(getchar(0))
   return (c =~ a:pat) ? '' : c
 endfunc
+
+cnoreabbrev eft edit ~/.vim/{after/,after/ft,ft}plugin/*<c-r>=&filetype<cr>*.vim<c-d><c-r>=Eatchar(" ")<cr>
 
 " TODO remove duplicate in ~/.vimrc/
 let s:my_dirs = {

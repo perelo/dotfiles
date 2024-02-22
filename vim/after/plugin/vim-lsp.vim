@@ -35,7 +35,6 @@ endif
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     nmap <buffer> <leader>l* <plug>(lsp-document-symbol-search)
     nmap <buffer> <leader>ld <plug>(lsp-definition)
@@ -57,6 +56,9 @@ function! s:on_lsp_buffer_enabled() abort
     let g:lsp_diagnostics_echo_cursor = 1
     let g:lsp_diagnostics_float_cursor = 1
     let g:lsp_inlay_hints_enabled = 1
+
+    let g:lsp_diagnostics_signs_enabled = 1
+    setlocal signcolumn=number
 
     " let g:lsp_format_sync_timeout = 1000
     " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
