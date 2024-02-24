@@ -30,6 +30,15 @@ if executable('gopls')
         \ 'allowlist': ['go'],
         \ })
 endif
+if executable('cuepls')
+    " pip install python-lsp-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'cuepls',
+        \ 'cmd': {server_info->['cuepls']},
+        \ 'allowlist': ['cue'],
+        \ })
+endif
+
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete

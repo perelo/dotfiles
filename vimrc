@@ -180,6 +180,7 @@ so $VIM/plugin/statusline.vim
 
 if has('nvim')
   Plug 'RRethy/nvim-base16'
+  Plug 'folke/lsp-colors.nvim'
 endif
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256

@@ -9,21 +9,20 @@ if [ -d "$HOME/.local/dhall/" ] ; then
     PATH=$HOME/.local/dhall/bin:$PATH
 fi
 
-if [ -d "$HOME/.local/go/bin" ] ; then
-    PATH=$HOME/.local/go/bin:$PATH
-fi
-
+# go standard binaries
 if [ -d "/usr/local/go/bin" ] ; then
     PATH=/usr/local/go/bin:$PATH
 fi
 
-if [ -d "$HOME/go" ] ; then
-    export GOPATH=$HOME/go
-    export GOROOT=$HOME/go
+# go standard binaries
+if [ -d "$HOME/.local/go/bin" ] ; then
+    PATH=$HOME/.local/go/bin:$PATH
 fi
-# usual GOPATH
+
+# user GOPATH
 if [ -d "$HOME/go/bin" ] ; then
     PATH=$HOME/go/bin:$PATH
+    export GOPATH=$HOME/go
 fi
 
 PATH=~/.local/texlive/2023/bin/x86_64-linux:$PATH
