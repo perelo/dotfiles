@@ -113,7 +113,7 @@ if filereadable(expand('%:p:h').'/Makefile')
   " there is a Makefile in the current buffer's directory
   " pass it to the -f option of 'make' in case there is also one in the cwd
   let &l:makeprg .= " -f " . expand('%:p:h') . '/Makefile'
-  let b:make = "Make"   " Make it simple
+  " let b:make = "Make"   " Make it simple
 elseif filereadable($HOME.'/.local/share/latex.mk')
   " use global latex.mk
   let &l:makeprg .= " -f ".$HOME."/.local/share/latex.mk"

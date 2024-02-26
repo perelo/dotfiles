@@ -3,6 +3,9 @@ setlocal ft=2 sw=2 sts=2
 
 let g:jsonnet_fmt_on_save = 1
 
+" TODO guard this
+let g:jsonnet_command='jsonnet'
+
 let b:cmd = g:jsonnet_command.' '.expand('%:p')
 if exists(':VimuxRunCommand')
     noremap <buffer> <F1>      :silent w <bar> VimuxRunCommand b:cmd<CR>

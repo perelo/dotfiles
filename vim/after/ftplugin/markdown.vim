@@ -42,7 +42,6 @@ let g:vim_markdown_auto_insert_bullets = 0
 " remove 'gf', 'gx', ',xi' mappings
 let g:pandoc#hypertext#use_default_mappings = 0
 
-
 if expand("%:p") =~ $HOME."/workspace/ue-cloud-tf/"
   let b:make = "Make %:t:r".".html"
 else
