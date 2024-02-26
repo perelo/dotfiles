@@ -1,10 +1,13 @@
 [user]
-  email = eloi@perdereau.eu
+  email = eloi.perdereau@imt-atlantique.fr
   name = Eloi Perdereau
 
 [core]
   editor = vim
   excludesfile = ~/.gitignore
+
+[pull]
+  rebase = true
 
 [color]
   ui = true
