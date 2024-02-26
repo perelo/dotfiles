@@ -7,4 +7,4 @@
 " nnoremap - <Plug>VinegarUp<CR>/<C-R>=expand("%")<CR><CR>
 
 " allow to cd and track current directory with b:netrw_curdir
-let g:netrw_keepdir=0
+" let g:netrw_keepdir=0

@@ -35,13 +35,12 @@ alias rm="rm -i"            # ask confirmation
 alias rename="rename -v"    # print names of files successfully renamed.
 alias rsync="rsync --progress"
 alias tree="tree -C"
+alias diff="diff --color"
 alias df="df -hT"           # "human", filesystem "Type"
 
 alias vi="vim"
 alias nvim="nvim --listen /tmp/nvimsocket"
 alias tma="tmux attach-session -t"
-alias r="ranger"
-alias rmswp="rm */.*.swp"
 
 alias dok="docker"
 alias ku="kubectl"
