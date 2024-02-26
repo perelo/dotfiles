@@ -75,13 +75,17 @@ Plug 'tpope/vim-vinegar'
 " Plug 'moll/vim-bbye'
 Plug 'ap/vim-buftabline'
 
-" lsp-related
-if !has("nvim")
+" lsp-related, vim
+if ! has("nvim")
   Plug 'prabirshrestha/vim-lsp'
+  let g:lsp_loaded = 1  " deactivate vim-lsp
   " Plug 'mattn/vim-lsp-settings'
+
+  " Plug 'govim/govim'  " gopls
 endif
-if has("nvim")
+if has('nvim')
   Plug 'neovim/nvim-lspconfig'
+  Plug 'folke/lsp-colors.nvim'
 endif
 
 " out-of-vim related
@@ -114,7 +118,7 @@ packadd! vim-sentence-chopper
 if has('patch-8.1.0311')
   packadd! cfilter
 endif
-if !has('nvim')
+if ! has('nvim')
     packadd! matchit
 endif
 
@@ -177,7 +181,6 @@ so $VIM/plugin/statusline.vim
 if has('nvim')
   Plug 'RRethy/nvim-base16'
 endif
-Plug 'folke/lsp-colors.nvim'
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background

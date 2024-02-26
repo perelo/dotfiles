@@ -6,17 +6,15 @@
 " TODO guards for vim9script
 "
 
-
-if has('nvim')
-    setl omnifunc=v:lua.vim.lsp.omnifunc
-endif
-
+" https://github.com/prabirshrestha/vim-lsp
 if has('g:lsp_loaded')
     exit
 endif
 let g:lsp_loaded = 1
 
-" https://github.com/prabirshrestha/vim-lsp
+if has('nvim')
+    setl omnifunc=v:lua.vim.lsp.omnifunc
+endif
 
 augroup lsp_install
     au!
