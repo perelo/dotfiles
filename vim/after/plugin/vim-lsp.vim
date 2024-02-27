@@ -7,20 +7,14 @@
 "
 
 " https://github.com/prabirshrestha/vim-lsp
-if has('g:lsp_loaded')
-    exit
+if !exists('g:lsp_loaded') || g:lsp_loaded == 0
+    finish
 endif
 let g:lsp_loaded = 1
 
 if has('nvim')
     setl omnifunc=v:lua.vim.lsp.omnifunc
 endif
-
-augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
 
 if executable('gopls')
     " pip install python-lsp-server
@@ -60,26 +54,25 @@ function! s:on_lsp_buffer_enabled() abort
     nnoremap <buffer> <leader>lL :<c-u>lclose<CR>
 
     let g:lsp_diagnostics_enabled = 1
-    let g:lsp_diagnostics_echo_cursor = 1
-    let g:lsp_diagnostics_float_cursor = 1
-    let g:lsp_inlay_hints_enabled = 1
+    " let g:lsp_diagnostics_echo_cursor = 1
+    " let g:lsp_diagnostics_float_cursor = 1
+    " let g:lsp_inlay_hints_enabled = 1
 
     let g:lsp_diagnostics_signs_enabled = 1
+    let g:lsp_document_code_action_signs_enabled = 0
     setlocal signcolumn=number
 
-    " let g:lsp_format_sync_timeout = 1000
-    " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+    let g:lsp_diagnostics_virtual_text_align = "right"
+    let g:lsp_diagnostics_virtual_text_prefix = " ‣ "
+    hi! link LspErrorVirtualText Comment
 
-    " refer to doc to add more commands
+    hi! link LspErrorHighlight Underlined
+
 endfunction
 
-hi! link LspErrorHighlight Underlined
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
 
-" lua << EOF
-"   vim.api.nvim_create_autocmd("LspAttach", {
-"   callback = function(args)
-"     local client = vim.lsp.get_client_by_id(args.data.client_id)
-"     client.server_capabilities.semanticTokensProvider = nil
-"   end,
-" });
-" EOF
