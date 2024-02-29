@@ -30,6 +30,7 @@ alias lls='ls -lshS --color=auto'
 alias grep='grep --color=auto -i'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias diff='diff --color'
 alias ip='ip -c'
 alias rm="rm -i"            # ask confirmation
 alias rename="rename -v"    # print names of files successfully renamed.
@@ -38,6 +39,7 @@ alias tree="tree -C"
 alias diff="diff --color"
 alias df="df -hT"           # "human", filesystem "Type"
 
+alias t="tree -C"
 alias vi="vim"
 alias nvim="nvim --listen /tmp/nvimsocket"
 alias tma="tmux attach-session -t"
