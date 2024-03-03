@@ -46,8 +46,10 @@ Installation
 
     `pip install unidecode`
 
-* i3 autotiling based on height/weight ratio
-    pip3 install autotiling
+* i3 python dependencies
+
+    python3 -m venv ~/dotfiles/config/i3/
+    ~/dotfiles/config/i3/bin/pip3 install i3ipc fontawesome autotiling
 
 * dconf
   * `org.gnome.gnome-flashback status-notifier-watcher` for tray icons.
