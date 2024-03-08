@@ -11,7 +11,8 @@ cnoreabbrev eft edit ~/.vim/{after/,after/ft,ft}plugin/*<c-r>=&filetype<cr>*.vim
 let s:my_dirs = {
       \ 'h - here dir'   : "'%:p:h'",
       \ 'p - path (pwd)' : "'.'",
-      \ 'g - gitdir'     : "GitRootDir('%')",
+      \ 'gi - git root'  : "GitRootDir('%')",
+      \ 'go - go module' : "GoRootDir('%')",
       \ 'd - dotfiles'   : "'$HOME/dotfiles'",
       \ 'w - workspace'  : "'$HOME/workspace'",
       \ 'v - vimfiles'   : "'$VIM'",
@@ -20,9 +21,9 @@ let s:my_dirs = {
 
 "
 " :edit $dir <c-d> from directories in s:my_dirs, see $HOME/.vimrc
-let s:dirname2char = map(copy(s:my_dirs), 'v:key[0]')
 for [dirname, dir] in items(s:my_dirs)
-  exe 'cnoreabbrev e' . s:dirname2char[dirname] . ' ' .
+  let abbrev = split(dirname)[0]
+  exe 'cnoreabbrev e' . abbrev . ' ' .
     \ 'edit <c-r>=expand(' . dir . ')<cr>/<c-d><c-r>=Eatchar(" ")<cr>'
   " cnoreabbrev eh e <c-r>=expand('%:h')<cr>/<c-d><c-r>=Eatchar('\s')<cr>
 endfor
@@ -31,19 +32,18 @@ cabbrev ee edit <c-r>=expand('%:p')<cr><c-r>=Eatchar('\s')<cr>
 
 "
 " :saveas $dir %[] <c-d>
-let s:dirname2char = map(copy(s:my_dirs), 'v:key[0]')
 for [dirname, dir] in items(s:my_dirs)
-  exe 'cnoreabbrev sa' . s:dirname2char[dirname] . ' ' .
+  let abbrev = split(dirname)[0]
+  exe 'cnoreabbrev sa' . abbrev . ' ' .
     \ 'saveas <c-r>=expand(' . dir . ')<cr>/<c-d><c-r>=Eatchar(" ")<cr>'
 endfor
 cabbrev sas saveas <c-r>=expand('%:p')<cr><c-r>=Eatchar('\s')<cr>
 
-
 "
 " :Grep $dir
-let s:dirname2char = map(copy(s:my_dirs), 'v:key[0]')
 for [dirname, dir] in items(s:my_dirs)
-  exe 'cnoreabbrev grep' . s:dirname2char[dirname] . ' ' .
+  let abbrev = split(dirname)[0]
+  exe 'cnoreabbrev grep' . abbrev . ' ' .
     \ 'Grep <c-r>=expand(' . dir . ')<cr>/<c-d><c-r>=Eatchar(" ")<cr>'
 endfor
 

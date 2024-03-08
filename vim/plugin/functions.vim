@@ -31,6 +31,22 @@ function! GitRootDir(...) abort
     return l:rootdir[:-2]
 endfunction
 
+function! GoRootDir(...) abort
+    let l:path = a:0 ? expand(a:000[0]) : '.'
+    let l:path = isdirectory(l:path) ? l:path : fnamemodify(l:path, ":h")
+    if !isdirectory(l:path)
+      return ''
+    endif
+    let l:oldcwd = getcwd()
+    execute "cd " . l:path
+    let l:rootdir = fnamemodify(system('go env GOMOD'), ':h')
+    execute "cd " . l:oldcwd
+    if v:shell_error != 0
+        return ''
+    endif
+    return l:rootdir
+endfunction
+
 " function! RegenerateTags() abort
 "     echo 'Regenerating tags...'
 "     let l:dir = GitRootDir()
