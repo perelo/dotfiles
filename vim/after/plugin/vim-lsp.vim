@@ -24,6 +24,7 @@ if executable('gopls')
         \ 'allowlist': ['go'],
         \ })
 endif
+
 if executable('cuepls')
     " pip install python-lsp-server
     au User lsp_setup call lsp#register_server({
@@ -32,6 +33,25 @@ if executable('cuepls')
         \ 'allowlist': ['cue'],
         \ })
 endif
+
+if executable('pylsp')
+    " pip install python-lsp-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'python3-pylsp',
+        \ 'cmd': {server_info->['pylsp']},
+        \ 'allowlist': ['python'],
+        \ })
+endif
+
+if executable('terraform-ls')
+    " pip install python-lsp-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'terraform-ls',
+        \ 'cmd': {server_info->['terraform-ls', 'serve']},
+        \ 'allowlist': ['terraform'],
+        \ })
+endif
+
 
 
 function! s:on_lsp_buffer_enabled() abort
@@ -43,7 +63,7 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> <leader>lr <plug>(lsp-references)
     nmap <buffer> <leader>li <plug>(lsp-implementation)
     nmap <buffer> <leader>lt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>mv <plug>(lsp-rename)
+    nmap <buffer> <leader>lmv <plug>(lsp-rename)
     nmap <buffer> <leader>(q <plug>(lsp-previous-diagnostic)
     nmap <buffer> <leader>)q <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
@@ -56,13 +76,15 @@ function! s:on_lsp_buffer_enabled() abort
     let g:lsp_diagnostics_enabled = 1
     " let g:lsp_diagnostics_echo_cursor = 1
     " let g:lsp_diagnostics_float_cursor = 1
-    " let g:lsp_inlay_hints_enabled = 1
+    let g:lsp_inlay_hints_enabled = 1
 
     let g:lsp_diagnostics_signs_enabled = 1
     let g:lsp_document_code_action_signs_enabled = 0
     setlocal signcolumn=number
 
+    let g:lsp_diagnostics_virtual_text_enabled = 1
     let g:lsp_diagnostics_virtual_text_align = "right"
+    let g:lsp_diagnostics_virtual_text_wrap = "truncate"
     let g:lsp_diagnostics_virtual_text_prefix = " ‣ "
     hi! link LspErrorVirtualText Comment
 

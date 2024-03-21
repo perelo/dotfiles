@@ -44,7 +44,6 @@ Plug 'inkarkat/vim-WORDComplete'
 Plug 'cespare/vim-toml'
 Plug 'tpope/vim-liquid'
 Plug 'vmchale/dhall-vim'
-Plug 'jvirtanen/vim-hcl'
 Plug 'Procrat/oz.vim'
 Plug 'adimit/prolog.vim'
 Plug 'kframework/k-editor-support', { 'rtp': 'vim' }
@@ -55,6 +54,7 @@ Plug 'nickel-lang/vim-nickel'
 
 " language ftplugins
 Plug 'sheerun/vim-polyglot'
+let g:polyglot_disabled = ['tex', 'cue', 'python']
 if has('python3') && executable('pandoc')
   Plug 'vim-pandoc/vim-pandoc'
   Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -155,7 +155,7 @@ let g:netrw_altfile = 1       " keep the alternate buffer !
 
 " indentLine config
 " let g:indentLine_enabled = 0
-let g:indentLine_char = '|'
+let g:indentLine_char = "\u2502"
 let g:indentLine_color_term = 202
 let g:indentLine_fileType = ['yaml']
 let g:indentLine_bufTypeExclude = ['help', 'quickfix', 'nofile']
