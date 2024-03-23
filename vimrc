@@ -161,7 +161,7 @@ let g:indentLine_fileType = ['yaml']
 let g:indentLine_bufTypeExclude = ['help', 'quickfix', 'nofile']
 let g:indentLine_fileTypeExclude = [ 'help', 'text', 'gitcommit', 'tex', 'vim']
 " unimpaired style
-nnoremap yod :<c-u>IndentLinesToggle<CR>
+nnoremap yoi :<c-u>IndentLinesToggle<CR>
 
 
 " Enable filetype detection and load plugin files
