@@ -47,7 +47,7 @@ for [dirname, dir] in items(s:my_dirs)
     \ 'Grep <c-r>=expand(' . dir . ')<cr>/<c-d><c-r>=Eatchar(" ")<cr>'
 endfor
 
-" (re)create tag file inside ':pwd' or in the current file's directory
-cabbrev sct !ctags -R
+" (re)create tag file inside the current file's directory
+cabbrev sct !ctags -R <c-r>=expand("%:h")<cr>
 
 iabbrev teh the
