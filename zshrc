@@ -7,7 +7,7 @@ MANPAGER="less"
 export EDITOR VISUAL MANPAGER
 
 HISTFILE="$HOME/.zsh_history"
-SAVEHIST=5000
+SAVEHIST=100
 setopt share_history
 setopt extended_history
 
@@ -15,10 +15,6 @@ setopt extended_history
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^f' edit-command-line
-
-bindkey '^r' history-incremental-search-backward
-bindkey '^p' up-history
-bindkey '^n' down-history
 
 # load autocompletion
 autoload -Uz compinit && compinit
@@ -94,7 +90,7 @@ LESS=-RX # -X: don't clear screen before and after less
 
 unset GREP_OPTIONS
 
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -f /opt/textidote/textidote.zsh ] && source /opt/textidote/textidote.zsh
 
