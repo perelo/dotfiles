@@ -1,4 +1,4 @@
-setlocal sw=2 sts=2 ts=2
+setlocal sw=4 sts=4 ts=4
 setlocal expandtab
 " setlocal nolist  " because formatting uses tabs
 setlocal iskeyword+=#   " so that Definitions (e.g. #List) are words

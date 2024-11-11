@@ -47,7 +47,6 @@ Plug 'vmchale/dhall-vim'
 Plug 'Procrat/oz.vim'
 Plug 'adimit/prolog.vim'
 Plug 'kframework/k-editor-support', { 'rtp': 'vim' }
-Plug 'preservim/vim-markdown'
 Plug 'jjo/vim-cue'
 Plug 'google/vim-jsonnet'
 Plug 'nickel-lang/vim-nickel'
@@ -55,6 +54,7 @@ Plug 'nickel-lang/vim-nickel'
 " language ftplugins
 Plug 'sheerun/vim-polyglot'
 let g:polyglot_disabled = ['tex', 'cue', 'python']
+" Plug 'preservim/vim-markdown'
 if has('python3') && executable('pandoc')
   Plug 'vim-pandoc/vim-pandoc'
   Plug 'vim-pandoc/vim-pandoc-syntax'

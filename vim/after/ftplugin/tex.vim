@@ -118,7 +118,10 @@ elseif filereadable($HOME.'/.local/share/latex.mk')
   " use global latex.mk
   let &l:makeprg .= " -f ".$HOME."/.local/share/latex.mk"
 endif
+" revert
+" let &l:makeprg = "make"
 let &l:makeprg .= " -C ".expand('%:h')       " compile in the buffer's directory
+
 
 setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m,
 	\%Dmake :\ on\ entre\ dans\ le\ répertoire\ « %f »,
