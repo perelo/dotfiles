@@ -138,11 +138,11 @@ endif
 
 
 " Highlight overlength columns
-if exists('+colorcolumn')
-    set colorcolumn=80
-    " highlight OverLength ctermbg=red ctermfg=white
-    " exec 'match OverLength /\%'.&cc.'v.\+/'
-endif
+" if exists('+colorcolumn')
+"     set colorcolumn=80
+"     " highlight OverLength ctermbg=red ctermfg=white
+"     " exec 'match OverLength /\%'.&cc.'v.\+/'
+" endif
 
 if has('cursorshape')
     let &t_SI = "\<esc>[5 q"    " | cursor in insert mode
