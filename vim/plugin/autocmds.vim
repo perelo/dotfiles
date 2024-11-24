@@ -86,8 +86,10 @@ augroup ft
     " Life filetype for *.lf files
     au BufNewFile,BufRead *.lf setlocal filetype=life
 
-    " Life filetype for *.lf files
     au BufNewFile,BufRead *.txtar setlocal filetype=txt
+
+    " .tfvars are not the same as .tf
+    au BufNewFile,BufRead *.tfvars setlocal filetype=txt
 augroup END
 
 " }}}
