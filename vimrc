@@ -47,9 +47,19 @@ Plug 'vmchale/dhall-vim'
 Plug 'Procrat/oz.vim'
 Plug 'adimit/prolog.vim'
 Plug 'kframework/k-editor-support', { 'rtp': 'vim' }
+Plug 'vim-scripts/maude.vim'
 Plug 'jjo/vim-cue'
 Plug 'google/vim-jsonnet'
 Plug 'nickel-lang/vim-nickel'
+
+" Plug 'preservim/vim-markdown'
+" let g:vim_markdown_no_default_key_mappings = 1 " don't map anything
+" " let g:vim_markdown_folding_disabled = 1  " disable folds because foldlevel is local to *window*
+" let g:vim_markdown_folding_level = &foldlevel
+" let g:vim_markdown_folding_style_pythonic = 1 " include foldtext in the title
+" let g:vim_markdown_follow_anchor = 1
+" let g:vim_markdown_new_list_item_indent = 2 " don't try to autoindent nested item
+" let g:vim_markdown_auto_insert_bullets = 0 " stop inserting bullet points when formatting (wrapping) w/ gq or gw
 
 " language ftplugins
 Plug 'sheerun/vim-polyglot'
@@ -149,14 +159,14 @@ noremap ,, ,
 
 " netrw config
 let g:netrw_fastbrowse = 0
-let g:netrw_liststyle = 1     " like ls
+let g:netrw_liststyle = 0     " like ls
 let g:netrw_hide = 1
 let g:netrw_altfile = 1       " keep the alternate buffer !
 
 " indentLine config
 " let g:indentLine_enabled = 0
 let g:indentLine_char = "\u2502"
-let g:indentLine_color_term = 202
+let g:indentLine_defaultGroup = "Comment"
 let g:indentLine_fileType = ['yaml']
 let g:indentLine_bufTypeExclude = ['help', 'quickfix', 'nofile']
 let g:indentLine_fileTypeExclude = [ 'help', 'text', 'gitcommit', 'tex', 'vim']
