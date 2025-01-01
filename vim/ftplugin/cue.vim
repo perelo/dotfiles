@@ -3,6 +3,7 @@ setlocal expandtab
 " setlocal nolist  " because formatting uses tabs
 setlocal iskeyword+=#   " so that Definitions (e.g. #List) are words
 
+setl nolist
 
 let g:cue_fmt_on_save = 0
 

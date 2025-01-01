@@ -78,7 +78,7 @@ augroup END
 augroup ft
     autocmd!
     " Make sure all markdown files have the correct filetype
-    autocmd BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setlocal filetype=markdown
+    " autocmd BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setlocal filetype=markdown
 
     " Tex files must be 'tex' filetype not 'plaintex'
     autocmd BufRead,BufNewFile *.{tex} setlocal filetype=tex
@@ -90,6 +90,9 @@ augroup ft
 
     " .tfvars are not the same as .tf
     au BufNewFile,BufRead *.tfvars setlocal filetype=txt
+
+    " Maude filetype
+    au BufNewFile,BufRead *.maude setlocal filetype=maude
 augroup END
 
 " }}}
