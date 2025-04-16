@@ -11,6 +11,9 @@ SAVEHIST=100
 setopt share_history
 setopt extended_history
 
+# Enable bash comments in the CLI (#)
+setopt interactivecomments
+
 # Enable Ctrl-f to edit command line
 autoload -U edit-command-line
 zle -N edit-command-line
@@ -44,10 +47,13 @@ alias vi="vim"
 alias nvim="nvim --listen /tmp/nvimsocket"
 alias tma="tmux attach-session -t"
 
+alias g="git"
 alias dok="docker"
 alias ku="kubectl"
 alias tf="terraform"
+alias plm="pulumi"
 
+alias maude="maude -ansi-color"
 alias kompiled="kompile --enable-llvm-debug"
 alias krund="krun --debugger"
 
@@ -98,7 +104,7 @@ unset GREP_OPTIONS
 if [ -f '$HOME/.netlify/helper/path.zsh.inc' ]; then source '$HOME/.netlify/helper/path.zsh.inc'; fi
 
 # completion for various CLIs
-for tool in  kubectl minikube helm cue
+for tool in  kubectl minikube helm cue holos pulumi pulumictl
 do
     if command -v $tool &> /dev/null
     then
