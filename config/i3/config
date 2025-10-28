@@ -1,6 +1,11 @@
 # Mod=Alt -- I use alt so it doesn't conflict with vim or tmux but is easy to reach
 set $mod Mod4
 
+# gaps between windows
+# for_window [class="^.*"] border pixel 2
+gaps inner 5
+gaps outer5
+
 set_from_resource $darkred     color1  #000000
 set_from_resource $red         color9  #000000
 set_from_resource $darkgreen   color2  #000000
