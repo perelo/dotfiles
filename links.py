@@ -27,11 +27,13 @@ items = [
     "vim/",
     "zshrc",
     "zsh/",
+    "zprofile",
     "tmux.conf",
     "tmuxcolors-base16.conf",
     "gitconfig",
     "gitignore",
     "ctags",
+    "Xresources",
 ]
 
 # list of items to link in $config
