@@ -2,6 +2,7 @@
 " Initialization
 " =============================================================================
 
+
 " Clear autocmds
 autocmd!
 
@@ -50,7 +51,9 @@ Plug 'kframework/k-editor-support', { 'rtp': 'vim' }
 Plug 'vim-scripts/maude.vim'
 Plug 'jjo/vim-cue'
 Plug 'google/vim-jsonnet'
+Plug 'cappyzawa/starlark.vim'
 Plug 'nickel-lang/vim-nickel'
+Plug 'jclsn/pkl-neovim'
 
 " Plug 'preservim/vim-markdown'
 " let g:vim_markdown_no_default_key_mappings = 1 " don't map anything
@@ -63,7 +66,7 @@ Plug 'nickel-lang/vim-nickel'
 
 " language ftplugins
 Plug 'sheerun/vim-polyglot'
-let g:polyglot_disabled = ['tex', 'cue', 'python']
+let g:polyglot_disabled = ['tex', 'cue', 'python', 'star']
 " Plug 'preservim/vim-markdown'
 if has('python3') && executable('pandoc')
   Plug 'vim-pandoc/vim-pandoc'
