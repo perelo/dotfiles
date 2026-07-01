@@ -23,7 +23,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'wellle/targets.vim'
 Plug 'arp242/jumpy.vim'
 Plug 'mbbill/undotree'
-Plug 'chriskempson/base16-vim'
 " Plug 'ciaranm/securemodelines'
 Plug 'romainl/vim-qf'
 Plug 'romainl/vim-qlist'
@@ -53,7 +52,15 @@ Plug 'jjo/vim-cue'
 Plug 'google/vim-jsonnet'
 Plug 'cappyzawa/starlark.vim'
 Plug 'nickel-lang/vim-nickel'
+Plug 'dylon/vim-antlr'
 Plug 'jclsn/pkl-neovim'
+
+" treesitter
+if has('nvim')
+  Plug 'tree-sitter/tree-sitter'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'https://github.com/apple/pkl-neovim.git'
+endif
 
 " Plug 'preservim/vim-markdown'
 " let g:vim_markdown_no_default_key_mappings = 1 " don't map anything
@@ -88,18 +95,19 @@ Plug 'tpope/vim-vinegar'
 " Plug 'moll/vim-bbye'
 Plug 'ap/vim-buftabline'
 
+Plug 'chriskempson/base16-vim'
+
 " lsp-related, vim
 if ! has("nvim")
   Plug 'prabirshrestha/vim-lsp'
-  let g:lsp_loaded = 1  " deactivate vim-lsp
   " Plug 'mattn/vim-lsp-settings'
 
   " Plug 'govim/govim'  " gopls
 endif
-if has('nvim')
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'folke/lsp-colors.nvim'
-endif
+" if has('nvim')
+  " Plug 'neovim/nvim-lspconfig'
+  " Plug 'folke/lsp-colors.nvim'
+" endif
 
 " out-of-vim related
 Plug 'tpope/vim-eunuch'
@@ -192,10 +200,11 @@ endif
 so $VIM/plugin/statusline.vim
 
 if has('nvim')
-  Plug 'RRethy/nvim-base16'
-  Plug 'folke/lsp-colors.nvim'
+  Plug 'RRethy/base16-nvim'
+  " Plug 'folke/lsp-colors.nvim'
 endif
 if filereadable(expand("~/.vimrc_background"))
+  set background=light
   let base16colorspace=256
   source ~/.vimrc_background
   "prefered themes : unikitty-dark, atelier-dune, ocean

@@ -1,8 +1,8 @@
 setlocal foldmethod=indent
 
 if exists(':VimuxRunCommand')
-    nnoremap <buffer> <F1> :silent w <bar> VimuxRunCommand 'python3 '.expand('%')<CR>
-    inoremap <buffer> <F1> <Esc>:silent w <bar> VimuxRunCommand 'python3 '.expand('%')<CR>
+    nnoremap <buffer> <F1> :silent w <bar> VimuxRunCommand 'python3 '.expand('%:p')<CR>
+    inoremap <buffer> <F1> <Esc>:silent w <bar> VimuxRunCommand 'python3 '.expand('%:p')<CR>
 endif
 " inoremap <buffer> <F1> <esc>:silent w <bar> :SlimeSend<CR>
 " nnoremap <buffer> <F1> :silent w <bar> :SlimeSend<CR>

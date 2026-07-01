@@ -8,6 +8,7 @@ setlocal thesaurus=$VIM/thesaurus/fr1.txt
 setlocal conceallevel=0
 setlocal wildignore+=*.aux,*.log,*.bbl,*.blg,*.synctex.gz,*.pdf
 setlocal iskeyword+=-       " composed-words
+setlocal iskeyword+=:       " ref tags
 setlocal suffixesadd+=.cls
 
 setlocal modeline
@@ -110,6 +111,7 @@ setlocal errorformat=%f:%l:\ %m
 let b:make = "Make %:t:r".".pdf"
 let b:make_clean = "Make clean"
 
+" FIXME: use the first make until 'workspace'
 let &l:makeprg = "make"
 if filereadable(expand('%:p:h').'/Makefile')
   " there is a Makefile in the current buffer's directory
@@ -121,16 +123,36 @@ elseif filereadable($HOME.'/.local/share/latex.mk')
   let &l:makeprg .= " -f ".$HOME."/.local/share/latex.mk"
 endif
 " revert
-" let &l:makeprg = "make"
+let &l:makeprg = "make"
 let &l:makeprg .= " -C ".expand('%:h')       " compile in the buffer's directory
+
+" override make
+if expand("%:p:h") == $HOME.'/workspace/iac/ccerto/mutable-tf-plm-perso'
+  let b:make = "Make all"
+endif
+if match(expand("%:p:h"), '^'.$HOME.'/workspace/iac/complang/presentation-LIFO220626') != -1
+  let &l:makeprg = 'make -C '.$HOME.'/workspace/iac/complang/presentation-LIFO220626'
+  let b:make = "Make"
+endif
+if match(expand("%:p:h"), '^'.$HOME.'/workspace/iac/deiac/ECOOP26-tf-plm') != -1
+  let &l:makeprg = 'make -C '.$HOME.'/workspace/iac/deiac/ECOOP26-tf-plm'
+  let b:make = "Make"
+endif
+if match(expand("%:p:h"), '^'.$HOME.'/workspace/iac/deiac/survey-iac/overleaf') != -1
+  let &l:makeprg = 'make -C '.$HOME.'/workspace/iac/deiac/survey-iac/overleaf'
+  let b:make = "Make"
+endif
+if match(expand("%:p:h"), '^'.$HOME.'/workspace/iac/deiac/survey-iac/overleafv2') != -1
+  let &l:makeprg = 'make -C '.$HOME.'/workspace/iac/deiac/survey-iac/overleafv2'
+  let b:make = "Make"
+endif
 
 
 setlocal errorformat=%f:%l:\ %m,%f:%l-%\\d%\\+:\ %m,
 	\%Dmake :\ on\ entre\ dans\ le\ répertoire\ « %f »,
 	\%Xmake :\ on\ quitte\ le\ répertoire\ « %f »
-" TODO remove
-setlocal efm^=\%-G%f:%l:\ [Font]\ Font\ shape\ `T1/cmr/bx/scit'\ undefined\ using\ `T1/cmr/bx/sc'\ instead.%.%#
-setlocal efm^=\%-G%f:%l:\ [Font]\ Font\ shape\ `T1/cmr/m/scit'\ undefined\ using\ `T1/cmr/m/sc'\ instead.%.%#
+" setlocal efm^=\%-G%f:%l:\ [Font]\ Font\ shape\ `T1/cmr/bx/scit'\ undefined\ using\ `T1/cmr/bx/sc'\ instead.%.%#
+
 
 " }}} Compilation
 
@@ -160,5 +182,9 @@ endif
 "
 " append \left and \right to \{ and \}
 " s?\ze\\}?\\right?g | s?\ze\\{?\\left?g
+"
+" markdown to latex
+" %s/_\([^_]*\)_/\\emph{\1}/g
+" %s/\v\[\@?([^\]]*)\]/\\cite{\1}/g
 "
 " vim: set foldmethod=marker

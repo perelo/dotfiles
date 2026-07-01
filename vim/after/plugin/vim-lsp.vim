@@ -16,6 +16,39 @@ if has('nvim')
     setl omnifunc=v:lua.vim.lsp.omnifunc
 endif
 
+if executable('cue-dev')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'cue lsp',
+        \ 'cmd': {server_info->['cue-dev', 'lsp']},
+        \ 'allowlist': ['cue', 'yaml'],
+        \ })
+endif
+
+let s:pkl_lsp_path = "/home/eloi/Documents/pkl-lsp-0.3.2.jar"
+if filereadable(s:pkl_lsp_path)
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pkl-lsp',
+        \ 'cmd': {server_info->['java', '-jar', s:pkl_lsp_path]},
+        \ 'allowlist': ['pkl'],
+        \ })
+endif
+
+if executable('dhall-lsp-server')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'dhall-lsp-server',
+        \ 'cmd': {server_info->['dhall-lsp-server']},
+        \ 'allowlist': ['dhall'],
+        \ })
+endif
+
+if executable('nls')    " nickel language server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'nickel-language-server',
+        \ 'cmd': {server_info->['nls']},
+        \ 'allowlist': ['ncl', 'nickel'],
+        \ })
+endif
+
 if executable('gopls')
     " pip install python-lsp-server
     au User lsp_setup call lsp#register_server({
@@ -53,7 +86,6 @@ if executable('terraform-ls')
 endif
 
 
-
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
@@ -76,14 +108,14 @@ function! s:on_lsp_buffer_enabled() abort
     let g:lsp_diagnostics_enabled = 1
     " let g:lsp_diagnostics_echo_cursor = 1
     " let g:lsp_diagnostics_float_cursor = 1
-    let g:lsp_inlay_hints_enabled = 1
+    let g:lsp_inlay_hints_enabled = 0
 
-    let g:lsp_diagnostics_signs_enabled = 1
+    let g:lsp_diagnostics_signs_enabled = 0
     let g:lsp_document_code_action_signs_enabled = 0
     setlocal signcolumn=number
 
-    let g:lsp_diagnostics_virtual_text_enabled = 1
-    let g:lsp_diagnostics_virtual_text_align = "right"
+    let g:lsp_diagnostics_virtual_text_enabled = 0
+    let g:lsp_diagnostics_virtual_text_align = "below"
     let g:lsp_diagnostics_virtual_text_wrap = "truncate"
     let g:lsp_diagnostics_virtual_text_prefix = " ‣ "
     hi! link LspErrorVirtualText Comment
