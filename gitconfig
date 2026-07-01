@@ -1,5 +1,5 @@
 [user]
-  email = eloi.perdereau@imt-atlantique.fr
+  email = eloi.perdereau@univ-orleans.fr
   name = Eloi Perdereau
 
 [core]
@@ -45,6 +45,8 @@
   path = /home/eloi/.netlify/helper/git-config
 
 [credential "https://git.overleaf.com"]
-	username = eloi.perdereau@imt-atlantique.fr
+	username = eloi.perdereau@univ-orleans.fr
 [credential]
 	helper = store
+[init]
+	defaultBranch = main
