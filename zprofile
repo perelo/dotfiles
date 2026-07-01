@@ -38,7 +38,7 @@ fi
 if [ -d "~/.local/texlive/2024/bin/" ] ; then
     PATH=~/.local/texlive/2024/bin/x86_64-linux:$PATH
     MANPATH=~/.local/texlive/2024/texmf-dist/doc/man:$MANPATH
-done
+fi
 
 if command -v pyenv &> /dev/null
 then
