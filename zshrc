@@ -44,7 +44,8 @@ alias df="df -hT"           # "human", filesystem "Type"
 
 alias t="tree -C"
 alias vi="vim"
-alias nvim="nvim --listen /tmp/nvimsocket"
+# alias nvim="nvim --listen /tmp/nvimsocket"
+# alias nvim="/home/eloi/Documents/nvim-linux-x86_64/bin/nvim"
 alias tma="tmux attach-session -t"
 
 alias g="git"
@@ -57,6 +58,10 @@ alias maude="maude -ansi-color"
 alias kompiled="kompile --enable-llvm-debug"
 alias krund="krun --debugger"
 
+alias mermaid-cli-docker="docker run --rm -i -uroot -v./:/data minlag/mermaid-cli:11.15.0"
+
+alias antlr4='java -Xmx500M -cp "/home/eloi/workspace/iac/playground/antlr-cue/parser/antlr-4.13.2-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
+
 # just make it work
 alias nickel="docker run --rm -it ghcr.io/tweag/nickel:1.1.1"
 alias gephi="~/Documents/gephi-0.10.1/bin/gephi"
@@ -67,6 +72,12 @@ function cheat {
 
 function acro {
     curl dict://dict.org/d:$1:vera
+}
+
+# https://gist.github.com/ahmed-musallam/27de7d7c5ac68ecbd1ed65b6b48416f9
+function pdfcompress ()
+{
+   gs -q -dNOPAUSE -dBATCH -dSAFER -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/screen -dEmbedAllFonts=true -dSubsetFonts=true -dColorImageDownsampleType=/Bicubic -dColorImageResolution=144 -dGrayImageDownsampleType=/Bicubic -dGrayImageResolution=144 -dMonoImageDownsampleType=/Bicubic -dMonoImageResolution=144 -sOutputFile=$1.compressed.pdf $1; 
 }
 
 # Base16 Shell
@@ -103,24 +114,49 @@ unset GREP_OPTIONS
 # The next line updates PATH for Netlify's Git Credential Helper.
 if [ -f '$HOME/.netlify/helper/path.zsh.inc' ]; then source '$HOME/.netlify/helper/path.zsh.inc'; fi
 
+[ -d /opt/nvim-linux-x86_64/bin/ ] && PATH=/opt/nvim-linux-x86_64/bin/:$PATH
+
 # completion for various CLIs
-for tool in  kubectl minikube helm cue holos pulumi pulumictl
+for tool in  kubectl minikube helm cue holos #pulumi pulumictl
 do
     if command -v $tool &> /dev/null
     then
         source <($tool completion zsh)
     fi
 done
+# Pkl completion -- deactivates shell completion :(
+# if command -v 'pkl' &>/dev/null; then
+#     source <(pkl shell-completion zsh)
+# fi
+# Nickel completion
+if command -v 'pkl' &>/dev/null; then
+    source <(nickel gen-completions zsh)
+fi
 
 # terraform CLI completion
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C terraform terraform
+if command -v 'terraform' &>/dev/null; then
+    autoload -U +X bashcompinit && bashcompinit
+    complete -o nospace -C terraform terraform
+fi
 
 # for rootless docker
 # https://docs.docker.com/engine/security/rootless/#prerequisites
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
+# export DOCKER_HOST=unix:///run/docker.sock
 
 # # >>>> Vagrant command completion (start)
 # fpath=(/usr/share/rubygems-integration/all/gems/vagrant-2.2.14/contrib/zsh $fpath)
 # compinit
 # # <<<<  Vagrant command completion (end)
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/eloi/google-cloud-sdk/path.zsh.inc' ]; then . '/home/eloi/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/eloi/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/eloi/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Pycharm installation home
+if [ -d '/home/eloi/Documents/pycharm-2025.3.3' ]; then PATH=$PATH:'/home/eloi/Documents/pycharm-2025.3.3/bin'; fi
+
+# Nomad autocomplete
+if [ -f '/usr/bin/nomad' ]; then complete -o nospace -C /usr/bin/nomad nomad; fi
