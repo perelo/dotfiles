@@ -33,3 +33,27 @@ command! -bar -bang LWindow lwindow |
 " buffer as in hexadecimal editor
 command! XXD %!xxd
 command! XXDReverse %!xxd -r
+
+command! -range=% CUEToMaude
+            \  <line1>,<line2>s/\a\+/'&/ge
+            \| <line1>,<line2>s/\v'(int|bool)/\1/ge
+            \| <line1>,<line2>s/_/top/ge
+            \| <line1>,<line2>s/:/ :/ge
+            \| <line1>,<line2>s/\./ . /ge
+command! -range=% MaudeToCUE
+            \  <line1>,<line2>s/top/_/ge
+            \| <line1>,<line2>s/v(\([^)]*\))/\1/ge
+            \| <line1>,<line2>s/'//ge
+            \| <line1>,<line2>s/ :/:/ge
+            \| <line1>,<line2>s/ \. /./ge
+
+command! -range=% MdToTex
+            \  <line1>,<line2>s/_\([^_]*\)_/\\emph{\1}/ge
+            \| <line1>,<line2>s/`\([^`]*\)`/\\texttt{\1}/ge
+            \| <line1>,<line2>s/\v\[\@?([^\]]*)\]/\\cite{\1}/ge
+            \| <line1>,<line2>s/\*/\\item/ge
+command! -range=% TexToMd
+            \  <line1>,<line2>s/\\emph{\([^}]*\)}/_\1_/ge
+            \| <line1>,<line2>s/\\texttt{\([^}]*\)}/`\1`/ge
+            \| <line1>,<line2>s/\\cite{\([^}]*\)}/[@\1]/ge
+            \| <line1>,<line2>s/\\item/*/ge

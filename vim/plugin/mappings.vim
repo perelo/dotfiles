@@ -92,8 +92,8 @@ nnoremap <silent> N N:call HLNext()<CR>
 xnoremap $ $?\S<CR>
 
 " for more, look at tpope/rsi.vim
-cnoremap <C-E> <End>
-cnoremap <C-A> <Home>
+" cnoremap <C-E> <End>
+" cnoremap <C-A> <Home>
 
 " go _to_ paragraph (1 line less)
 xnoremap g} :<c-u>call cursor(line("'}")-empty(getline(line("'}"))),col("'>") )<CR>`<gv``
@@ -131,6 +131,7 @@ let b:make = "Make %"
 let b:make_clean = "Make clean"
 nnoremap <F1> :silent w <bar> execute b:make<CR><Esc>
 inoremap <F1> <Esc>:silent w <bar> execute b:make<CR><Esc>
+vnoremap <F1> <Esc>:silent w <bar> execute b:make<CR><Esc>
 nnoremap <F5> :execute b:make_clean<CR><Esc>
 
 " Move on lines as displayed (when wrapped)

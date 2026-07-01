@@ -53,7 +53,7 @@ set splitbelow splitright
 
 " scrolling
 set scrolloff=2         " Keep more buffer context when scrolling
-set sidescrolloff=1     " Scroll immediatly on the side on last column
+set sidescrolloff=10    " Scroll immediatly on the side on last column
 set visualbell t_vb=    " Remove bip and flash
 
 " accept mouse

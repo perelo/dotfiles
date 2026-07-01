@@ -51,3 +51,5 @@ endfor
 cabbrev sct !ctags -R <c-r>=expand("%:h")<cr>
 
 iabbrev teh the
+iabbrev Teh The
+
