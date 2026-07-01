@@ -9,7 +9,7 @@
 	url = https://gist.github.com/perelo/f4ea457af5e6a69dfa5d81c602381f75
 [submodule "config/i3/i3scripts"]
 	path = config/i3/i3scripts
-	url = https://github.com/perelo/i3scripts
+	url = git@github.com:perelo/i3scripts.git
 [submodule "vim/pack/testing/opt/thesaurus_query.vim"]
 	path = vim/pack/testing/opt/thesaurus_query.vim
 	url = https://github.com/Ron89/thesaurus_query.vim
