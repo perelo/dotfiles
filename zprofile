@@ -4,6 +4,16 @@ if [ -d "$HOME/.local/bin/" ] ; then
     PATH=$HOME/.local/bin:$PATH
 fi
 
+# Maude
+if [ -d "$HOME/.local/share/maude/Maude-3.5-linux-x86_64" ] ; then
+    PATH=$HOME/.local/share/maude/Maude-3.5-linux-x86_64:$PATH
+fi
+
+# Pulumi IaC tool
+if [ -d "$HOME/.local/bin/pulumi" ] ; then
+    PATH=$HOME/.local/bin/pulumi:$PATH
+fi
+
 # Dhall language
 if [ -d "$HOME/.local/dhall/" ] ; then
     PATH=$HOME/.local/dhall/bin:$PATH
@@ -25,15 +35,10 @@ if [ -d "$HOME/go/bin" ] ; then
     export GOPATH=$HOME/go
 fi
 
-PATH=~/.local/texlive/2023/bin/x86_64-linux:$PATH
-MANPATH=~/.local/texlive/2023/texmf-dist/doc/man:$MANPATH
-
-if [ -d "~/.local/texlive/2023/bin/x86_64-linux/" ] ; then
-    PATH=/usr/local/texlive/2023/bin/x86_64-linux/:$PATH
-fi
-if [ -d "/usr/local/texlive/2023/texmf-dist/doc/man" ] ; then
-    MANPATH=/usr/local/texlive/2023/texmf-dist/doc/man:$MANPATH
-fi
+if [ -d "~/.local/texlive/2024/bin/" ] ; then
+    PATH=~/.local/texlive/2024/bin/x86_64-linux:$PATH
+    MANPATH=~/.local/texlive/2024/texmf-dist/doc/man:$MANPATH
+done
 
 if command -v pyenv &> /dev/null
 then
