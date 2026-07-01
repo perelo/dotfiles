@@ -87,7 +87,8 @@ if has('python3')
 endif
 
 " fuzzy
-Plug 'file://'.$HOME.'/dotfiles/fzf/'
+" Plug 'file://'.$HOME.'/dotfiles/fzf/'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " file-related
