@@ -241,9 +241,9 @@ bar {
     tray_output None
     mode invisible
 }
-exec_always --no-startup-id "~/venv/local/bin/python3 ~/.config/i3/i3scripts/autoname_workspaces.py"
+exec_always --no-startup-id "~/.config/i3/bin/python3 ~/.config/i3/i3scripts/autoname_workspaces.py"
 # https://github.com/nwg-piotr/autotiling
-exec_always --no-startup-id "~/venv/local/bin/python3 ~/.local/bin/autotiling --limit 2"
+exec_always --no-startup-id "~/.config/i3/bin/python3 ~/.config/i3/bin/autotiling --limit 2"
 
 exec_always --no-startup-id "gnome-flashback"
 exec_always --no-startup-id "nm-applet"
